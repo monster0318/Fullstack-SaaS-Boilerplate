@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router"
-import { trpc } from "../../utils/trpc"
+import { useTRPC } from "../../utils/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
@@ -10,7 +10,7 @@ import ChipUserId from "../user/ChipUserId"
 import DeleteDevice from "./DeleteDevice"
 import React from "react"
 import { AppContext } from "../../ContextProvider"
-
+import { useQuery } from "@tanstack/react-query"
 const DevicesPage = () => {
   const context = React.useContext(AppContext)
   const location = useLocation()
@@ -18,7 +18,8 @@ const DevicesPage = () => {
   const page = query.get("page")
   const search = query.get("search") || undefined
   const userId = query.get("userId") || undefined
-  const dataQuery = trpc.getDevices.useQuery({ page: utils.sanitizePage(page), search, userId })
+  const trpc = useTRPC()
+  const dataQuery = useQuery(trpc.getDevices.queryOptions({ page: utils.sanitizePage(page), search, userId }))
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
   return (
     <div className="flex flex-col h-full">

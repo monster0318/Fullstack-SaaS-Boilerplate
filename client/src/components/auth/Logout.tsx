@@ -1,5 +1,6 @@
 import React from "react"
-import { trpc } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { AppContext } from "../../ContextProvider"
 import { useNavigate } from "react-router"
 import { SignOut } from "@phosphor-icons/react"
@@ -8,7 +9,8 @@ import ErrorMutation from "../../layout/ErrorMutation"
 const Logout = () => {
   const navigate = useNavigate()
   const context = React.useContext(AppContext)
-  const mutation = trpc.logout.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.logout.mutationOptions())
   const logout = async () => {
     try {
       await mutation.mutateAsync(undefined)

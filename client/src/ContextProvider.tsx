@@ -1,5 +1,6 @@
 import React from "react"
-import { trpc } from "./utils/trpc"
+import { useQuery } from "@tanstack/react-query"
+import { useTRPC } from "./utils/trpc"
 
 type ContextType = {
   me: {
@@ -30,7 +31,8 @@ type Props = {
 }
 
 const ContextProvider = (props: Props) => {
-  const getAuthQuery = trpc.getAuth.useQuery(undefined, { retry: false })
+  const trpc = useTRPC()
+  const getAuthQuery = useQuery(trpc.getAuth.queryOptions(undefined, { retry: false }))
 
   const [isLoadingAuth, setIsLoadingAuth] = React.useState(false)
   const [me, setMe] = React.useState<ContextType["me"]>(null)

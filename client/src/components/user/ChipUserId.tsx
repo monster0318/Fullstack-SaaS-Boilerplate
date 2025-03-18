@@ -1,4 +1,5 @@
-import { trpc } from "../../utils/trpc"
+import { useQuery } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { LoadingTemplate } from "../../template/LoadingTemplate"
 import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
 import ErrorTemplate from "../../template/ErrorTemplate"
@@ -14,8 +15,8 @@ const ChipUserId = (props: Props) => {
   const navigate = useNavigate()
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
-
-  const dataQuery = trpc.getUser.useQuery({ id: props.userId })
+  const trpc = useTRPC()
+  const dataQuery = useQuery(trpc.getUser.queryOptions({ id: props.userId }))
   if (dataQuery.isLoading) return <LoadingTemplate />
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
   if (!dataQuery.data) return null

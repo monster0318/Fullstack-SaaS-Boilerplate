@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { trpc } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { inferRouterOutputs } from "@trpc/server"
 import { AppRouter } from "../../../../server"
 import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"
@@ -15,7 +16,8 @@ type Props = {
 const UpdateUserName = (props: Props) => {
   const [isEdit, setIsEdit] = useState(false)
   const [name, setName] = useState(props.user.name)
-  const mutation = trpc.updateUser.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.updateUser.mutationOptions())
 
   const updateUser = async () => {
     try {

@@ -1,5 +1,6 @@
 import React from "react"
-import { trpc } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { AppContext } from "../../ContextProvider"
 import { Link, useNavigate } from "react-router"
 import { z } from "zod"
@@ -13,7 +14,8 @@ type ErrorsType = Partial<Record<keyof SignupFormData, string[]>>
 const Signup = () => {
   const navigate = useNavigate()
   const context = React.useContext(AppContext)
-  const mutation = trpc.signup.useMutation({})
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.signup.mutationOptions())
   const [formData, setFormData] = React.useState<SignupFormData>({
     name: "",
     email: "",

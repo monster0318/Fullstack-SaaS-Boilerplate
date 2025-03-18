@@ -1,8 +1,9 @@
 import { useState } from "react"
-import { trpc } from "../../utils/trpc"
 import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
+import { useTRPC } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
 
 type Props = {
   onUpdate: () => void
@@ -11,7 +12,8 @@ type Props = {
 const UpdateUserPassword = (props: Props) => {
   const [isEdit, setIsEdit] = useState(false)
   const [password, setPassword] = useState("")
-  const mutation = trpc.updateUserPassord.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.updateUserPassord.mutationOptions())
 
   const updateUser = async () => {
     try {

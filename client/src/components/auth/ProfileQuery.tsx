@@ -1,4 +1,5 @@
-import { trpc } from "../../utils/trpc"
+import { useQuery } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { LoadingTemplate } from "../../template/LoadingTemplate"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
@@ -13,7 +14,8 @@ type Props = {
 }
 
 const ProfileQuery = (props: Props) => {
-  const dataQuery = trpc.getUserProfile.useQuery({ id: props.meId })
+  const trpc = useTRPC()
+  const dataQuery = useQuery(trpc.getUserProfile.queryOptions({ id: props.meId }))
   if (dataQuery.isLoading) return <LoadingTemplate />
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
   if (!dataQuery.data) return <div>No data</div>

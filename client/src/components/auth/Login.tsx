@@ -1,6 +1,8 @@
 import React from "react"
 import { Link } from "react-router"
-import { trpc } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
+
 import { AppContext } from "../../ContextProvider"
 import { useNavigate } from "react-router"
 import { z } from "zod"
@@ -24,7 +26,8 @@ const Login = () => {
 
   const navigate = useNavigate()
   const context = React.useContext(AppContext)
-  const mutation = trpc.login.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.login.mutationOptions())
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

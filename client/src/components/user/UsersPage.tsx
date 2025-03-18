@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router"
-import { trpc } from "../../utils/trpc"
+import { useQuery } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
@@ -14,7 +15,8 @@ const UsersPage = () => {
   const page = query.get("page")
   const search = query.get("search") || undefined
   const userId = query.get("userId") || undefined
-  const dataQuery = trpc.getUsers.useQuery({ page: utils.sanitizePage(page), search, userId })
+  const trpc = useTRPC()
+  const dataQuery = useQuery(trpc.getUsers.queryOptions({ page: utils.sanitizePage(page), search, userId }))
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
 
   return (

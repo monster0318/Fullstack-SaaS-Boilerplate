@@ -1,4 +1,5 @@
-import { trpc } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { Trash } from "@phosphor-icons/react"
 import ErrorMutation from "../../layout/ErrorMutation"
 
@@ -7,7 +8,8 @@ type Props = {
   onDelete: () => void
 }
 const DeleteDevice = (props: Props) => {
-  const mutation = trpc.deleteDevice.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.deleteDevice.mutationOptions())
   const logout = async () => {
     try {
       await mutation.mutateAsync({

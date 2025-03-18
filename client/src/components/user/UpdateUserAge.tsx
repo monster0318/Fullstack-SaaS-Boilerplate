@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { trpc } from "../../utils/trpc"
-import { inferRouterOutputs } from "@trpc/server"
-import { AppRouter } from "../../../../server"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
+import { inferRouterOutputs } from "@trpc/server"
+import { AppRouter } from "../../../../server"
 type RouterOutput = inferRouterOutputs<AppRouter>
 
 type Props = {
@@ -15,7 +16,8 @@ type Props = {
 const UpdateUserAge = (props: Props) => {
   const [isEdit, setIsEdit] = useState(false)
   const [age, setAge] = useState<number | "">(props.user.age ? props.user.age : "")
-  const mutation = trpc.updateUser.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.updateUser.mutationOptions())
 
   const updateUser = async () => {
     try {

@@ -1,12 +1,14 @@
 import React from "react"
-import { trpc } from "../../utils/trpc"
+import { useMutation } from "@tanstack/react-query"
+import { useTRPC } from "../../utils/trpc"
 import { AppContext } from "../../ContextProvider"
 import { ArrowsClockwise } from "@phosphor-icons/react"
 import ErrorMutation from "../../layout/ErrorMutation"
 
 const RefreshToken = () => {
   const context = React.useContext(AppContext)
-  const mutation = trpc.refreshToken.useMutation()
+  const trpc = useTRPC()
+  const mutation = useMutation(trpc.refreshToken.mutationOptions())
   const refreshToken = async () => {
     try {
       await mutation.mutateAsync(undefined)

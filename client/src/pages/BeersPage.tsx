@@ -1,7 +1,8 @@
 import ErrorTemplate from "../template/ErrorTemplate"
 import { LoadingTemplate } from "../template/LoadingTemplate"
 import { SizeTable } from "../template/SizeTable"
-import { trpc } from "../utils/trpc"
+import { useQuery } from "@tanstack/react-query"
+import { useTRPC } from "../utils/trpc"
 import { useSearchParams } from "react-router"
 import { BeerStein } from "@phosphor-icons/react"
 
@@ -12,7 +13,8 @@ const BeersPage = () => {
   const initSize = 6
   const finalSize = sizeUrl ? Number(sizeUrl) : initSize
 
-  const dataQuery = trpc.getBeers.useQuery({ size: finalSize })
+  const trpc = useTRPC()
+  const dataQuery = useQuery(trpc.getBeers.queryOptions({ size: finalSize }))
   if (dataQuery.isLoading) return <LoadingTemplate />
 
   return (
