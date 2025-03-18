@@ -23,6 +23,8 @@ const authRouter = router({
     const user = await db.query.userTable.findFirst({
       where: eq(userTable.email, opts.input.email),
       columns: { id: true, name: true, image: true },
+
+      // ThIS should drop an error. But why not?
       // with: {
       //   userCredentialERRROR: {
       //     columns: {
