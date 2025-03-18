@@ -54,6 +54,12 @@ const App = () => {
       links: [
         httpBatchLink({
           url,
+          fetch(url, options) {
+            return fetch(url, {
+              ...options,
+              credentials: "include",
+            })
+          },
         }),
       ],
     })
