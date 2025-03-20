@@ -26,7 +26,7 @@ const authRouter = router({
 
       // This should drops an error. But why not?
       // with: {
-      //   userCredentialERRROR: {
+      //   userCredential_SHOULD_DROP_A_TYPE_ERROR: {
       //     columns: {
       //       passwordHash: true,
       //     },
