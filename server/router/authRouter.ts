@@ -24,7 +24,7 @@ const authRouter = router({
       where: eq(userTable.email, opts.input.email),
       columns: { id: true, name: true, image: true },
 
-      // This should drop an error. But why not?
+      // This should drops an error. But why not?
       // with: {
       //   userCredentialERRROR: {
       //     columns: {
