@@ -9,6 +9,8 @@ import deviceRouter from "./router/deviceRouter"
 import healthRouter from "./router/healthRouter"
 import beerRouter from "./router/beerRouter"
 import t from "./trpc"
+import { toNodeHandler } from "better-auth/node"
+import { auth } from "./lib/auth"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
@@ -37,6 +39,25 @@ const start = async () => {
     })
 
     await fastify.register(fastifyCookie)
+
+    // Add auth handler for all routes under /api/auth
+    // fastify.all("/api/auth/*", async (request, reply) => {
+    //   console.log("auth handler")
+    //   const data = await toNodeHandler(auth)
+    //   console.log(data)
+    // })
+    await fastify.register((fastify) => {
+      const authhandler = toNodeHandler(auth)
+
+      fastify.addContentTypeParser("application/json", (_request, _payload, done) => {
+        done(null, null)
+      })
+
+      fastify.all("/api/auth/*", async (request, reply) => {
+        console.log("auth handler")
+        await authhandler(request.raw, reply.raw)
+      })
+    })
 
     fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
       return reply.send({ message: "Hello, TER!" })

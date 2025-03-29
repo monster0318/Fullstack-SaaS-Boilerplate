@@ -2,12 +2,14 @@ import React, { useContext } from "react"
 import { AppContext } from "./ContextProvider"
 import AuthButtons from "./auth/AuthButtons"
 import { Bug } from "@phosphor-icons/react"
-
+import { authClient } from "./lib/auth-client"
 type Props = {
   element: React.ReactNode
 }
 
 const PrivateRoute = (props: Props) => {
+  const data = authClient.useSession()
+  console.log(data)
   const context = useContext(AppContext)
   if (context.isLoadingAuth) return <div className="p-6">Loading!</div>
   if (!context.me) {

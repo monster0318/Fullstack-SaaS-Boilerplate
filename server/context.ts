@@ -19,14 +19,14 @@ export interface UserIDJwtPayload extends jwt.JwtPayload {
   exp: number
   iat: number
 }
+if (!databaseUrl) throw new Error("DATABASE_URL is not defined")
+const config = { secretJwt, databaseUrl }
+export const db = drizzle(databaseUrl, { schema })
 
 const createContext = async ({ req, res }: CreateFastifyContextOptions) => {
   if (!secretJwt) throw new Error("JWT_SECRET is not defined")
-  if (!databaseUrl) throw new Error("DATABASE_URL is not defined")
-  const config = { secretJwt, databaseUrl }
   const cookies = req.cookies
   const authToken = cookies[cookieNameAuth]
-  const db = drizzle(databaseUrl, { schema })
 
   if (authToken) {
     try {

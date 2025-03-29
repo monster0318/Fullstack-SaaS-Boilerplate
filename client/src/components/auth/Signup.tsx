@@ -8,6 +8,7 @@ import { zod } from "@fsb/shared/schemas/zod"
 import ErrorMutation from "../../layout/ErrorMutation"
 const zodSignup = zod.zodSignup
 import { Keyhole } from "@phosphor-icons/react"
+import { authClient } from "../../lib/auth-client"
 type SignupFormData = z.infer<typeof zodSignup>
 type ErrorsType = Partial<Record<keyof SignupFormData, string[]>>
 
@@ -67,12 +68,11 @@ const Signup = () => {
     setIsSubmitting(true)
 
     try {
-      await mutation.mutateAsync({
+      const data = await authClient.signUp.email({
         email: formData.email,
-        password: formData.password,
         name: formData.name,
+        password: formData.password,
       })
-      context.updateAuth()
       navigate("/profile")
     } catch (error) {
       setIsSubmitting(false)
