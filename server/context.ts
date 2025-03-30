@@ -28,32 +28,15 @@ const createContext = async ({ req, res }: CreateFastifyContextOptions) => {
   const data = await auth.api.getSession({
     headers, //some endpoint might require headers
   })
-  console.log("session", data)
-
-  // if (!secretJwt) throw new Error("JWT_SECRET is not defined")
-  // const cookies = req.cookies
-  // const authToken = cookies[cookieNameAuth]
 
   if (data) {
     try {
-      // let decoded = jwt.verify(authToken, secretJwt) as UserIDJwtPayload
-      // if (decoded) {
       const user = await db.query.userTable.findFirst({ where: eq(userTable.id, data.user.id) })
       if (!user) throw new Error("User not found")
 
-      // const cookies = req.cookies
-      // const deviceIdsFromCookieString = cookies[cookieNameDeviceIds]
-      // if (!deviceIdsFromCookieString) {
-      //   throw new Error("Device cookie not found")
-      // }
-      // const device = await manageDevice.getDeviceFromCookieString(db, user.id, deviceIdsFromCookieString)
-
-      // if (!device) throw new Error("Device not found")
       return { req, res, user, db, config }
-      // }
     } catch (error) {
       console.log("error", error)
-      // res.clearCookie(cookieNameAuth)
     }
   }
   return { req, res, db, config }
