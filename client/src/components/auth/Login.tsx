@@ -1,81 +1,36 @@
 import React from "react"
 import { Link } from "react-router"
-import { useMutation } from "@tanstack/react-query"
-import { useTRPC } from "../../utils/trpc"
-
-import { AppContext } from "../../ContextProvider"
 import { useNavigate } from "react-router"
-import { z } from "zod"
-import { zod } from "@fsb/shared/schemas/zod"
 import { SignIn } from "@phosphor-icons/react"
-import ErrorMutation from "../../layout/ErrorMutation"
-const zodLogin = zod.zodLogin
-
-type LoginFormData = z.infer<typeof zodLogin>
-type ErrorsType = Partial<Record<keyof LoginFormData, string[]>>
+import { authClient } from "../../lib/auth-client"
 
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false)
-  const [errors, setErrors] = React.useState<ErrorsType>({})
+  const [error, setError] = React.useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
-  const [activeFields, setActiveFields] = React.useState<Partial<Record<keyof LoginFormData, boolean>>>({})
-  const [formData, setFormData] = React.useState<LoginFormData>({
+  const [formData, setFormData] = React.useState({
     password: "securePassword",
     email: "alan@example.com",
   })
 
   const navigate = useNavigate()
-  const context = React.useContext(AppContext)
-  const trpc = useTRPC()
-  const mutation = useMutation(trpc.login.mutationOptions())
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    try {
-      await mutation.mutateAsync({ email: formData.email, password: formData.password })
-      await context.updateAuth()
+
+    const data = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+    })
+    console.log("data", data)
+    if (data.data) {
       navigate("/profile")
-    } catch (error) {
-      setIsSubmitting(false)
-      console.error("Submission error:", error)
     }
-  }
-
-  const validateField = (fieldName: keyof LoginFormData, value: string) => {
-    try {
-      const fieldSchema = zodLogin.shape[fieldName]
-      fieldSchema.parse(value)
-      setErrors((prev) => ({ ...prev, [fieldName]: undefined }))
-      return true
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors = error.errors.map((err) => err.message)
-        setErrors((prev) => ({ ...prev, [fieldName]: fieldErrors }))
-      }
-      return false
+    if (data.error) {
+      setError(data.error.message || "Something went wrong")
     }
-  }
-
-  const isFormValid = () => {
-    try {
-      zodLogin.parse(formData)
-      return true
-    } catch {
-      return false
-    }
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    setActiveFields((prev) => ({ ...prev, [name]: true }))
-    validateField(name as keyof LoginFormData, value)
-  }
-
-  const handleInputBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name } = e.target
-    setActiveFields((prev) => ({ ...prev, [name]: false }))
+    setIsSubmitting(false)
   }
 
   return (
@@ -91,36 +46,22 @@ const Login = () => {
             name="email"
             autoFocus
             value={formData.email}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
-            className={errors.email && !activeFields.email ? "input-error" : "input-default"}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className={"input-default"}
             type="text"
             placeholder="Email"
           />
-          {!activeFields.email &&
-            errors.email?.map((error, idx) => (
-              <p key={idx} className="mt-1 text-sm text-red-500">
-                {error}
-              </p>
-            ))}
         </div>
         <div>
           <input
             id="password-input"
             name="password"
             value={formData.password}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
-            className={errors.password && !activeFields.password ? "input-error" : "input-default"}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            className={"input-default"}
             type={showPassword ? "text" : "password"}
             placeholder="Password"
           />
-          {!activeFields.password &&
-            errors.password?.map((error, idx) => (
-              <p key={idx} className="mt-1 text-sm text-red-500">
-                {error}
-              </p>
-            ))}
         </div>
         <div>
           <input
@@ -138,14 +79,14 @@ const Login = () => {
         <div>
           <button
             id="email-mutation-button"
-            disabled={isSubmitting || !isFormValid()}
+            disabled={isSubmitting}
             type="submit"
             className="btn-blue flex items-center"
           >
             <SignIn className="mr-2" />
-            {mutation.isPending ? "Loading..." : "Login"}
+            {isSubmitting ? "Loading..." : "Login"}
           </button>
-          {mutation.error && <ErrorMutation data={mutation.error} />}
+          {error && <p className="text-sm mt-6 text-red-500">{error}</p>}
         </div>
         <p className="text-sm mt-6">
           Don’t have an account yet?{" "}

@@ -1,7 +1,7 @@
 import { initUsersData } from "./initUsersData"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { eq } from "drizzle-orm"
-import { userTable, userCredentialTable, deviceTable } from "../db/schema"
+import { userTable, deviceTable, verificationTable, accountTable, sessionTable } from "../db/schema"
 import * as schema from "../db/schema"
 import dotenv from "dotenv"
 
@@ -11,14 +11,18 @@ const db = drizzle(databaseUrl, { schema })
 
 const main = async () => {
   console.log(`Seeding ${databaseUrl}...`)
-  await db.delete(userCredentialTable)
   await db.delete(deviceTable)
+  await db.delete(verificationTable)
+  await db.delete(accountTable)
+  await db.delete(sessionTable)
   await db.delete(userTable)
   for (const user of initUsersData) {
     let userNew = await db.insert(userTable).values(user).returning({ id: userTable.id })
-    await db.insert(userCredentialTable).values({
+    await db.insert(accountTable).values({
       userId: userNew[0].id,
-      passwordHash: user.password,
+      providerId: "credential",
+      accountId: userNew[0].id,
+      password: user.password,
     })
   }
 
