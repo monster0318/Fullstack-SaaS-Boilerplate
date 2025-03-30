@@ -35,8 +35,7 @@
 
 ## Other dependencies
 
-- [Bcrypt](https://www.npmjs.com/package/bcrypt) - A JavaScript library for hashing passwords
-- [JWT](https://jwt.io) - JSON Web Tokens for authentication
+- [Better Auth](https://better-auth.com) - Authentication library for Node.js
 - [NPM Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) Workspaces for managing multiple packages in a single repository
 - [Phosphor Icons](https://phosphoricons.com) - A flexible icon family for interfaces, diagrams, presentations — whatever, really
 - [Playwright](https://playwright.dev) - Test your web apps headlessly with a single API
@@ -47,9 +46,8 @@
 
 ## Features
 
-- [HttpOnly cookies](https://owasp.org/www-community/HttpOnly) for Authentication (Signup, login, and logout)
 - [Beers from random-data-api.com](https://random-data-api.com) Example of pulling data from externals REST API
-- [React context](https://react.dev/reference/react/useContext) is used to store the user's details when logged in
+- [React context](https://react.dev/reference/react/useContext) is used for the dark mode / light mode toggle
 - Health Check for the server (http://localhost:2022/health)
 - Search with Debounce Using a Custom Hook
 
