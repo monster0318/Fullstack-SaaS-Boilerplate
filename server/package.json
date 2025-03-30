@@ -5,9 +5,9 @@
   "license": "ISC",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch index.ts",
-    "lint": "eslint --cache --ext \".js,.ts,.tsx\" index.ts",
-    "start": "node dist/index.js"
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint --cache --ext \".js,.ts,.tsx\" src/index.ts",
+    "start": "node dist/src/index.js"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.2",

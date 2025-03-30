@@ -9,6 +9,7 @@ import DeviceImage from "./DeviceImage"
 import ChipUserId from "../user/ChipUserId"
 import DeleteDevice from "./DeleteDevice"
 import { useQuery } from "@tanstack/react-query"
+
 const DevicesPage = () => {
   const location = useLocation()
   const query = new URLSearchParams(location.search)
