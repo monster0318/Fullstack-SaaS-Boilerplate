@@ -13,28 +13,6 @@ export const userTable = pgTable("user", {
   lastLoginAt: timestamp("last_login_at"),
 })
 
-export const deviceTable = pgTable("device", {
-  id: uuid().defaultRandom().primaryKey(),
-  userAgent: text("userAgent").notNull(),
-  ip: text("ip").notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  lastLoginAt: timestamp("last_login_at"),
-  userId: uuid("user_id")
-    .notNull()
-    .references(() => userTable.id),
-})
-
-export const deviceToUserRelations = relations(deviceTable, ({ one }) => ({
-  user: one(userTable, {
-    fields: [deviceTable.userId],
-    references: [userTable.id],
-  }),
-}))
-
-export const userToDevicesRelations = relations(userTable, ({ many }) => ({
-  devices: many(deviceTable),
-}))
-
 export const sessionTable = pgTable("session", {
   id: uuid("id").primaryKey().defaultRandom(), // Unique session ID
   userId: uuid("user_id")
