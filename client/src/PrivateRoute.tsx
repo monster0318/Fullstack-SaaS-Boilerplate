@@ -1,5 +1,4 @@
 import React from "react"
-// import { AppContext } from "./ContextProvider"
 import AuthButtons from "./auth/AuthButtons"
 import { Bug } from "@phosphor-icons/react"
 import { authClient } from "./lib/auth-client"
@@ -9,8 +8,6 @@ type Props = {
 
 const PrivateRoute = (props: Props) => {
   const session = authClient.useSession()
-  console.log(session)
-  // const context = useContext(AppContext)
   if (session.isPending) return <div className="p-6">Loading!</div>
   if (!session.data?.user) {
     return (
