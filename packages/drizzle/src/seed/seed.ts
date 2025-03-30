@@ -29,15 +29,6 @@ const main = async () => {
   const userCheck = await db.query.userTable.findFirst({
     where: eq(userTable.email, "alan@example.com"),
     columns: { id: true, name: true, image: true },
-
-    // This should drops an error. But why not? https://github.com/drizzle-team/drizzle-orm/issues/4297
-    // with: {
-    //   userCredential_SHOULD_DROP_A_TYPE_ERROR: {
-    //     columns: {
-    //       passwordHash: true,
-    //     },
-    //   },
-    // },
   })
 
   console.log(userCheck)
