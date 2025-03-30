@@ -39,7 +39,6 @@ const DevicesPage = () => {
                 <tr>
                   <th>Device</th>
                   <th>Created At</th>
-                  <th>Last Login At</th>
                   <th>User</th>
                   <th>Action</th>
                 </tr>
