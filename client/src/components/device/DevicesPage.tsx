@@ -8,11 +8,8 @@ import utils from "../../utils/utils"
 import DeviceImage from "./DeviceImage"
 import ChipUserId from "../user/ChipUserId"
 import DeleteDevice from "./DeleteDevice"
-import React from "react"
-import { AppContext } from "../../ContextProvider"
 import { useQuery } from "@tanstack/react-query"
 const DevicesPage = () => {
-  const context = React.useContext(AppContext)
   const location = useLocation()
   const query = new URLSearchParams(location.search)
   const page = query.get("page")
@@ -53,9 +50,9 @@ const DevicesPage = () => {
                     <td>
                       <DeviceImage
                         deviceName={utils.getDeviceName(device.userAgent || "")}
-                        className={`text-3xl ${device.id === context.deviceId ? "text-[#034DA2]" : ""}`}
+                        className={`text-3xl ${device.id === "" ? "text-[#034DA2]" : ""}`}
                       />
-                      <div className={`${device.id === context.deviceId ? "text-[#034DA2]" : ""}`}>
+                      <div className={`${device.id === "" ? "text-[#034DA2]" : ""}`}>
                         {utils.getDeviceName(device.userAgent || "")}
                       </div>
                       {device.ipAddress && device.ipAddress !== "::1" && (

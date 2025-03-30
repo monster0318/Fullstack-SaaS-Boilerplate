@@ -1,20 +1,18 @@
-import React from "react"
-import { AppContext } from "../../ContextProvider"
 import Logout from "./Logout"
 import Login from "./Login"
-
+import { authClient } from "../../lib/auth-client"
 const AuthManagement = () => {
-  const context = React.useContext(AppContext)
-  if (context.me) {
+  const session = authClient.useSession()
+  if (session.data?.user) {
     return (
       <div className="p-6">
-        Hey {context.me.name}!
+        Hey {session.data.user.name}!
         <Logout />
       </div>
     )
   }
 
-  if (context.isLoadingAuth) {
+  if (session.isPending) {
     return <div className="p-6">Loading...</div>
   }
   return <Login />

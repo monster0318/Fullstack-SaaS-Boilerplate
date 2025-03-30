@@ -3,7 +3,6 @@ import { useState } from "react"
 import { BrowserRouter } from "react-router"
 import ContextProvider from "./ContextProvider"
 import LayoutApp from "./layout/LayoutApp"
-import MyIdle from "./MyIdle"
 import LogoApp from "./layout/LogoApp"
 import { createTRPCClient, httpBatchLink } from "@trpc/client"
 import type { AppRouter } from "../../server"
@@ -103,9 +102,7 @@ const App = () => {
         <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
           <ContextProvider>
             <QueryClientProvider client={queryClient}>
-              <MyIdle>
-                <LayoutApp />
-              </MyIdle>
+              <LayoutApp />
             </QueryClientProvider>
           </ContextProvider>
         </TRPCProvider>

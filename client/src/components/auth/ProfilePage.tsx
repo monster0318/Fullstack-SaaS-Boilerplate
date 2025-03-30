@@ -1,17 +1,12 @@
 import ProfileQuery from "./ProfileQuery"
-import SessionData from "./SessionData"
 import Logout from "./Logout"
 import { Link } from "react-router"
 import { Devices } from "@phosphor-icons/react"
 import { UserCircle } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
-// yuYU7878jOo9(
+
 const ProfilePage = () => {
-  // const context = React.useContext(AppContext)
   const session = authClient.useSession()
-  // if (!context.me) {
-  //   return null
-  // }
 
   if (!session.data?.user) {
     return null
@@ -37,7 +32,6 @@ const ProfilePage = () => {
           </button>
         </Link>
       </div>
-      <SessionData />
     </div>
   )
 }
