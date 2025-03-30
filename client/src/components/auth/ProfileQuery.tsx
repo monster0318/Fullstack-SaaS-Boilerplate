@@ -6,7 +6,6 @@ import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
 import UpdateUserName from "../user/UpdateUserName"
 import ImgAvatar from "../../layout/ImgAvatar"
 import UpdateUserAge from "../user/UpdateUserAge"
-import UpdateUserPassword from "../user/UpdateUserPassword"
 import UpdateUserEmail from "../user/UpdateUserEmail"
 
 type Props = {
@@ -33,7 +32,6 @@ const ProfileQuery = (props: Props) => {
           <UpdateUserName user={dataQuery.data} onUpdate={dataQuery.refetch} />
           <UpdateUserAge user={dataQuery.data} onUpdate={dataQuery.refetch} />
           <UpdateUserEmail user={dataQuery.data} onUpdate={dataQuery.refetch} />
-          <UpdateUserPassword onUpdate={dataQuery.refetch} />
         </div>
       </div>
     </div>
