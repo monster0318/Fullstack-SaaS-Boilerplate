@@ -28,7 +28,7 @@ export type AppRouter = typeof appRouter
 
 const fastify = Fastify({
   maxParamLength: 5000,
-  logger: true,
+  // logger: true,
 })
 
 const start = async () => {
@@ -40,24 +40,62 @@ const start = async () => {
 
     await fastify.register(fastifyCookie)
 
+    // Register authentication endpoint
+    fastify.route({
+      method: ["GET", "POST"],
+      url: "/api/auth/*",
+      async handler(request, reply) {
+        try {
+          // Construct request URL
+          const url = new URL(request.url, `http://${request.headers.host}`)
+
+          // Convert Fastify headers to standard Headers object
+          const headers = new Headers()
+          Object.entries(request.headers).forEach(([key, value]) => {
+            if (value) headers.append(key, value.toString())
+          })
+
+          // Create Fetch API-compatible request
+          const req = new Request(url.toString(), {
+            method: request.method,
+            headers,
+            body: request.body ? JSON.stringify(request.body) : undefined,
+          })
+
+          // Process authentication request
+          const response = await auth.handler(req)
+
+          // Forward response to client
+          reply.status(response.status)
+          response.headers.forEach((value, key) => reply.header(key, value))
+          reply.send(response.body ? await response.text() : null)
+        } catch (error) {
+          fastify.log.error("Authentication Error:", error)
+          reply.status(500).send({
+            error: "Internal authentication error",
+            code: "AUTH_FAILURE",
+          })
+        }
+      },
+    })
     // Add auth handler for all routes under /api/auth
     // fastify.all("/api/auth/*", async (request, reply) => {
     //   console.log("auth handler")
     //   const data = await toNodeHandler(auth)
     //   console.log(data)
     // })
-    await fastify.register((fastify) => {
-      const authhandler = toNodeHandler(auth)
+    // await fastify.register((fastify) => {
+    //   const authhandler = toNodeHandler(auth)
 
-      fastify.addContentTypeParser("application/json", (_request, _payload, done) => {
-        done(null, null)
-      })
+    //   fastify.addContentTypeParser("application/json", (_request, _payload, done) => {
+    //     done(null, null)
+    //   })
 
-      fastify.all("/api/auth/*", async (request, reply) => {
-        console.log("auth handler")
-        await authhandler(request.raw, reply.raw)
-      })
-    })
+    //   fastify.all("/api/auth/*", async (request, reply) => {
+    //     console.log("auth handler")
+    //     await authhandler(request.raw, reply.raw)
+    //   })
+    // })
 
     fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
       return reply.send({ message: "Hello, TER!" })

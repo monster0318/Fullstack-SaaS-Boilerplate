@@ -1,18 +1,22 @@
-import React from "react"
-import { AppContext } from "../../ContextProvider"
 import ProfileQuery from "./ProfileQuery"
 import SessionData from "./SessionData"
 import Logout from "./Logout"
 import { Link } from "react-router"
 import { Devices } from "@phosphor-icons/react"
 import { UserCircle } from "@phosphor-icons/react"
-
+import { authClient } from "../../lib/auth-client"
+// yuYU7878jOo9(
 const ProfilePage = () => {
-  const context = React.useContext(AppContext)
+  // const context = React.useContext(AppContext)
+  const session = authClient.useSession()
+  // if (!context.me) {
+  //   return null
+  // }
 
-  if (!context.me) {
+  if (!session.data?.user) {
     return null
   }
+
   return (
     <div className="p-6">
       <div className="flex items-center justify-between">
@@ -23,9 +27,9 @@ const ProfilePage = () => {
 
         <Logout />
       </div>
-      <ProfileQuery meId={context.me.id} />
+      <ProfileQuery meId={session.data.user.id} />
       <div className="mt-2">
-        <Link className="link" to={`/devices?userId=${context.me.id}`}>
+        <Link className="link" to={`/devices?userId=${session.data.user.id}`}>
           <button className="btn-white">
             <div className="flex items-center">
               <Devices className="text-xl mr-2" /> Devices

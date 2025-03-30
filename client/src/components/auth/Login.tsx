@@ -1,14 +1,10 @@
 import React from "react"
 import { Link } from "react-router"
-import { useMutation } from "@tanstack/react-query"
-import { useTRPC } from "../../utils/trpc"
-
-import { AppContext } from "../../ContextProvider"
 import { useNavigate } from "react-router"
 import { z } from "zod"
 import { zod } from "@fsb/shared/schemas/zod"
 import { SignIn } from "@phosphor-icons/react"
-import ErrorMutation from "../../layout/ErrorMutation"
+import { authClient } from "../../lib/auth-client"
 const zodLogin = zod.zodLogin
 
 type LoginFormData = z.infer<typeof zodLogin>
@@ -25,17 +21,23 @@ const Login = () => {
   })
 
   const navigate = useNavigate()
-  const context = React.useContext(AppContext)
-  const trpc = useTRPC()
-  const mutation = useMutation(trpc.login.mutationOptions())
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      await mutation.mutateAsync({ email: formData.email, password: formData.password })
-      await context.updateAuth()
-      navigate("/profile")
+      const data = await authClient.signIn.email({
+        email: formData.email,
+        password: formData.password,
+      })
+      console.log("data", data)
+      if (data.data) {
+        navigate("/profile")
+      }
+      if (data.error) {
+        setIsSubmitting(false)
+        setErrors({ email: [data.error.message || ""] })
+      }
     } catch (error) {
       setIsSubmitting(false)
       console.error("Submission error:", error)
@@ -143,9 +145,8 @@ const Login = () => {
             className="btn-blue flex items-center"
           >
             <SignIn className="mr-2" />
-            {mutation.isPending ? "Loading..." : "Login"}
+            {isSubmitting ? "Loading..." : "Login"}
           </button>
-          {mutation.error && <ErrorMutation data={mutation.error} />}
         </div>
         <p className="text-sm mt-6">
           Don’t have an account yet?{" "}

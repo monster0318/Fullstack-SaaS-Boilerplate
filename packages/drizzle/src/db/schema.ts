@@ -13,26 +13,6 @@ export const userTable = pgTable("user", {
   lastLoginAt: timestamp("last_login_at"),
 })
 
-export const userToUserCredentialRelations = relations(userTable, ({ one }) => ({
-  userCredential: one(userCredentialTable),
-}))
-
-export const userCredentialTable = pgTable("user_credential", {
-  id: uuid().defaultRandom().primaryKey(),
-  userId: uuid("user_id")
-    .notNull()
-    .unique()
-    .references(() => userTable.id),
-  passwordHash: text("password_hash").notNull(),
-})
-
-export const userCredentialToUserRelations = relations(userCredentialTable, ({ one }) => ({
-  user: one(userTable, {
-    fields: [userCredentialTable.userId],
-    references: [userTable.id],
-  }),
-}))
-
 export const deviceTable = pgTable("device", {
   id: uuid().defaultRandom().primaryKey(),
   userAgent: text("userAgent").notNull(),
@@ -55,7 +35,7 @@ export const userToDevicesRelations = relations(userTable, ({ many }) => ({
   devices: many(deviceTable),
 }))
 
-export const sessions = pgTable("sessions", {
+export const sessionTable = pgTable("session", {
   id: uuid("id").primaryKey().defaultRandom(), // Unique session ID
   userId: uuid("user_id")
     .notNull()
@@ -68,7 +48,7 @@ export const sessions = pgTable("sessions", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(), // Last update time
 })
 
-export const accounts = pgTable("account", {
+export const accountTable = pgTable("account", {
   id: uuid("id").primaryKey().defaultRandom(), // Unique ID for account
   userId: uuid("user_id")
     .notNull()
@@ -91,7 +71,7 @@ export const accounts = pgTable("account", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(), // Updated time
 })
 
-export const verifications = pgTable("verification", {
+export const verificationTable = pgTable("verification", {
   id: uuid("id").primaryKey().defaultRandom(), // Unique ID for verification
   identifier: text("identifier").notNull(), // Identifier for the request
   value: text("value").notNull(), // Value to be verified

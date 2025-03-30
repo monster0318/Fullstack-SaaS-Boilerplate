@@ -68,7 +68,7 @@ const Signup = () => {
     setIsSubmitting(true)
 
     try {
-      const data = await authClient.signUp.email({
+      await authClient.signUp.email({
         email: formData.email,
         name: formData.name,
         password: formData.password,

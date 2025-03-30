@@ -2,13 +2,15 @@ import { useContext } from "react"
 import { NavLink } from "react-router"
 import { AppContext } from "../ContextProvider"
 import { House, Devices, Users, PencilLine, BeerStein } from "@phosphor-icons/react"
+import { authClient } from "../lib/auth-client"
 
 type Props = {
   onClick: () => void
 }
 
 const NavLinks = (props: Props) => {
-  const context = useContext(AppContext)
+  const session = authClient.useSession()
+  // const context = useContext(AppContext)
   return (
     <nav className="px-4 py-6">
       <NavLink
@@ -35,7 +37,7 @@ const NavLinks = (props: Props) => {
           Beers
         </div>
       </NavLink>
-      {context.me && (
+      {session.data?.user && (
         <NavLink
           onClick={props.onClick}
           to="/users"
@@ -49,7 +51,7 @@ const NavLinks = (props: Props) => {
           </div>
         </NavLink>
       )}
-      {context.me && (
+      {session.data?.user && (
         <NavLink
           onClick={props.onClick}
           to="/devices"

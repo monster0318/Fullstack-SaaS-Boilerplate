@@ -6,14 +6,17 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  advanced: {
+    generateId: false,
+  },
   trustedOrigins: ["http://localhost:3000"],
   database: drizzleAdapter(db, {
     provider: "pg", // or "mysql", "sqlite"
     schema: {
       user: schema.userTable,
-      sessions: schema.sessions,
-      account: schema.accounts,
-      verification: schema.verifications,
+      session: schema.sessionTable,
+      account: schema.accountTable,
+      verification: schema.verificationTable,
     },
   }),
 })

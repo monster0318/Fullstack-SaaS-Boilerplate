@@ -1,19 +1,18 @@
-import React from "react"
-import { AppContext } from "../ContextProvider"
 import { Link } from "react-router"
 import ImgAvatar from "../layout/ImgAvatar"
 import AuthButtons from "./AuthButtons"
+import { authClient } from "../lib/auth-client"
 
 const AvatarMenu = () => {
-  const context = React.useContext(AppContext)
+  const session = authClient.useSession()
 
   return (
     <div className="h-8">
       <>
-        {context.me ? (
+        {session.data?.user ? (
           <Link to="/profile">
             <div className="flex items-center justify-center">
-              <ImgAvatar src={context.me.image} alt="Profile Image" className="w-10 h-10" />
+              <ImgAvatar src={session.data.user.image} alt="Profile Image" className="w-10 h-10" />
             </div>
           </Link>
         ) : (
