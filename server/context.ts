@@ -6,10 +6,8 @@ const { eq } = drizzleOrm
 const { drizzle } = drizzleOrm_NodePostgres
 import { userTable } from "@fsb/drizzle"
 import * as schema from "@fsb/drizzle"
-// import { cookieNameAuth, cookieNameDeviceIds } from "./configTer"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
-// import manageDevice from "./helper/manageDevice"
 import { fromNodeHeaders } from "better-auth/node"
 import { auth } from "./lib/auth"
 
