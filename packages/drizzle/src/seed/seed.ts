@@ -18,6 +18,12 @@ const main = async () => {
   await db.delete(userTable)
   for (const user of initUsersData) {
     let userNew = await db.insert(userTable).values(user).returning({ id: userTable.id })
+    await db.insert(accountTable).values({
+      userId: userNew[0].id,
+      providerId: "credential",
+      accountId: userNew[0].id,
+      password: user.password,
+    })
   }
 
   const userCheck = await db.query.userTable.findFirst({

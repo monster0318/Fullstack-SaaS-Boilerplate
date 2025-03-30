@@ -1,9 +1,7 @@
 import React from "react"
 import { Link, useNavigate } from "react-router"
-import { zod } from "@fsb/shared/schemas/zod"
 import { Keyhole } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
-const zodSignup = zod.zodSignup
 
 const Signup = () => {
   const navigate = useNavigate()
@@ -16,15 +14,6 @@ const Signup = () => {
   const [error, setError] = React.useState<string | null>(null)
   const [showPassword, setShowPassword] = React.useState(false)
   const [isSubmitting, setIsSubmitting] = React.useState(false)
-
-  const isFormValid = () => {
-    try {
-      zodSignup.parse(formData)
-      return true
-    } catch {
-      return false
-    }
-  }
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -102,7 +91,7 @@ const Signup = () => {
           </label>
         </div>
 
-        <button type="submit" disabled={isSubmitting || !isFormValid()} className="btn-blue flex items-center">
+        <button type="submit" disabled={isSubmitting} className="btn-blue flex items-center">
           <Keyhole className="mr-2" />
           {isSubmitting ? <span>Signing up...</span> : <span>Sign up</span>}
         </button>

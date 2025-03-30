@@ -48,6 +48,13 @@ export const sessionTable = pgTable("session", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(), // Last update time
 })
 
+export const sessionToUserRelations = relations(sessionTable, ({ one }) => ({
+  user: one(userTable, {
+    fields: [sessionTable.userId],
+    references: [userTable.id],
+  }),
+}))
+
 export const accountTable = pgTable("account", {
   id: uuid("id").primaryKey().defaultRandom(), // Unique ID for account
   userId: uuid("user_id")
