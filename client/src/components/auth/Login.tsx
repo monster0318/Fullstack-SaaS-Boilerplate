@@ -18,23 +18,19 @@ const Login = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    try {
-      const data = await authClient.signIn.email({
-        email: formData.email,
-        password: formData.password,
-      })
-      console.log("data", data)
-      if (data.data) {
-        navigate("/profile")
-      }
-      if (data.error) {
-        setIsSubmitting(false)
-        setError(data.error.message || "Something went wrong")
-      }
-    } catch (error) {
-      setIsSubmitting(false)
-      console.error("Submission error:", error)
+
+    const data = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+    })
+    console.log("data", data)
+    if (data.data) {
+      navigate("/profile")
     }
+    if (data.error) {
+      setError(data.error.message || "Something went wrong")
+    }
+    setIsSubmitting(false)
   }
 
   return (
