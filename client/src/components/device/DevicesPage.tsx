@@ -52,16 +52,17 @@ const DevicesPage = () => {
                   <tr key={device.id}>
                     <td>
                       <DeviceImage
-                        deviceName={utils.getDeviceName(device.userAgent)}
+                        deviceName={utils.getDeviceName(device.userAgent || "")}
                         className={`text-3xl ${device.id === context.deviceId ? "text-[#034DA2]" : ""}`}
                       />
                       <div className={`${device.id === context.deviceId ? "text-[#034DA2]" : ""}`}>
-                        {utils.getDeviceName(device.userAgent)}
+                        {utils.getDeviceName(device.userAgent || "")}
                       </div>
-                      {device.ip && device.ip !== "::1" && <div className="text-xxs">{device.ip}</div>}
+                      {device.ipAddress && device.ipAddress !== "::1" && (
+                        <div className="text-xxs">{device.ipAddress}</div>
+                      )}
                     </td>
                     <td>{new Date(device.createdAt).toLocaleString()}</td>
-                    <td>{device.lastLoginAt ? new Date(device.lastLoginAt).toLocaleString() : ""}</td>
                     <td>
                       <ImgAvatar src={device.user.image} alt="Profile Image" className="w-10 h-10" />
                       <Link className="link" to={`/users?userId=${device.user.id}`}>
