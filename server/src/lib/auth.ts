@@ -1,9 +1,12 @@
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
+import { createAuthMiddleware } from "better-auth/api"
 import { db } from "../context"
 import * as schema from "@fsb/drizzle"
+import { admin } from "better-auth/plugins"
 
 export const auth = betterAuth({
+  plugins: [admin()],
   emailAndPassword: { enabled: true },
   advanced: { generateId: false },
   trustedOrigins: ["http://localhost:3000", "https://client.ter.work.gd"],

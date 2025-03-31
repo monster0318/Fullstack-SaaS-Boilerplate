@@ -10,7 +10,10 @@ export const userTable = pgTable("user", {
   emailVerified: boolean("email_verified").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-  lastLoginAt: timestamp("last_login_at"),
+  role: text("role").default("user").notNull(),
+  banned: boolean("banned").default(false).notNull(),
+  banReason: text("ban_reason"),
+  banExpires: integer("ban_expires"),
 })
 
 export const sessionTable = pgTable("session", {
@@ -19,6 +22,7 @@ export const sessionTable = pgTable("session", {
     .notNull()
     .references(() => userTable.id), // FK to users table
   token: text("token").notNull(), // Session token
+  impersonatedBy: uuid("impersonated_by").references(() => userTable.id), // FK to users table
   expiresAt: timestamp("expires_at").notNull(), // Expiry timestamp
   ipAddress: text("ip_address"), // Optional IP address
   userAgent: text("user_agent"), // Optional user agent
