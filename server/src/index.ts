@@ -2,7 +2,6 @@ import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapte
 import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
-import jwt from "jsonwebtoken"
 import userRouter from "./router/userRouter"
 import sessionRouter from "./router/sessionRouter"
 import healthRouter from "./router/healthRouter"
@@ -12,12 +11,6 @@ import { auth } from "./lib/auth"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
-
-export interface UserIDJwtPayload extends jwt.JwtPayload {
-  id: string
-  exp: number
-  iat: number
-}
 
 export const mergeRouters = t.mergeRouters
 

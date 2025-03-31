@@ -1,5 +1,4 @@
 import { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify"
-import jwt from "jsonwebtoken"
 import { drizzleOrm_NodePostgres } from "@fsb/drizzle"
 import { drizzleOrm } from "@fsb/drizzle"
 const { eq } = drizzleOrm
@@ -14,11 +13,6 @@ import { auth } from "./lib/auth"
 const secretJwt = process.env.JWT_SECRET
 const databaseUrl = process.env.DATABASE_URL
 
-export interface UserIDJwtPayload extends jwt.JwtPayload {
-  id: string
-  exp: number
-  iat: number
-}
 if (!databaseUrl) throw new Error("DATABASE_URL is not defined")
 const config = { secretJwt, databaseUrl }
 export const db = drizzle(databaseUrl, { schema })

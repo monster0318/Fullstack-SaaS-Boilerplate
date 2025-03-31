@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import { inferRouterOutputs } from "@trpc/server"
-import { AppRouter } from "../../../../server"
+import { AppRouter } from "../../../../server/src"
 import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"

@@ -5,7 +5,7 @@ import ContextProvider from "./ContextProvider"
 import LayoutApp from "./layout/LayoutApp"
 import LogoApp from "./layout/LogoApp"
 import { createTRPCClient, httpBatchLink } from "@trpc/client"
-import type { AppRouter } from "../../server"
+import type { AppRouter } from "../../server/src"
 import { TRPCProvider } from "./utils/trpc"
 
 function makeQueryClient() {
