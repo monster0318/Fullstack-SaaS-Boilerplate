@@ -4,16 +4,16 @@ import { Trash } from "@phosphor-icons/react"
 import ErrorMutation from "../../layout/ErrorMutation"
 
 type Props = {
-  deviceId: string
+  sessionId: string
   onDelete: () => void
 }
-const DeleteDevice = (props: Props) => {
+const DeleteSession = (props: Props) => {
   const trpc = useTRPC()
-  const mutation = useMutation(trpc.deleteDevice.mutationOptions())
+  const mutation = useMutation(trpc.deleteSession.mutationOptions())
   const logout = async () => {
     try {
       await mutation.mutateAsync({
-        deviceId: props.deviceId,
+        sessionId: props.sessionId,
       })
       props.onDelete()
     } catch (error) {
@@ -24,7 +24,7 @@ const DeleteDevice = (props: Props) => {
   return (
     <div>
       <button
-        id="delete-device-button"
+        id="delete-session-button"
         disabled={mutation.isPending}
         onClick={logout}
         className="btn-white flex items-center"
@@ -35,4 +35,4 @@ const DeleteDevice = (props: Props) => {
     </div>
   )
 }
-export default DeleteDevice
+export default DeleteSession

@@ -4,7 +4,7 @@ import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
 import jwt from "jsonwebtoken"
 import userRouter from "./router/userRouter"
-import deviceRouter from "./router/deviceRouter"
+import sessionRouter from "./router/sessionRouter"
 import healthRouter from "./router/healthRouter"
 import beerRouter from "./router/beerRouter"
 import t from "./trpc"
@@ -21,7 +21,7 @@ export interface UserIDJwtPayload extends jwt.JwtPayload {
 
 export const mergeRouters = t.mergeRouters
 
-const appRouter = mergeRouters(userRouter, deviceRouter, healthRouter, beerRouter)
+const appRouter = mergeRouters(userRouter, sessionRouter, healthRouter, beerRouter)
 export type AppRouter = typeof appRouter
 
 const fastify = Fastify({

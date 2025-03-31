@@ -51,14 +51,14 @@ const NavLinks = (props: Props) => {
       {session.data?.user && (
         <NavLink
           onClick={props.onClick}
-          to="/devices"
+          to="/sessions"
           className={({ isActive }) =>
             `block py-2.5 px-4 rounded-sm transition ${isActive ? "bg-gray-200" : "hover:bg-gray-100"}`
           }
         >
           <div className="flex items-center">
             <Devices className="mr-2" />
-            Devices
+            Sessions
           </div>
         </NavLink>
       )}
