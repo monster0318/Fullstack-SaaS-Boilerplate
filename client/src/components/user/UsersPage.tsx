@@ -44,6 +44,7 @@ const UsersPage = () => {
                 <tr>
                   <th>Name</th>
                   <th>Created At</th>
+                  <th>Role</th>
                   <th>Email</th>
                   <th>Avatar</th>
                   <th>Devices</th>
@@ -54,6 +55,7 @@ const UsersPage = () => {
                   <tr key={user.id}>
                     <td>{user.name}</td>
                     <td>{new Date(user.createdAt).toLocaleString()}</td>
+                    <td>{user.role}</td>
                     <td>{user.email}</td>
                     <td>
                       <ImgAvatar src={user.image} alt="Profile Image" className="w-10 h-10" />

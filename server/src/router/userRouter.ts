@@ -40,7 +40,7 @@ const userRouter = router({
         limit,
         offset: (page - 1) * limit,
         orderBy: [asc(userTable.name)],
-        columns: { id: true, name: true, email: true, image: true, createdAt: true, lastLoginAt: true },
+        columns: { id: true, name: true, email: true, image: true, createdAt: true, role: true },
         where: and(
           opts.input.search ? ilike(userTable.name, `%${opts.input.search}%`) : undefined,
           opts.input.userId ? eq(userTable.id, opts.input.userId) : undefined
@@ -64,7 +64,7 @@ const userRouter = router({
       const id = opts.input.id
       const db = opts.ctx.db
       const user = await db.query.userTable.findFirst({
-        columns: { id: true, name: true, age: true, email: true, image: true, createdAt: true, lastLoginAt: true },
+        columns: { id: true, name: true, age: true, email: true, image: true, createdAt: true, role: true },
         where: eq(userTable.id, id),
       })
 
