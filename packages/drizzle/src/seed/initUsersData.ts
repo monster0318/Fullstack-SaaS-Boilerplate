@@ -1,4 +1,13 @@
-export const initUsersData = [
+type User = {
+  email: string
+  name: string
+  image: string
+  password: string
+  age: number
+  createdAt: Date
+  role: "user" | "admin"
+}
+export const initUsersData: User[] = [
   {
     email: "alan@example.com",
     name: "Alan Doe",
@@ -8,16 +17,18 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 25,
     createdAt: new Date("2024-11-28T11:12:54Z"),
+    role: "user",
   },
   {
-    email: "paul@example.com",
-    name: "Paul Doe",
+    email: "alan-admin@example.com",
+    name: "Alan Admin Doe",
     image:
       "https://avataaars.io/?avatarStyle=Transparent&topType=WinterHat3&accessoriesType=Prescription01&hatColor=Red&hairColor=Red&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Black&eyeType=Hearts&eyebrowType=UpDown&mouthType=ScreamOpen&skinColor=Yellow",
     password:
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 30,
     createdAt: new Date("2024-01-02T12:43:21Z"),
+    role: "admin",
   },
   {
     email: "john@example.com",
@@ -28,6 +39,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-01-03T12:12:26Z"),
+    role: "user",
   },
   {
     email: "user50@example.com",
@@ -38,6 +50,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 35,
     createdAt: new Date("2024-01-04T12:12:26Z"),
+    role: "user",
   },
   {
     email: "lisa@example.com",
@@ -48,6 +61,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 27,
     createdAt: new Date("2024-01-05T12:12:26Z"),
+    role: "user",
   },
   {
     email: "mike@example.com",
@@ -58,6 +72,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-01-06T12:12:26Z"),
+    role: "user",
   },
   {
     email: "jane@example.com",
@@ -68,6 +83,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 29,
     createdAt: new Date("2024-01-07T12:12:26Z"),
+    role: "user",
   },
   {
     email: "emma@example.com",
@@ -78,6 +94,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 26,
     createdAt: new Date("2024-01-08T12:12:26Z"),
+    role: "user",
   },
   {
     email: "james@example.com",
@@ -88,6 +105,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 31,
     createdAt: new Date("2024-01-09T12:12:26Z"),
+    role: "user",
   },
   {
     email: "charlotte@example.com",
@@ -98,6 +116,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 24,
     createdAt: new Date("2024-01-10T12:12:26Z"),
+    role: "user",
   },
   {
     email: "david@example.com",
@@ -108,6 +127,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 33,
     createdAt: new Date("2024-01-11T12:12:26Z"),
+    role: "user",
   },
   {
     email: "mia-w@example.com",
@@ -118,6 +138,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 22,
     createdAt: new Date("2024-01-12T12:12:26Z"),
+    role: "user",
   },
   {
     email: "user1@example.com",
@@ -128,6 +149,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 29,
     createdAt: new Date("2024-01-13T12:12:26Z"),
+    role: "user",
   },
   {
     email: "user2@example.com",
@@ -138,6 +160,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 34,
     createdAt: new Date("2024-01-14T12:12:26Z"),
+    role: "user",
   },
   {
     email: "liam-s@example.com",
@@ -148,6 +171,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 23,
     createdAt: new Date("2024-01-15T12:12:26Z"),
+    role: "user",
   },
   {
     email: "olivia@example.com",
@@ -158,6 +182,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-01-16T12:12:26Z"),
+    role: "user",
   },
   {
     email: "noah@example.com",
@@ -168,6 +193,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-01-17T12:12:26Z"),
+    role: "user",
   },
   {
     email: "sophia-anderson@example.com",
@@ -178,6 +204,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-01-18T12:12:26Z"),
+    role: "user",
   },
   {
     email: "mason@example.com",
@@ -188,6 +215,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 21,
     createdAt: new Date("2024-01-19T12:12:26Z"),
+    role: "user",
   },
   {
     email: "isabella@example.com",
@@ -198,6 +226,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-01-20T12:12:26Z"),
+    role: "user",
   },
   {
     email: "william@example.com",
@@ -208,6 +237,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-01-21T12:12:26Z"),
+    role: "user",
   },
 
   {
@@ -219,6 +249,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-01-22T12:12:26Z"),
+    role: "user",
   },
   {
     email: "charlotte_t@example.com",
@@ -229,6 +260,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 34,
     createdAt: new Date("2024-01-23T12:12:26Z"),
+    role: "user",
   },
   {
     email: "benjamin@example.com",
@@ -239,6 +271,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 36,
     createdAt: new Date("2024-01-24T12:12:26Z"),
+    role: "user",
   },
   {
     email: "amelia@example.com",
@@ -249,6 +282,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 39,
     createdAt: new Date("2024-01-25T12:12:26Z"),
+    role: "user",
   },
   {
     email: "elijah@example.com",
@@ -259,6 +293,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 41,
     createdAt: new Date("2024-01-26T12:12:26Z"),
+    role: "user",
   },
   {
     email: "harper@example.com",
@@ -269,6 +304,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-01-27T12:12:26Z"),
+    role: "user",
   },
   {
     email: "lucas-r@example.com",
@@ -279,6 +315,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 30,
     createdAt: new Date("2024-01-28T11:12:26Z"),
+    role: "user",
   },
   {
     email: "ava@example.com",
@@ -289,6 +326,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 27,
     createdAt: new Date("2024-01-29T12:12:26Z"),
+    role: "user",
   },
   {
     email: "ethan@example.com",
@@ -299,6 +337,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 29,
     createdAt: new Date("2024-01-30T12:12:26Z"),
+    role: "user",
   },
   {
     email: "mia@example.com",
@@ -309,6 +348,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 26,
     createdAt: new Date("2024-01-31T12:12:26Z"),
+    role: "user",
   },
   {
     email: "logan@example.com",
@@ -319,6 +359,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 31,
     createdAt: new Date("2024-02-01T12:12:26Z"),
+    role: "user",
   },
   {
     email: "ella@example.com",
@@ -329,6 +370,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-02-02T12:12:26Z"),
+    role: "user",
   },
   {
     email: "lucas-k@example.com",
@@ -339,6 +381,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 30,
     createdAt: new Date("2024-02-03T12:12:26Z"),
+    role: "user",
   },
   {
     email: "sophia-w@example.com",
@@ -349,6 +392,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 27,
     createdAt: new Date("2024-02-04T12:12:26Z"),
+    role: "user",
   },
   {
     email: "jackson-h@example.com",
@@ -359,6 +403,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-02-05T12:12:26Z"),
+    role: "user",
   },
   {
     email: "amelia-clark@example.com",
@@ -369,6 +414,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 29,
     createdAt: new Date("2024-02-06T12:12:26Z"),
+    role: "user",
   },
   {
     email: "oliver-martinez@example.com",
@@ -379,6 +425,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 31,
     createdAt: new Date("2024-02-07T12:12:26Z"),
+    role: "user",
   },
   {
     email: "lucas-king@example.com",
@@ -389,6 +436,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 30,
     createdAt: new Date("2024-02-03T12:12:26Z"),
+    role: "user",
   },
   {
     email: "sophia@example.com",
@@ -399,6 +447,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 27,
     createdAt: new Date("2024-02-04T12:12:26Z"),
+    role: "user",
   },
   {
     email: "jackson@example.com",
@@ -409,6 +458,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 32,
     createdAt: new Date("2024-02-05T12:12:26Z"),
+    role: "user",
   },
   {
     email: "amelia-c@example.com",
@@ -419,6 +469,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 29,
     createdAt: new Date("2024-02-06T12:12:26Z"),
+    role: "user",
   },
   {
     email: "oliver-m@example.com",
@@ -429,6 +480,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 31,
     createdAt: new Date("2024-02-07T12:12:26Z"),
+    role: "user",
   },
   {
     email: "emma-d@example.com",
@@ -439,6 +491,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 26,
     createdAt: new Date("2024-02-08T12:12:26Z"),
+    role: "user",
   },
   {
     email: "liam@example.com",
@@ -449,6 +502,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 23,
     createdAt: new Date("2024-02-09T12:12:26Z"),
+    role: "user",
   },
   {
     email: "olivia-b@example.com",
@@ -459,6 +513,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-02-10T12:12:26Z"),
+    role: "user",
   },
   {
     email: "noah-w@example.com",
@@ -469,6 +524,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-02-11T12:12:26Z"),
+    role: "user",
   },
   {
     email: "sophia-a@example.com",
@@ -479,6 +535,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 28,
     createdAt: new Date("2024-02-12T12:12:26Z"),
+    role: "user",
   },
   {
     email: "lucas-miller@example.com",
@@ -489,6 +546,7 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 30,
     createdAt: new Date("2024-02-13T12:12:26Z"),
+    role: "user",
   },
   {
     email: "emma-smith@example.com",
@@ -499,5 +557,6 @@ export const initUsersData = [
       "035f373274a799f11bae5745fbeefc73:214c6c33b8dcb6ed279c35b8c8ad4ee2c5dcd0798a434616ab124f0c25ee1707b550ce0817154def9c3279bfac566d2d08c635766d41004a502ee745a644c923", // hashed version. non-hashed is "securePassword"
     age: 26,
     createdAt: new Date("2024-02-14T12:12:26Z"),
+    role: "user",
   },
 ]
