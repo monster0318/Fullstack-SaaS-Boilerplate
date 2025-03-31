@@ -12,5 +12,15 @@ export const protectedProcedure = t.procedure.use(async function isAuthed(opts) 
   if (!opts.ctx.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" })
   }
+  console.log("user", opts.ctx.user)
+  return opts.next({ ctx: { user: opts.ctx.user } })
+})
+export const adminProcedure = t.procedure.use(async function isAuthed(opts) {
+  if (!opts.ctx.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" })
+  }
+  if (opts.ctx.user.role !== "admin") {
+    throw new TRPCError({ code: "FORBIDDEN", message: "You must be an admin to access this resource" })
+  }
   return opts.next({ ctx: { user: opts.ctx.user } })
 })

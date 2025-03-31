@@ -1,11 +1,11 @@
-import { protectedProcedure, router } from "../trpc"
+import { adminProcedure, protectedProcedure, router } from "../trpc"
 import { z } from "zod"
 import { sessionTable } from "@fsb/drizzle"
 import { drizzleOrm } from "@fsb/drizzle"
 const { count, eq } = drizzleOrm
 
 const sessionRouter = router({
-  deleteSession: protectedProcedure
+  deleteSession: adminProcedure
     .input(
       z.object({
         sessionId: z.string(),
