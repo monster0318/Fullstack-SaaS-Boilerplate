@@ -7,10 +7,12 @@ type Props = {
   sessionId: string
   onDelete: () => void
 }
+
 const DeleteSession = (props: Props) => {
   const trpc = useTRPC()
   const mutation = useMutation(trpc.deleteSession.mutationOptions())
-  const logout = async () => {
+
+  const deleteSession = async () => {
     try {
       await mutation.mutateAsync({
         sessionId: props.sessionId,
@@ -26,7 +28,7 @@ const DeleteSession = (props: Props) => {
       <button
         id="delete-session-button"
         disabled={mutation.isPending}
-        onClick={logout}
+        onClick={deleteSession}
         className="btn-white flex items-center"
       >
         <Trash className="mr-2" /> Delete
