@@ -24,10 +24,10 @@ const ProfilePage = () => {
       </div>
       <ProfileQuery meId={session.data.user.id} />
       <div className="mt-2">
-        <Link className="link" to={`/devices?userId=${session.data.user.id}`}>
+        <Link className="link" to={`/sessions?userId=${session.data.user.id}`}>
           <button className="btn-white">
             <div className="flex items-center">
-              <Devices className="text-xl mr-2" /> Devices
+              <Devices className="text-xl mr-2" /> Sessions
             </div>
           </button>
         </Link>
