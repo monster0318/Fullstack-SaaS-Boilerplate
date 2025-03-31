@@ -26,7 +26,6 @@ export const sessionTable = pgTable("session", {
     .notNull()
     .references(() => userTable.id), // FK to users table
   token: text("token").notNull(), // Session token
-  impersonatedBy: uuid("impersonated_by").references(() => userTable.id), // FK to users table
   expiresAt: timestamp("expires_at").notNull(), // Expiry timestamp
   ipAddress: text("ip_address"), // Optional IP address
   userAgent: text("user_agent"), // Optional user agent
