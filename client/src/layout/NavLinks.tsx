@@ -1,6 +1,8 @@
 import { NavLink } from "react-router"
-import { House, Devices, Users, PencilLine, BeerStein } from "@phosphor-icons/react"
+import { House, Devices, Users, PencilLine, BeerStein, Moon, Sun } from "@phosphor-icons/react"
 import { authClient } from "../lib/auth-client"
+import { useContext } from "react"
+import { AppContext } from "../ContextProvider"
 
 type Props = {
   onClick: () => void
@@ -8,13 +10,17 @@ type Props = {
 
 const NavLinks = (props: Props) => {
   const session = authClient.useSession()
+  const { isDarkMode, toggleDarkMode } = useContext(AppContext)
+
   return (
     <nav className="px-4 py-6">
       <NavLink
         onClick={props.onClick}
         to="/"
         className={({ isActive }) =>
-          `block py-2.5 px-4 rounded-sm transition ${isActive ? "bg-gray-200" : "hover:bg-gray-100"}`
+          `block py-2.5 px-4 rounded-sm transition ${
+            isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-800"
+          }`
         }
       >
         <div className="flex items-center">
@@ -26,7 +32,9 @@ const NavLinks = (props: Props) => {
         onClick={props.onClick}
         to="/beers"
         className={({ isActive }) =>
-          `block py-2.5 px-4 rounded-sm transition ${isActive ? "bg-gray-200" : "hover:bg-gray-100"}`
+          `block py-2.5 px-4 rounded-sm transition ${
+            isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-800"
+          }`
         }
       >
         <div className="flex items-center">
@@ -39,7 +47,9 @@ const NavLinks = (props: Props) => {
           onClick={props.onClick}
           to="/users"
           className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${isActive ? "bg-gray-200" : "hover:bg-gray-100"}`
+            `block py-2.5 px-4 rounded-sm transition ${
+              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-800"
+            }`
           }
         >
           <div className="flex items-center">
@@ -53,7 +63,9 @@ const NavLinks = (props: Props) => {
           onClick={props.onClick}
           to="/sessions"
           className={({ isActive }) =>
-            `block py-2.5 px-4 rounded-sm transition ${isActive ? "bg-gray-200" : "hover:bg-gray-100"}`
+            `block py-2.5 px-4 rounded-sm transition ${
+              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-800"
+            }`
           }
         >
           <div className="flex items-center">
@@ -66,7 +78,9 @@ const NavLinks = (props: Props) => {
         onClick={props.onClick}
         to="/contact"
         className={({ isActive }) =>
-          `block py-2.5 px-4 rounded-sm transition ${isActive ? "bg-gray-200" : "hover:bg-gray-100"}`
+          `block py-2.5 px-4 rounded-sm transition ${
+            isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-800"
+          }`
         }
       >
         <div className="flex items-center">
@@ -74,9 +88,18 @@ const NavLinks = (props: Props) => {
           Contact
         </div>
       </NavLink>
+      <button
+        onClick={toggleDarkMode}
+        className="block py-2.5 px-4 rounded-sm transition hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-left"
+      >
+        <div className="flex items-center">
+          {isDarkMode ? <Sun className="mr-2" /> : <Moon className="mr-2" />}
+          {isDarkMode ? "Light Mode" : "Dark Mode"}
+        </div>
+      </button>
       <a
         href="https://github.com/alan345/Fullstack-SaaS-Boilerplate"
-        className="block py-2.5 px-4 rounded-sm transition hover:bg-gray-100"
+        className="block py-2.5 px-4 rounded-sm transition hover:bg-gray-100 dark:hover:bg-gray-800"
         target="_blank"
         rel="noopener noreferrer"
       >

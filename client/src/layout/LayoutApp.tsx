@@ -5,10 +5,12 @@ import NavLinks from "./NavLinks"
 import BurgerLogic from "./BurgerLogic"
 import LogoApp from "./LogoApp"
 import { Link } from "react-router"
+import { useContext } from "react"
+import { AppContext } from "../ContextProvider"
 
 const LayoutApp = () => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
-
+  const { isDarkMode } = useContext(AppContext)
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -26,10 +28,10 @@ const LayoutApp = () => {
   }, [sidebarRef])
 
   return (
-    <div className="flex h-screen text-gray-600">
+    <div className={`flex h-screen text-gray-600 ${isDarkMode ? "dark" : ""}`}>
       <div
         ref={sidebarRef} // Reference to the sidebar
-        className={`fixed z-30 inset-y-0 left-0 w-64 bg-gray-50 transform ${
+        className={`fixed z-30 inset-y-0 left-0 w-64 bg-gray-50 dark:bg-gray-900 transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-200 ease-in-out md:relative md:translate-x-0`}
       >
@@ -40,10 +42,10 @@ const LayoutApp = () => {
       </div>
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex items-center justify-between bg-white border-b border-gray-200 p-4">
+        <header className="flex items-center justify-between bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">
           <div className="flex items-center">
             <button
-              className="text-gray-500 focus:outline-hidden md:hidden"
+              className="text-gray-500 dark:text-gray-400 focus:outline-hidden md:hidden"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <BurgerLogic sidebarOpen={sidebarOpen} />
@@ -54,7 +56,7 @@ const LayoutApp = () => {
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto  dark:bg-gray-900">
           <AppRouter />
         </main>
       </div>

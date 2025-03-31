@@ -46,20 +46,20 @@ button:disabled:hover {
 }
 
 h1 {
-  @apply text-2xl font-bold text-gray-700 mt-2 mb-2;
+  @apply text-2xl font-bold text-gray-700 dark:text-gray-200 mt-2 mb-2;
 }
 h2 {
-  @apply text-2xl font-semibold text-gray-700;
+  @apply text-2xl font-semibold text-gray-700 dark:text-gray-200;
 }
 
 h3 {
-  @apply text-xl font-semibold text-gray-700;
+  @apply text-xl font-semibold text-gray-700 dark:text-gray-200;
 }
 th {
-  @apply px-2 py-2;
+  @apply px-2 py-2 dark:text-gray-200;
 }
 td {
-  @apply whitespace-nowrap px-2 py-2 overflow-hidden text-ellipsis;
+  @apply whitespace-nowrap px-2 py-2 overflow-hidden text-ellipsis dark:text-gray-200;
 }
 
 table {
@@ -67,13 +67,13 @@ table {
 }
 
 thead {
-  @apply border-b border-neutral-200  dark:border-white/10 text-left;
+  @apply border-b border-neutral-200 dark:border-gray-700 text-left;
 }
 tr {
-  @apply border-b border-neutral-200 dark:border-white/10;
+  @apply border-b border-neutral-200 dark:border-gray-700;
 }
 tbody tr {
-  @apply hover:bg-gray-50 h-20;
+  @apply hover:bg-gray-50 dark:hover:bg-gray-800 h-20;
 }
 
 .move-right {
@@ -86,7 +86,7 @@ tbody tr {
 input[type="text"],
 input[type="password"],
 input[type="number"] {
-  @apply shadow-sm appearance-none border rounded-sm py-2 px-3 text-gray-700 leading-tight focus:outline-hidden;
+  @apply shadow-sm appearance-none border rounded-sm py-2 px-3 text-gray-700 dark:text-gray-200 dark:bg-gray-800 dark:border-gray-700 leading-tight focus:outline-hidden;
 }
 input[type="checkbox"] {
   @apply w-4 h-4 rounded-sm mt-2;
@@ -96,7 +96,7 @@ input[type="checkbox"] {
   @apply border-red-500 focus:border-red-500 focus:ring-red-200 focus:ring-2;
 }
 .input-default {
-  @apply border-gray-300 focus:border-blue-500 focus:ring-blue-200 focus:ring-2;
+  @apply border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-200 focus:ring-2;
 }
 
 input::-webkit-outer-spin-button,
@@ -111,5 +111,5 @@ input[type="number"] {
 }
 
 .link {
-  @apply text-blue-500 underline hover:text-blue-700;
+  @apply text-blue-500 underline hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300;
 }
