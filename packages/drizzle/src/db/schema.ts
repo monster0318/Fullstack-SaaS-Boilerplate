@@ -1,20 +1,24 @@
-import { pgTable, text, integer, uuid, timestamp, boolean } from "drizzle-orm/pg-core"
+import { pgTable, text, integer, uuid, timestamp, boolean, pgEnum } from "drizzle-orm/pg-core"
 import { relations } from "drizzle-orm"
+import * as t from "drizzle-orm/pg-core"
 
-export const userTable = pgTable("user", {
-  id: uuid().defaultRandom().primaryKey(),
-  name: text("name").notNull(),
-  age: integer(),
-  image: text("image"),
-  email: text("email").notNull().unique(),
-  emailVerified: boolean("email_verified").default(false).notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
-  role: text("role").default("user").notNull(),
-  banned: boolean("banned").default(false).notNull(),
-  banReason: text("ban_reason"),
-  banExpires: integer("ban_expires"),
-})
+export const rolesEnum = pgEnum("roles", ["user", "admin"])
+
+export const userTable = pgTable(
+  "user",
+  {
+    id: uuid().defaultRandom().primaryKey(),
+    name: text("name").notNull(),
+    age: integer(),
+    image: text("image"),
+    email: text("email").notNull().unique(),
+    emailVerified: boolean("email_verified").default(false).notNull(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at").defaultNow().notNull(),
+    role: rolesEnum().default("user"),
+  },
+  (table) => [t.uniqueIndex("email_idx").on(table.email)]
+)
 
 export const sessionTable = pgTable("session", {
   id: uuid("id").primaryKey().defaultRandom(), // Unique session ID

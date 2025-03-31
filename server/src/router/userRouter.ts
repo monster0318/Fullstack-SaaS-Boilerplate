@@ -1,7 +1,7 @@
 import { protectedProcedure, router } from "../trpc"
 import { z } from "zod"
 import { userTable, drizzleOrm } from "@fsb/drizzle"
-const { eq, count, asc, ilike, and } = drizzleOrm
+const { eq, or, count, asc, ilike, and } = drizzleOrm
 
 const userRouter = router({
   updateUser: protectedProcedure
@@ -42,14 +42,19 @@ const userRouter = router({
         orderBy: [asc(userTable.name)],
         columns: { id: true, name: true, email: true, image: true, createdAt: true, role: true },
         where: and(
-          opts.input.search ? ilike(userTable.name, `%${opts.input.search}%`) : undefined,
+          opts.input.search
+            ? or(ilike(userTable.name, `%${opts.input.search}%`), ilike(userTable.email, `%${opts.input.search}%`))
+            : undefined,
           opts.input.userId ? eq(userTable.id, opts.input.userId) : undefined
         ),
       })
-      const totalData = await db
-        .select({ count: count() })
-        .from(userTable)
-        .where(opts.input.search ? ilike(userTable.name, `%${opts.input.search}%`) : undefined)
+      const totalData = await db.select({ count: count() }).from(userTable)
+      where: and(
+        opts.input.search
+          ? or(ilike(userTable.name, `%${opts.input.search}%`), ilike(userTable.email, `%${opts.input.search}%`))
+          : undefined,
+        opts.input.userId ? eq(userTable.id, opts.input.userId) : undefined
+      )
       const total = totalData[0].count
 
       return { users, page, limit, total }
