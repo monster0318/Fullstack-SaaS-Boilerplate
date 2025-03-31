@@ -28,37 +28,39 @@ const LayoutApp = () => {
   }, [sidebarRef])
 
   return (
-    <div className={`flex h-screen text-gray-600 ${isDarkMode ? "dark" : ""}`}>
-      <div
-        ref={sidebarRef} // Reference to the sidebar
-        className={`fixed z-30 inset-y-0 left-0 w-64 bg-gray-50 dark:bg-gray-900 transform ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-200 ease-in-out md:relative md:translate-x-0`}
-      >
-        <Link to="/">
-          <LogoApp />
-        </Link>
-        <NavLinks onClick={() => setSidebarOpen(false)} />
-      </div>
+    <div className={`${isDarkMode ? "dark" : ""}`}>
+      <div className="flex h-screen text-gray-600 bg-gray-50 dark:bg-gray-800 dark:text-white">
+        <div
+          ref={sidebarRef} // Reference to the sidebar
+          className={`fixed z-30 inset-y-0 left-0 w-64  transform ${
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-200 ease-in-out md:relative md:translate-x-0`}
+        >
+          <Link to="/">
+            <LogoApp />
+          </Link>
+          <NavLinks onClick={() => setSidebarOpen(false)} />
+        </div>
 
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex items-center justify-between bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-4">
-          <div className="flex items-center">
-            <button
-              className="text-gray-500 dark:text-gray-400 focus:outline-hidden md:hidden"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-            >
-              <BurgerLogic sidebarOpen={sidebarOpen} />
-            </button>
-          </div>
-          <div className="flex items-center">
-            <AvatarMenu />
-          </div>
-        </header>
+        <div className="flex-1 flex flex-col overflow-hidden ">
+          <header className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 p-4">
+            <div className="flex items-center">
+              <button
+                className="text-gray-500 dark:text-gray-400 focus:outline-hidden md:hidden"
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+              >
+                <BurgerLogic sidebarOpen={sidebarOpen} />
+              </button>
+            </div>
+            <div className="flex items-center">
+              <AvatarMenu />
+            </div>
+          </header>
 
-        <main className="flex-1 overflow-y-auto  dark:bg-gray-900">
-          <AppRouter />
-        </main>
+          <main className="flex-1 overflow-y-auto">
+            <AppRouter />
+          </main>
+        </div>
       </div>
     </div>
   )

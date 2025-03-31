@@ -4,6 +4,7 @@
   --text-xxs: 0.625rem;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   *,
@@ -43,6 +44,9 @@ button:disabled:hover {
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
+}
+main {
+  @apply text-gray-700 dark:text-gray-200;
 }
 
 h1 {
