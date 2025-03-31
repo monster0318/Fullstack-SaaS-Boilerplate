@@ -47,7 +47,7 @@ const UsersPage = () => {
                   <th>Role</th>
                   <th>Email</th>
                   <th>Avatar</th>
-                  <th>Devices</th>
+                  <th>Sessions</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,7 +61,7 @@ const UsersPage = () => {
                       <ImgAvatar src={user.image} alt="Profile Image" className="w-10 h-10" />
                     </td>
                     <td>
-                      <Link className="link" to={`/devices?userId=${user.id}`}>
+                      <Link className="link" to={`/sessions?userId=${user.id}`}>
                         <button className="btn-white">
                           <Devices className="text-2xl" />
                         </button>
