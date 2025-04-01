@@ -31,6 +31,7 @@ const start = async () => {
 
     await fastify.register(fastifyCookie)
 
+    // https://github.com/better-auth/better-auth/pull/2006
     // Register authentication endpoint
     fastify.route({
       method: ["GET", "POST"],

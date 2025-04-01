@@ -10,11 +10,10 @@ dotenv.config({ path: "../server.env" })
 import { fromNodeHeaders } from "better-auth/node"
 import { auth } from "./lib/auth"
 
-const secretJwt = process.env.JWT_SECRET
 const databaseUrl = process.env.DATABASE_URL
 
 if (!databaseUrl) throw new Error("DATABASE_URL is not defined")
-const config = { secretJwt, databaseUrl }
+const config = { databaseUrl }
 export const db = drizzle(databaseUrl, { schema })
 
 const createContext = async ({ req, res }: CreateFastifyContextOptions) => {
