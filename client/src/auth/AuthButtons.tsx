@@ -5,13 +5,13 @@ const AuthButtons = () => {
   return (
     <div className="flex gap-2">
       <Link to="/login">
-        <button id="login-mutation-button" className="btn-white  flex items-center">
+        <button id="login-button" className="btn-white  flex items-center">
           <SignIn className="mr-2" />
           Login
         </button>
       </Link>
       <Link to="/signup">
-        <button id="login-mutation-button" className="btn-white flex items-center">
+        <button id="signup-button" className="btn-white flex items-center">
           <Keyhole className="mr-2" />
           Sign up
         </button>

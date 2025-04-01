@@ -8,8 +8,14 @@ test("go to /", async ({ page }) => {
 
   // check for the page
   await page.waitForSelector("img")
-  await page.waitForSelector(`text=Trpc Express React`)
+  await page.waitForSelector(`text=Fullstack SaaS Boilerplate`)
+  await page.waitForSelector(`text=Home`)
+  await page.waitForSelector(`text=Beers`)
+  await page.waitForSelector(`text=Contact`)
   await page.waitForSelector(`text=Login`)
+  await page.waitForSelector(`text=Sign up`)
+
+  // await page.waitForSelector(`text=Login`)
   // await page.waitForSelector(`text=Loading...`);
   // expect(await page.locator(`text=Loading...`).count()).toEqual(0);
   // await page.waitForSelector(`text=ID`);
@@ -19,9 +25,11 @@ test("go to /", async ({ page }) => {
   // await page.waitForSelector(`text=Style`);
   // expect(await page.locator(`text=Users`).count()).toEqual(0);
 
-  // // Login experience
-  // await page.locator("#login-button").click();
-  // await page.waitForSelector(`text=Cancel`);
+  // Login experience
+  await page.locator("#login-button").click()
+  await page.waitForSelector(`text=Show Password`)
+  await page.locator("#email-input").fill("alan@example.com")
+
   // await page.locator("#login-mutation-button").click();
   // await page.waitForSelector(`text=Hey Alan Doe!`);
 
