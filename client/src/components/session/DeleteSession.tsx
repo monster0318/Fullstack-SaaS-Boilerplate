@@ -2,7 +2,8 @@ import { useMutation } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import { Trash } from "@phosphor-icons/react"
 import ErrorMutation from "../../layout/ErrorMutation"
-
+import { tryCatch } from "../../lib/try-catch"
+import { useState } from "react"
 type Props = {
   sessionId: string
   onDelete: () => void
@@ -10,16 +11,16 @@ type Props = {
 
 const DeleteSession = (props: Props) => {
   const trpc = useTRPC()
+  const [error, setError] = useState<string | null>(null)
   const mutation = useMutation(trpc.deleteSession.mutationOptions())
 
   const deleteSession = async () => {
-    try {
-      await mutation.mutateAsync({
-        sessionId: props.sessionId,
-      })
+    const result = await tryCatch(mutation.mutateAsync({ sessionId: props.sessionId }))
+    if (result.error) {
+      setError(result.error.message)
+    }
+    if (result.data) {
       props.onDelete()
-    } catch (error) {
-      console.log(error)
     }
   }
 
@@ -33,7 +34,7 @@ const DeleteSession = (props: Props) => {
       >
         <Trash className="mr-2" /> Delete
       </button>
-      {mutation.error && <ErrorMutation data={mutation.error} />}
+      {error && <p className="text-red-600">{error}</p>}
     </div>
   )
 }
