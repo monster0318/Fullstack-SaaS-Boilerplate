@@ -2,7 +2,7 @@ import ErrorTemplate from "../template/ErrorTemplate"
 import { LoadingTemplate } from "../template/LoadingTemplate"
 import { SizeTable } from "../template/SizeTable"
 import { useQuery } from "@tanstack/react-query"
-import { useTRPC } from "../utils/trpc"
+import { useTRPC } from "../lib/trpc"
 import { useSearchParams } from "react-router"
 import { BeerStein } from "@phosphor-icons/react"
 

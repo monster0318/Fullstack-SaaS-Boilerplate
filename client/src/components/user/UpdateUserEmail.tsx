@@ -6,7 +6,7 @@ import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
 import { useMutation } from "@tanstack/react-query"
-import { useTRPC } from "../../utils/trpc"
+import { useTRPC } from "../../lib/trpc"
 type RouterOutput = inferRouterOutputs<AppRouter>
 
 type Props = {

@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router"
 import { useQuery } from "@tanstack/react-query"
-import { useTRPC } from "../../utils/trpc"
+import { useTRPC } from "../../lib/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
 import Search from "../search/Search"
 import { Users, CloudWarning, Devices } from "@phosphor-icons/react"
-import utils from "../../utils/utils"
+import utils from "../../lib/utils"
 import ChipUserId from "./ChipUserId"
 
 const UsersPage = () => {

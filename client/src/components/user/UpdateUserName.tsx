@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
-import { useTRPC } from "../../utils/trpc"
+import { useTRPC } from "../../lib/trpc"
 import { inferRouterOutputs } from "@trpc/server"
 import { AppRouter } from "../../../../server/src/"
 import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"

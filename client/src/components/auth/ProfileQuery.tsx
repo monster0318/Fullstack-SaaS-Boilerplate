@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { useTRPC } from "../../utils/trpc"
+import { useTRPC } from "../../lib/trpc"
 import { LoadingTemplate } from "../../template/LoadingTemplate"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
