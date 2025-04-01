@@ -1,22 +1,42 @@
-import { devices, PlaywrightTestConfig } from "@playwright/test";
+import { defineConfig, devices } from "@playwright/test"
 
-const baseUrl = process.env.PLAYWRIGHT_TEST_BASE_URL || "http://localhost:3000";
-console.log(`ℹ️ Using base URL "${baseUrl}"`);
+export default defineConfig({
+  // Look for test files in the "tests" directory, relative to this configuration file.
+  testDir: "tests",
 
-const opts = {
-  // launch headless on CI, in browser locally
-  headless: !!process.env.CI || !!process.env.PLAYWRIGHT_HEADLESS,
-  // collectCoverage: !!process.env.PLAYWRIGHT_HEADLESS
-};
-const config: PlaywrightTestConfig = {
-  testDir: "./test",
-  outputDir: "./test/test-results",
+  // Run all tests in parallel.
+  fullyParallel: true,
+
+  // Fail the build on CI if you accidentally left test.only in the source code.
+  forbidOnly: !!process.env.CI,
+
+  // Retry on CI only.
+  retries: process.env.CI ? 2 : 0,
+
+  // Opt out of parallel tests on CI.
+  workers: process.env.CI ? 1 : undefined,
+
+  // Reporter to use
+  reporter: "html",
+
   use: {
-    ...devices["Desktop Chrome"],
-    baseURL: baseUrl,
-    headless: opts.headless,
-  },
-  retries: process.env.CI ? 3 : 0,
-};
+    // Base URL to use in actions like `await page.goto('/')`.
+    baseURL: "http://localhost:3000",
 
-export default config;
+    // Collect trace when retrying the failed test.
+    trace: "on-first-retry",
+  },
+  // Configure projects for major browsers.
+  projects: [
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
+  ],
+  // Run your local dev server before starting the tests.
+  // webServer: {
+  //   command: "npm run dev",
+  //   url: "http://localhost:3000",
+  //   reuseExistingServer: !process.env.CI,
+  // },
+})
