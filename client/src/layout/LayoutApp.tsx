@@ -29,10 +29,10 @@ const LayoutApp = () => {
 
   return (
     <div className={`${isDarkMode ? "dark" : ""}`}>
-      <div className="flex h-screen text-gray-600 bg-gray-50 dark:bg-gray-800 dark:text-white">
+      <div className="flex h-screen text-gray-600 bg-white dark:bg-gray-700 dark:text-white">
         <div
           ref={sidebarRef} // Reference to the sidebar
-          className={`fixed z-30 inset-y-0 left-0 w-64  transform ${
+          className={`fixed z-30 inset-y-0 left-0 w-64  transform bg-gray-50 dark:bg-gray-800 ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-200 ease-in-out md:relative md:translate-x-0`}
         >
