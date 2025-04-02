@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import { Trash } from "@phosphor-icons/react"
-import ErrorMutation from "../../layout/ErrorMutation"
 import { tryCatch } from "../../lib/try-catch"
 import { useState } from "react"
 type Props = {
