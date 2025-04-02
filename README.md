@@ -115,7 +115,7 @@ The tests must be run while the app is running.
 #### Running the tests in the Terminal
 
 ```
-npm run test:e2e
+npm run test
 ```
 
 ## Other recommendations
@@ -128,13 +128,6 @@ npm run test:e2e
 - [Nachonacho.com](https://Nachonacho.com) - The world's largest marketplace for Software & Services
 
 Create a PR if you want to add your project here.
-
-## Miscellaneous
-
-Discover the details of this project in
-
-- [Medium post](https://alan-szternberg.medium.com/create-a-full-stack-app-with-trpc-react-and-express-35ed95f0851a)
-- [Dev.to post](https://dev.to/alan345/how-to-create-a-web-app-in-2024-using-a-modern-stack-react-trpc-and-express-4eac)
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/60297acc-81a1-46af-93ec-d281be20757b" alt="image" height="260"/>
