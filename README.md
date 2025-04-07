@@ -3,7 +3,7 @@
 </div>
 
 <h1 align="center"><strong>Fullstack SaaS Boilerplate</strong></h1>
-<h3 align="center">Built with <a href="https://fastify.io">Fastify</a>, <a href="https://trpc.io">tRPC</a>, and <a href="https://reactjs.org">React</a>.</h3>
+<h3 align="center">Built with <a href="https://fastify.io" target="_blank" rel="noopener noreferrer">Fastify</a>, <a href="https://trpc.io" target="_blank" rel="noopener noreferrer">tRPC</a>, and <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">React</a>.</h3>
 
 ## Project
 
@@ -14,11 +14,11 @@
 
 ## Demo
 
-<a href="https://client.ter.work.gd/" >
+<a href="https://client.ter.work.gd/" target="_blank" rel="noopener noreferrer">
   <img width="150" alt="Demo Fullstack-SaaS-Boilerplate" src="https://github.com/user-attachments/assets/b343633f-237a-4377-b8be-114185103645">
 </a>
 
-###### Hosted by [render.com](http://render.com/) for free
+###### Hosted by <a href="http://render.com/" target="_blank" rel="noopener noreferrer">render.com</a> for free
 
 ## Preview
 
@@ -26,28 +26,28 @@
 
 ## Main Stack
 
-| Technology                             | Description                                               | Stars                                                                                                                                               |
-| -------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Drizzle](https://orm.drizzle.team/)   | A TypeScript-first ORM for Node.js                        | [![GitHub Repo stars](https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square)](https://github.com/drizzle-team/drizzle-orm) |
-| [Fastify](https://fastify.io)          | Fast, unopinionated, minimalist web framework for Node.js | [![GitHub Repo stars](https://img.shields.io/github/stars/fastify/fastify?style=flat-square)](https://github.com/fastify/fastify)                   |
-| [Postgres](https://www.postgresql.org) | The world's most advanced open source database            | [![GitHub Repo stars](https://img.shields.io/github/stars/postgres/postgres?style=flat-square)](https://github.com/postgres/postgres)               |
-| [React 19](https://reactjs.org)        | A JavaScript library for building user interfaces         | [![GitHub Repo stars](https://img.shields.io/github/stars/facebook/react?style=flat-square)](https://github.com/facebook/react)                     |
-| [Tailwind v4](https://tailwindcss.com) | A utility-first CSS framework for rapid UI development    | [![GitHub Repo stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square)](https://github.com/tailwindlabs/tailwindcss) |
-| [tRPC](https://trpc.io)                | End-to-end typesafe APIs made easy                        | [![GitHub Repo stars](https://img.shields.io/github/stars/trpc/trpc?style=flat-square)](https://github.com/trpc/trpc)                               |
+| Technology                                                                          | Description                                               | Stars                                                                                                                                               |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Drizzle](https://orm.drizzle.team/){:target="\_blank" rel="noopener noreferrer"}   | A TypeScript-first ORM for Node.js                        | [![GitHub Repo stars](https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square)](https://github.com/drizzle-team/drizzle-orm) |
+| [Fastify](https://fastify.io){:target="\_blank" rel="noopener noreferrer"}          | Fast, unopinionated, minimalist web framework for Node.js | [![GitHub Repo stars](https://img.shields.io/github/stars/fastify/fastify?style=flat-square)](https://github.com/fastify/fastify)                   |
+| [Postgres](https://www.postgresql.org){:target="\_blank" rel="noopener noreferrer"} | The world's most advanced open source database            | [![GitHub Repo stars](https://img.shields.io/github/stars/postgres/postgres?style=flat-square)](https://github.com/postgres/postgres)               |
+| [React 19](https://reactjs.org){:target="\_blank" rel="noopener noreferrer"}        | A JavaScript library for building user interfaces         | [![GitHub Repo stars](https://img.shields.io/github/stars/facebook/react?style=flat-square)](https://github.com/facebook/react)                     |
+| [Tailwind v4](https://tailwindcss.com){:target="\_blank" rel="noopener noreferrer"} | A utility-first CSS framework for rapid UI development    | [![GitHub Repo stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square)](https://github.com/tailwindlabs/tailwindcss) |
+| [tRPC](https://trpc.io){:target="\_blank" rel="noopener noreferrer"}                | End-to-end typesafe APIs made easy                        | [![GitHub Repo stars](https://img.shields.io/github/stars/trpc/trpc?style=flat-square)](https://github.com/trpc/trpc)                               |
 
 ## Other dependencies
 
-| Technology                                                           | Description                                                      | Stars                                                                                                                                             |
-| -------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Better Auth](https://better-auth.com)                               | Authentication library for Node.js                               | [![GitHub Repo stars](https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square)](https://github.com/better-auth/better-auth) |
-| [Lucide Icons](https://lucide.dev)                                   | Beautifully simple & consistent icons                            | [![GitHub Repo stars](https://img.shields.io/github/stars/lucide-icons/lucide?style=flat-square)](https://github.com/lucide-icons/lucide)         |
-| [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) | Workspaces for managing multiple packages in a single repository | [![GitHub Repo stars](https://img.shields.io/github/stars/npm/cli?style=flat-square)](https://github.com/npm/cli)                                 |
-| [Playwright](https://playwright.dev)                                 | Test your web apps headlessly with a single API                  | [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/playwright?style=flat-square)](https://github.com/microsoft/playwright)       |
-| [React Router v7](https://reactrouter.com)                           | Declarative routing for React                                    | [![GitHub Repo stars](https://img.shields.io/github/stars/remix-run/react-router?style=flat-square)](https://github.com/remix-run/react-router)   |
-| [TypeScript](https://www.typescriptlang.org)                         | TypeScript is a typed superset of JavaScript                     | [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square)](https://github.com/microsoft/TypeScript)       |
-| [ZOD](https://zod.dev)                                               | TypeScript-first schema validation with static type inference    | [![GitHub Repo stars](https://img.shields.io/github/stars/colinhacks/zod?style=flat-square)](https://github.com/colinhacks/zod)                   |
-| [Vite](https://vitejs.dev)                                           | Next generation frontend tooling. It's fast!                     | [![GitHub Repo stars](https://img.shields.io/github/stars/vitejs/vite?style=flat-square)](https://github.com/vitejs/vite)                         |
-| [Zustand](https://zustand.docs.pmnd.rs/)                             | State management for React                                       | [![GitHub Repo stars](https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square)](https://github.com/pmndrs/zustand)                   |
+| Technology                                                                                                        | Description                                                      | Stars                                                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Better Auth](https://better-auth.com){:target="\_blank" rel="noopener noreferrer"}                               | Authentication library for Node.js                               | [![GitHub Repo stars](https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square)](https://github.com/better-auth/better-auth) |
+| [Lucide Icons](https://lucide.dev){:target="\_blank" rel="noopener noreferrer"}                                   | Beautifully simple & consistent icons                            | [![GitHub Repo stars](https://img.shields.io/github/stars/lucide-icons/lucide?style=flat-square)](https://github.com/lucide-icons/lucide)         |
+| [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces){:target="\_blank" rel="noopener noreferrer"} | Workspaces for managing multiple packages in a single repository | [![GitHub Repo stars](https://img.shields.io/github/stars/npm/cli?style=flat-square)](https://github.com/npm/cli)                                 |
+| [Playwright](https://playwright.dev){:target="\_blank" rel="noopener noreferrer"}                                 | Test your web apps headlessly with a single API                  | [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/playwright?style=flat-square)](https://github.com/microsoft/playwright)       |
+| [React Router v7](https://reactrouter.com){:target="\_blank" rel="noopener noreferrer"}                           | Declarative routing for React                                    | [![GitHub Repo stars](https://img.shields.io/github/stars/remix-run/react-router?style=flat-square)](https://github.com/remix-run/react-router)   |
+| [TypeScript](https://www.typescriptlang.org){:target="\_blank" rel="noopener noreferrer"}                         | TypeScript is a typed superset of JavaScript                     | [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square)](https://github.com/microsoft/TypeScript)       |
+| [ZOD](https://zod.dev){:target="\_blank" rel="noopener noreferrer"}                                               | TypeScript-first schema validation with static type inference    | [![GitHub Repo stars](https://img.shields.io/github/stars/colinhacks/zod?style=flat-square)](https://github.com/colinhacks/zod)                   |
+| [Vite](https://vitejs.dev){:target="\_blank" rel="noopener noreferrer"}                                           | Next generation frontend tooling. It's fast!                     | [![GitHub Repo stars](https://img.shields.io/github/stars/vitejs/vite?style=flat-square)](https://github.com/vitejs/vite)                         |
+| [Zustand](https://zustand.docs.pmnd.rs/){:target="\_blank" rel="noopener noreferrer"}                             | State management for React                                       | [![GitHub Repo stars](https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square)](https://github.com/pmndrs/zustand)                   |
 
 ## Features
 
@@ -124,12 +124,12 @@ npm run test
 
 ## Other recommendations
 
-- Need a component library? Check out [Chakra UI](https://v2.chakra-ui.com/)
-- If your stack is getting more and more shared workspaces, consider using [pnpm](https://pnpm.io/workspaces) instead of npm
+- Need a component library? Check out <a href="https://v2.chakra-ui.com/" target="_blank" rel="noopener noreferrer">Chakra UI</a>
+- If your stack is getting more and more shared workspaces, consider using <a href="https://pnpm.io/workspaces" target="_blank" rel="noopener noreferrer">pnpm</a> instead of npm
 
 ## Who is using TER?
 
-- [Nachonacho.com](https://Nachonacho.com) - The world's largest marketplace for Software & Services
+- <a href="https://Nachonacho.com" target="_blank" rel="noopener noreferrer">Nachonacho.com</a> - The world's largest marketplace for Software & Services
 
 Create a PR if you want to add your project here.
 
