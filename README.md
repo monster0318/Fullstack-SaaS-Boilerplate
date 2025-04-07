@@ -8,8 +8,8 @@
 ## Project
 
 [![GitHub issues](https://img.shields.io/github/issues/alan345/Fullstack-SaaS-Boilerplate.svg)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/issues)
-[![GitHub forks](https://img.shields.io/github/forks/alan345/Fullstack-SaaS-Boilerplate.svg)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/network)
-[![GitHub stars](https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate.svg)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/network)
+[![GitHub stars](https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate?style=flat)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/stargazers)
 [![GitHub license](https://img.shields.io/github/license/alan345/Fullstack-SaaS-Boilerplate.svg)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/master/LICENSE)
 
 ## Demo
@@ -35,7 +35,7 @@
 
 ## Other dependencies
 
-- [Better Auth](https://better-auth.com) - Authentication library for Node.js
+- [Better Auth](https://better-auth.com) - Authentication library for Node.js - ![GitHub Repo stars](https://img.shields.io/github/stars/ankidroid/Anki-Android?style=flat)
 - [Lucide Icons](https://lucide.dev) - Beautifully simple & consistent icons
 - [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) Workspaces for managing multiple packages in a single repository
 - [Playwright](https://playwright.dev) - Test your web apps headlessly with a single API
