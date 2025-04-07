@@ -19,14 +19,14 @@
 
 ## Main Stack
 
-| Technology                                        | Description                                               | Stars                                                                                                                |
-| ------------------------------------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| <a href="https://orm.drizzle.team/">Drizzle</a>   | A TypeScript-first ORM for Node.js                        | <img src="https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square" alt="GitHub Repo stars" /> |
-| <a href="https://fastify.io">Fastify</a>          | Fast, unopinionated, minimalist web framework for Node.js | <img src="https://img.shields.io/github/stars/fastify/fastify?style=flat-square" alt="GitHub Repo stars" />          |
-| <a href="https://www.postgresql.org">Postgres</a> | The world's most advanced open source database            | <img src="https://img.shields.io/github/stars/postgres/postgres?style=flat-square" alt="GitHub Repo stars" />        |
-| <a href="https://reactjs.org">React 19</a>        | A JavaScript library for building user interfaces         | <img src="https://img.shields.io/github/stars/facebook/react?style=flat-square" alt="GitHub Repo stars" />           |
-| <a href="https://tailwindcss.com">Tailwind v4</a> | A utility-first CSS framework for rapid UI development    | <img src="https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square" alt="GitHub Repo stars" /> |
-| <a href="https://trpc.io">tRPC</a>                | End-to-end typesafe APIs made easy                        | <img src="https://img.shields.io/github/stars/trpc/trpc?style=flat-square" alt="GitHub Repo stars" />                |
+| Technology                                        | Description                                               | Stars                                                                                                                                                                          |
+| ------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <a href="https://orm.drizzle.team/">Drizzle</a>   | A TypeScript-first ORM for Node.js                        | <a href="https://github.com/drizzle-team/drizzle-orm"><img src="https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square" alt="GitHub Repo stars" /></a> |
+| <a href="https://fastify.io">Fastify</a>          | Fast, unopinionated, minimalist web framework for Node.js | <a href="https://github.com/fastify/fastify"><img src="https://img.shields.io/github/stars/fastify/fastify?style=flat-square" alt="GitHub Repo stars" /></a>                   |
+| <a href="https://www.postgresql.org">Postgres</a> | The world's most advanced open source database            | <a href="https://github.com/postgres/postgres"><img src="https://img.shields.io/github/stars/postgres/postgres?style=flat-square" alt="GitHub Repo stars" /></a>               |
+| <a href="https://reactjs.org">React 19</a>        | A JavaScript library for building user interfaces         | <a href="https://github.com/facebook/react"><img src="https://img.shields.io/github/stars/facebook/react?style=flat-square" alt="GitHub Repo stars" /></a>                     |
+| <a href="https://tailwindcss.com">Tailwind v4</a> | A utility-first CSS framework for rapid UI development    | <a href="https://github.com/tailwindlabs/tailwindcss"><img src="https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square" alt="GitHub Repo stars" /></a> |
+| <a href="https://trpc.io">tRPC</a>                | End-to-end typesafe APIs made easy                        | <a href="https://github.com/trpc/trpc"><img src="https://img.shields.io/github/stars/trpc/trpc?style=flat-square" alt="GitHub Repo stars" /></a>                               |
 
 ## Other dependencies
 
