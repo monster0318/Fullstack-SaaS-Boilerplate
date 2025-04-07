@@ -4,7 +4,7 @@ import { LoadingTemplate } from "../../template/LoadingTemplate"
 import iconAvatar from "@fsb/client/src/assets/icons/avatar.svg"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import { useLocation, useNavigate } from "react-router"
-import { XCircle } from "@phosphor-icons/react"
+import { XCircle } from "lucide-react"
 import ImgAvatar from "../../layout/ImgAvatar"
 
 type Props = {

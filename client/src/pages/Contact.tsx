@@ -1,10 +1,10 @@
-import { PencilLine } from "@phosphor-icons/react"
+import { Pencil } from "lucide-react"
 
 const Contact = () => {
   return (
     <div className="p-6">
       <div className="flex items-center">
-        <PencilLine className="text-3xl mr-3" />
+        <Pencil className="text-3xl mr-3" />
         <h1>Contact</h1>
       </div>
       <div className="flex flex-col items-center justify-center mt-2">

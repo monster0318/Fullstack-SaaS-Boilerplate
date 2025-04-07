@@ -1,8 +1,7 @@
 import ProfileQuery from "./ProfileQuery"
 import Logout from "./Logout"
 import { Link } from "react-router"
-import { Devices } from "@phosphor-icons/react"
-import { UserCircle } from "@phosphor-icons/react"
+import { Monitor, UserCircle2 } from "lucide-react"
 import { authClient } from "../../lib/auth-client"
 
 const ProfilePage = () => {
@@ -16,7 +15,7 @@ const ProfilePage = () => {
     <div className="p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <UserCircle className="text-3xl mr-3" />
+          <UserCircle2 className="text-3xl mr-3" />
           <h1>Profile</h1>
         </div>
 
@@ -27,7 +26,7 @@ const ProfilePage = () => {
         <Link className="link" to={`/sessions?userId=${session.data.user.id}`}>
           <button className="btn-white">
             <div className="flex items-center">
-              <Devices className="text-xl mr-2" /> Sessions
+              <Monitor className="text-xl mr-2" /> Sessions
             </div>
           </button>
         </Link>

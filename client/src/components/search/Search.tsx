@@ -1,6 +1,6 @@
 import useDebounced from "./useDebounced"
 import { useLocation, useNavigate } from "react-router"
-import { XCircle } from "@phosphor-icons/react"
+import { XCircle } from "lucide-react"
 
 const Search = () => {
   const location = useLocation()

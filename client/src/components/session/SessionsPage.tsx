@@ -3,7 +3,7 @@ import { useTRPC } from "../../lib/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
-import { Devices, CloudWarning } from "@phosphor-icons/react"
+import { Monitor, AlertCircle } from "lucide-react"
 import utils from "../../lib/utils"
 import DeviceImage from "./DeviceImage"
 import ChipUserId from "../user/ChipUserId"
@@ -24,7 +24,7 @@ const SessionsPage = () => {
       <div className="flex-1 overflow-y-auto">
         <div className="p-6">
           <div className="flex items-center">
-            <Devices className="text-3xl mr-3" />
+            <Monitor className="text-3xl mr-3" />
             <h1>Sessions</h1>
           </div>
           <p>This page is private. You can access it only when logged in.</p>
@@ -77,7 +77,7 @@ const SessionsPage = () => {
           {dataQuery.data?.sessions.length === 0 && (
             <div className="flex justify-center items-center mt-10">
               <div className="flex items-center gap-2">
-                <CloudWarning className="text-4xl text-orange-400" />
+                <AlertCircle className="text-4xl text-orange-400" />
                 <div>No sessions found</div>
               </div>
             </div>

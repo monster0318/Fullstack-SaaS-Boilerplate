@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
-import { Trash } from "@phosphor-icons/react"
+import { Trash2 } from "lucide-react"
 import { tryCatch } from "../../lib/try-catch"
 import { useState } from "react"
 type Props = {
@@ -31,7 +31,7 @@ const DeleteSession = (props: Props) => {
         onClick={deleteSession}
         className="btn-white flex items-center"
       >
-        <Trash className="mr-2" /> Delete
+        <Trash2 className="mr-2" /> Delete
       </button>
       {error && <p className="text-red-600">{error}</p>}
     </div>

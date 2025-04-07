@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
 import { inferRouterOutputs } from "@trpc/server"
 import { AppRouter } from "../../../../server/src/"
-import { Pencil, CheckFat, SpinnerGap } from "@phosphor-icons/react"
+import { Pencil, CheckCircle2, Loader2 } from "lucide-react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
 type RouterOutput = inferRouterOutputs<AppRouter>
@@ -39,7 +39,7 @@ const UpdateUserName = (props: Props) => {
             <div>{props.user.name}</div>
             <Pencil className=" opacity-0 group-hover:opacity-100 transition-opacity" />
             {mutation.isSuccess && <SavedIconEffect />}
-            {mutation.isPending && <SpinnerGap className="animate-spin" />}
+            {mutation.isPending && <Loader2 className="animate-spin" />}
           </div>
         ) : (
           <>
@@ -60,7 +60,7 @@ const UpdateUserName = (props: Props) => {
                 }}
                 style={{ paddingRight: "26px" }}
               />
-              <CheckFat
+              <CheckCircle2
                 id="icon-check"
                 onMouseDown={(e) => e.preventDefault()}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer hover:text-green-600 transition-colors"

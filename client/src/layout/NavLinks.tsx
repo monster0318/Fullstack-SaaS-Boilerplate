@@ -1,5 +1,5 @@
 import { NavLink } from "react-router"
-import { House, Devices, Users, PencilLine, BeerStein, Moon, Sun, GithubLogo } from "@phosphor-icons/react"
+import { Home, Monitor, Users, Pencil, Beer, Moon, Sun, Github } from "lucide-react"
 import { authClient } from "../lib/auth-client"
 import { useContext } from "react"
 import { AppContext } from "../ContextProvider"
@@ -25,7 +25,7 @@ const NavLinks = (props: Props) => {
           }
         >
           <div className="flex items-center">
-            <House className="mr-2" />
+            <Home className="mr-2" />
             Home
           </div>
         </NavLink>
@@ -39,7 +39,7 @@ const NavLinks = (props: Props) => {
           }
         >
           <div className="flex items-center">
-            <BeerStein className="mr-2" />
+            <Beer className="mr-2" />
             Beers
           </div>
         </NavLink>
@@ -70,7 +70,7 @@ const NavLinks = (props: Props) => {
             }
           >
             <div className="flex items-center">
-              <Devices className="mr-2" />
+              <Monitor className="mr-2" />
               Sessions
             </div>
           </NavLink>
@@ -85,7 +85,7 @@ const NavLinks = (props: Props) => {
           }
         >
           <div className="flex items-center">
-            <PencilLine className="mr-2" />
+            <Pencil className="mr-2" />
             Contact
           </div>
         </NavLink>
@@ -99,7 +99,7 @@ const NavLinks = (props: Props) => {
           }
         >
           <div className="flex items-center">
-            <GithubLogo className="mr-2" />
+            <Github className="mr-2" />
             Github
           </div>
         </NavLink>

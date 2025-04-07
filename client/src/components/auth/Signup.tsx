@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, useNavigate } from "react-router"
-import { Keyhole } from "@phosphor-icons/react"
+import { Key } from "lucide-react"
 import { authClient } from "../../lib/auth-client"
 
 const Signup = () => {
@@ -37,7 +37,7 @@ const Signup = () => {
   return (
     <div className="p-6">
       <div className="flex items-center">
-        <Keyhole className="text-3xl mr-3" />
+        <Key className="text-3xl mr-3" />
         <h1>Sign up</h1>
       </div>
       <form onSubmit={onSubmit} className="mt-4 space-y-2">
@@ -92,7 +92,7 @@ const Signup = () => {
         </div>
 
         <button type="submit" disabled={isSubmitting} className="btn-blue flex items-center">
-          <Keyhole className="mr-2" />
+          <Key className="mr-2" />
           {isSubmitting ? <span>Signing up...</span> : <span>Sign up</span>}
         </button>
         {error && <p className="text-sm mt-6 text-red-500">{error}</p>}
