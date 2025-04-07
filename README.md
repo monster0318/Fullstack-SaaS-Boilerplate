@@ -26,24 +26,24 @@
 
 ## Main Stack
 
-- [Drizzle](https://orm.drizzle.team/) - A TypeScript-first ORM for Node.js
-- [Fastify](https://fastify.io) - Fast, unopinionated, minimalist web framework for Node.js
-- [Postgres](https://www.postgresql.org) - The world's most advanced open source database
-- [React 19](https://reactjs.org) - A JavaScript library for building user interfaces
-- [Tailwind v4](https://tailwindcss.com) - A utility-first CSS framework for rapid UI development
-- [tRPC](https://trpc.io) - End-to-end typesafe APIs made easy
+- [Drizzle](https://orm.drizzle.team/) - A TypeScript-first ORM for Node.js - [![GitHub Repo stars](https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square)](https://github.com/drizzle-team/drizzle-orm)
+- [Fastify](https://fastify.io) - Fast, unopinionated, minimalist web framework for Node.js - [![GitHub Repo stars](https://img.shields.io/github/stars/fastify/fastify?style=flat-square)](https://github.com/fastify/fastify)
+- [Postgres](https://www.postgresql.org) - The world's most advanced open source database - [![GitHub Repo stars](https://img.shields.io/github/stars/postgres/postgres?style=flat-square)](https://github.com/postgres/postgres)
+- [React 19](https://reactjs.org) - A JavaScript library for building user interfaces - [![GitHub Repo stars](https://img.shields.io/github/stars/facebook/react?style=flat-square)](https://github.com/facebook/react)
+- [Tailwind v4](https://tailwindcss.com) - A utility-first CSS framework for rapid UI development - [![GitHub Repo stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square)](https://github.com/tailwindlabs/tailwindcss)
+- [tRPC](https://trpc.io) - End-to-end typesafe APIs made easy - [![GitHub Repo stars](https://img.shields.io/github/stars/trpc/trpc?style=flat-square)](https://github.com/trpc/trpc)
 
 ## Other dependencies
 
 - [Better Auth](https://better-auth.com) - Authentication library for Node.js - [![GitHub Repo stars](https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square)](https://github.com/better-auth/better-auth)
-- [Lucide Icons](https://lucide.dev) - Beautifully simple & consistent icons
+- [Lucide Icons](https://lucide.dev) - Beautifully simple & consistent icons - [![GitHub Repo stars](https://img.shields.io/github/stars/lucide-icons/lucide?style=flat-square)](https://github.com/lucide-icons/lucide)
 - [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) Workspaces for managing multiple packages in a single repository
-- [Playwright](https://playwright.dev) - Test your web apps headlessly with a single API
-- [React Router v7](https://reactrouter.com) - Declarative routing for React
-- [TypeScript](https://www.typescriptlang.org) - TypeScript is a typed superset of JavaScript
-- [ZOD](https://zod.dev) - TypeScript-first schema validation with static type inference
-- [Vite](https://vitejs.dev) - Next generation frontend tooling. It's fast!
-- [Zustand](https://zustand.docs.pmnd.rs/) - State management for React
+- [Playwright](https://playwright.dev) - Test your web apps headlessly with a single API - [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/playwright?style=flat-square)](https://github.com/microsoft/playwright)
+- [React Router v7](https://reactrouter.com) - Declarative routing for React - [![GitHub Repo stars](https://img.shields.io/github/stars/remix-run/react-router?style=flat-square)](https://github.com/remix-run/react-router)
+- [TypeScript](https://www.typescriptlang.org) - TypeScript is a typed superset of JavaScript - [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square)](https://github.com/microsoft/TypeScript)
+- [ZOD](https://zod.dev) - TypeScript-first schema validation with static type inference - [![GitHub Repo stars](https://img.shields.io/github/stars/colinhacks/zod?style=flat-square)](https://github.com/colinhacks/zod)
+- [Vite](https://vitejs.dev) - Next generation frontend tooling. It's fast! - [![GitHub Repo stars](https://img.shields.io/github/stars/vitejs/vite?style=flat-square)](https://github.com/vitejs/vite)
+- [Zustand](https://zustand.docs.pmnd.rs/) - State management for React - [![GitHub Repo stars](https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square)](https://github.com/pmndrs/zustand)
 
 ## Features
 
