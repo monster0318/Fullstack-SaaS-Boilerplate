@@ -26,12 +26,14 @@
 
 ## Main Stack
 
-| [Drizzle](https://orm.drizzle.team/) | A TypeScript-first ORM for Node.js | [![GitHub Repo stars](https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square)](https://github.com/drizzle-team/drizzle-orm) |
-| [Fastify](https://fastify.io) | Fast, unopinionated, minimalist web framework for Node.js | [![GitHub Repo stars](https://img.shields.io/github/stars/fastify/fastify?style=flat-square)](https://github.com/fastify/fastify) |
-| [Postgres](https://www.postgresql.org) | The world's most advanced open source database | [![GitHub Repo stars](https://img.shields.io/github/stars/postgres/postgres?style=flat-square)](https://github.com/postgres/postgres) |
-| [React 19](https://reactjs.org) | A JavaScript library for building user interfaces | [![GitHub Repo stars](https://img.shields.io/github/stars/facebook/react?style=flat-square)](https://github.com/facebook/react) |
-| [Tailwind v4](https://tailwindcss.com) | A utility-first CSS framework for rapid UI development | [![GitHub Repo stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square)](https://github.com/tailwindlabs/tailwindcss) |
-| [tRPC](https://trpc.io) | End-to-end typesafe APIs made easy | [![GitHub Repo stars](https://img.shields.io/github/stars/trpc/trpc?style=flat-square)](https://github.com/trpc/trpc) |
+| Technology                             | Description                                               | Stars                                                                                                                                               |
+| -------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Drizzle](https://orm.drizzle.team/)   | A TypeScript-first ORM for Node.js                        | [![GitHub Repo stars](https://img.shields.io/github/stars/drizzle-team/drizzle-orm?style=flat-square)](https://github.com/drizzle-team/drizzle-orm) |
+| [Fastify](https://fastify.io)          | Fast, unopinionated, minimalist web framework for Node.js | [![GitHub Repo stars](https://img.shields.io/github/stars/fastify/fastify?style=flat-square)](https://github.com/fastify/fastify)                   |
+| [Postgres](https://www.postgresql.org) | The world's most advanced open source database            | [![GitHub Repo stars](https://img.shields.io/github/stars/postgres/postgres?style=flat-square)](https://github.com/postgres/postgres)               |
+| [React 19](https://reactjs.org)        | A JavaScript library for building user interfaces         | [![GitHub Repo stars](https://img.shields.io/github/stars/facebook/react?style=flat-square)](https://github.com/facebook/react)                     |
+| [Tailwind v4](https://tailwindcss.com) | A utility-first CSS framework for rapid UI development    | [![GitHub Repo stars](https://img.shields.io/github/stars/tailwindlabs/tailwindcss?style=flat-square)](https://github.com/tailwindlabs/tailwindcss) |
+| [tRPC](https://trpc.io)                | End-to-end typesafe APIs made easy                        | [![GitHub Repo stars](https://img.shields.io/github/stars/trpc/trpc?style=flat-square)](https://github.com/trpc/trpc)                               |
 
 ## Other dependencies
 
