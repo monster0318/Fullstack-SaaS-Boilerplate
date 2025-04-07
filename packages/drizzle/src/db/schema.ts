@@ -71,3 +71,10 @@ export const verificationTable = pgTable("verification", {
   createdAt: timestamp("created_at").defaultNow().notNull(), // Created timestamp
   updatedAt: timestamp("updated_at").defaultNow().notNull(), // Updated timestamp
 })
+
+export const exampleTable = pgTable("example", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  description: text("description"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+})
