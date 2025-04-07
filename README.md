@@ -37,15 +37,17 @@
 
 ## Other dependencies
 
-- [Better Auth](https://better-auth.com) - Authentication library for Node.js - [![GitHub Repo stars](https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square)](https://github.com/better-auth/better-auth)
-- [Lucide Icons](https://lucide.dev) - Beautifully simple & consistent icons - [![GitHub Repo stars](https://img.shields.io/github/stars/lucide-icons/lucide?style=flat-square)](https://github.com/lucide-icons/lucide)
-- [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) Workspaces for managing multiple packages in a single repository
-- [Playwright](https://playwright.dev) - Test your web apps headlessly with a single API - [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/playwright?style=flat-square)](https://github.com/microsoft/playwright)
-- [React Router v7](https://reactrouter.com) - Declarative routing for React - [![GitHub Repo stars](https://img.shields.io/github/stars/remix-run/react-router?style=flat-square)](https://github.com/remix-run/react-router)
-- [TypeScript](https://www.typescriptlang.org) - TypeScript is a typed superset of JavaScript - [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square)](https://github.com/microsoft/TypeScript)
-- [ZOD](https://zod.dev) - TypeScript-first schema validation with static type inference - [![GitHub Repo stars](https://img.shields.io/github/stars/colinhacks/zod?style=flat-square)](https://github.com/colinhacks/zod)
-- [Vite](https://vitejs.dev) - Next generation frontend tooling. It's fast! - [![GitHub Repo stars](https://img.shields.io/github/stars/vitejs/vite?style=flat-square)](https://github.com/vitejs/vite)
-- [Zustand](https://zustand.docs.pmnd.rs/) - State management for React - [![GitHub Repo stars](https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square)](https://github.com/pmndrs/zustand)
+| Technology                                                           | Description                                                      | Stars                                                                                                                                             |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Better Auth](https://better-auth.com)                               | Authentication library for Node.js                               | [![GitHub Repo stars](https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square)](https://github.com/better-auth/better-auth) |
+| [Lucide Icons](https://lucide.dev)                                   | Beautifully simple & consistent icons                            | [![GitHub Repo stars](https://img.shields.io/github/stars/lucide-icons/lucide?style=flat-square)](https://github.com/lucide-icons/lucide)         |
+| [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) | Workspaces for managing multiple packages in a single repository | -                                                                                                                                                 |
+| [Playwright](https://playwright.dev)                                 | Test your web apps headlessly with a single API                  | [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/playwright?style=flat-square)](https://github.com/microsoft/playwright)       |
+| [React Router v7](https://reactrouter.com)                           | Declarative routing for React                                    | [![GitHub Repo stars](https://img.shields.io/github/stars/remix-run/react-router?style=flat-square)](https://github.com/remix-run/react-router)   |
+| [TypeScript](https://www.typescriptlang.org)                         | TypeScript is a typed superset of JavaScript                     | [![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square)](https://github.com/microsoft/TypeScript)       |
+| [ZOD](https://zod.dev)                                               | TypeScript-first schema validation with static type inference    | [![GitHub Repo stars](https://img.shields.io/github/stars/colinhacks/zod?style=flat-square)](https://github.com/colinhacks/zod)                   |
+| [Vite](https://vitejs.dev)                                           | Next generation frontend tooling. It's fast!                     | [![GitHub Repo stars](https://img.shields.io/github/stars/vitejs/vite?style=flat-square)](https://github.com/vitejs/vite)                         |
+| [Zustand](https://zustand.docs.pmnd.rs/)                             | State management for React                                       | [![GitHub Repo stars](https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square)](https://github.com/pmndrs/zustand)                   |
 
 ## Features
 
