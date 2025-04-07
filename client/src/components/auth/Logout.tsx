@@ -1,16 +1,9 @@
-// import React from "react"
-// import { useMutation } from "@tanstack/react-query"
-// import { useTRPC } from "../../utils/trpc"
 import { useNavigate } from "react-router"
 import { LogOut } from "lucide-react"
-// import ErrorMutation from "../../layout/ErrorMutation"
 import { authClient } from "../../lib/auth-client"
 
 const Logout = () => {
   const navigate = useNavigate()
-  // const session = authClient.useSession()
-  // const trpc = useTRPC()
-  // const mutation = useMutation(trpc.logout.mutationOptions())
   const logout = async () => {
     try {
       await authClient.signOut()
@@ -21,11 +14,9 @@ const Logout = () => {
   }
 
   return (
-    <div>
-      <button id="logout-button" onClick={logout} className="btn-blue flex items-center">
-        <LogOut className="mr-2" /> Logout
-      </button>
-    </div>
+    <button id="logout-button" onClick={logout} className="btn-blue flex items-center">
+      <LogOut className="mr-2" /> Logout
+    </button>
   )
 }
 export default Logout
