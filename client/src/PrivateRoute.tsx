@@ -8,7 +8,7 @@ type Props = {
 
 const PrivateRoute = (props: Props) => {
   const session = authClient.useSession()
-  console.log(session.data?.user)
+
   if (session.isPending) return <div className="p-6">Loading!</div>
   if (!session.data?.user.role) {
     return (
