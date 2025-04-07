@@ -36,8 +36,8 @@
 ## Other dependencies
 
 - [Better Auth](https://better-auth.com) - Authentication library for Node.js
-- [Lucide Icons](https://lucide.dev) - Beautifully simple icons
-- [NPM Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) Workspaces for managing multiple packages in a single repository
+- [Lucide Icons](https://lucide.dev) - Beautifully simple & consistent icons
+- [npm Workspace](https://docs.npmjs.com/cli/v10/using-npm/workspaces) Workspaces for managing multiple packages in a single repository
 - [Playwright](https://playwright.dev) - Test your web apps headlessly with a single API
 - [React Router v7](https://reactrouter.com) - Declarative routing for React
 - [TypeScript](https://www.typescriptlang.org) - TypeScript is a typed superset of JavaScript
