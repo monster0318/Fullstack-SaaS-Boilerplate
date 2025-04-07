@@ -7,10 +7,10 @@
 
 ## Project
 
-[![GitHub issues](https://img.shields.io/github/issues/alan345/Fullstack-SaaS-Boilerplate.svg)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/issues)
+[![GitHub issues](https://img.shields.io/github/issues/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/issues)
 [![GitHub forks](https://img.shields.io/github/forks/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/network)
-[![GitHub stars](https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate?style=flat)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/stargazers)
-[![GitHub license](https://img.shields.io/github/license/alan345/Fullstack-SaaS-Boilerplate.svg)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/stargazers)
+[![GitHub license](https://img.shields.io/github/license/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/master/LICENSE)
 
 ## Demo
 
