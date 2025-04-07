@@ -5,12 +5,11 @@ import NavLinks from "./NavLinks"
 import BurgerLogic from "./BurgerLogic"
 import LogoApp from "./LogoApp"
 import { Link } from "react-router"
-import { useContext } from "react"
-import { AppContext } from "../ContextProvider"
+import { useThemeStore } from "../store/useThemeStore"
 
 const LayoutApp = () => {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
-  const { isDarkMode } = useContext(AppContext)
+  const { isDarkMode } = useThemeStore()
   const sidebarRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

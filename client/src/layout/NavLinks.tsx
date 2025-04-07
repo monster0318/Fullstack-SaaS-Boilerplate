@@ -1,8 +1,7 @@
 import { NavLink } from "react-router"
 import { Home, Monitor, Users, Pencil, Beer, Moon, Sun, Github } from "lucide-react"
 import { authClient } from "../lib/auth-client"
-import { useContext } from "react"
-import { AppContext } from "../ContextProvider"
+import { useThemeStore } from "../store/useThemeStore"
 
 type Props = {
   onClick: () => void
@@ -10,7 +9,7 @@ type Props = {
 
 const NavLinks = (props: Props) => {
   const session = authClient.useSession()
-  const { isDarkMode, toggleDarkMode } = useContext(AppContext)
+  const { isDarkMode, toggleDarkMode } = useThemeStore()
 
   return (
     <div>

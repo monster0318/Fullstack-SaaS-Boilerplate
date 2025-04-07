@@ -43,11 +43,11 @@
 - [TypeScript](https://www.typescriptlang.org) - TypeScript is a typed superset of JavaScript
 - [ZOD](https://zod.dev) - TypeScript-first schema validation with static type inference
 - [Vite](https://vitejs.dev) - Next generation frontend tooling. It's fast!
+- [Zustand](https://zustand.docs.pmnd.rs/) - State management for React
 
 ## Features
 
 - [Beers from random-data-api.com](https://random-data-api.com) Example of pulling data from externals REST API
-- [React context](https://react.dev/reference/react/useContext) is used for the dark mode / light mode toggle
 - Health Check for the server (http://localhost:2022/health)
 - Search with Debounce Using a Custom Hook
 

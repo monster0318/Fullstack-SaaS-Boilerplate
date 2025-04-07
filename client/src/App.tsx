@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useState } from "react"
 import { BrowserRouter } from "react-router"
-import ContextProvider from "./ContextProvider"
 import LayoutApp from "./layout/LayoutApp"
 import LogoApp from "./layout/LogoApp"
 import { createTRPCClient, httpBatchLink } from "@trpc/client"
 import type { AppRouter } from "../../server/src"
 import { TRPCProvider } from "./lib/trpc"
+import { useThemeStore } from "./store/useThemeStore"
 
 function makeQueryClient() {
   return new QueryClient({
@@ -39,6 +39,7 @@ function getQueryClient() {
 }
 
 const App = () => {
+  const { isDarkMode } = useThemeStore()
   const url = import.meta.env.VITE_URL_BACKEND
   if (!url)
     return (
@@ -100,11 +101,11 @@ const App = () => {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-          <ContextProvider>
+          <div className={isDarkMode ? "dark" : "light"}>
             <QueryClientProvider client={queryClient}>
               <LayoutApp />
             </QueryClientProvider>
-          </ContextProvider>
+          </div>
         </TRPCProvider>
       </QueryClientProvider>
     </BrowserRouter>
