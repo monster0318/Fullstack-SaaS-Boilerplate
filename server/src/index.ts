@@ -2,20 +2,15 @@ import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapte
 import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
-import userRouter from "./router/userRouter"
-import sessionRouter from "./router/sessionRouter"
-import healthRouter from "./router/healthRouter"
-import beerRouter from "./router/beerRouter"
-import t from "./trpc"
+
+// import t from "./trpc"
 import { auth } from "./lib/auth"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
+import { AppRouter, appRouter } from "./router"
 
-export const mergeRouters = t.mergeRouters
-
-const appRouter = mergeRouters(userRouter, sessionRouter, healthRouter, beerRouter)
-export type AppRouter = typeof appRouter
+// export const mergeRouters = t.mergeRouters
 
 const fastify = Fastify({
   maxParamLength: 5000,

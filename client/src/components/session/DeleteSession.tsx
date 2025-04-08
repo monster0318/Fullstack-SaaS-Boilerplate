@@ -3,6 +3,7 @@ import { useTRPC } from "../../lib/trpc"
 import { Trash2 } from "lucide-react"
 import { tryCatch } from "../../lib/try-catch"
 import { useState } from "react"
+
 type Props = {
   sessionId: string
   onDelete: () => void
@@ -11,7 +12,7 @@ type Props = {
 const DeleteSession = (props: Props) => {
   const trpc = useTRPC()
   const [error, setError] = useState<string | null>(null)
-  const mutation = useMutation(trpc.deleteSession.mutationOptions())
+  const mutation = useMutation(trpc.session.deleteSession.mutationOptions())
 
   const deleteSession = async () => {
     const result = await tryCatch(mutation.mutateAsync({ sessionId: props.sessionId }))

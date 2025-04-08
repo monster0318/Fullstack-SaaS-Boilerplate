@@ -14,7 +14,7 @@ type Props = {
 
 const ProfileQuery = (props: Props) => {
   const trpc = useTRPC()
-  const dataQuery = useQuery(trpc.getUserProfile.queryOptions({ id: props.meId }))
+  const dataQuery = useQuery(trpc.user.getUserProfile.queryOptions({ id: props.meId }))
   if (dataQuery.isLoading) return <LoadingTemplate />
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
   if (!dataQuery.data) return <div>No data</div>

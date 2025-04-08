@@ -14,7 +14,7 @@ const BeersPage = () => {
   const finalSize = sizeUrl ? Number(sizeUrl) : initSize
 
   const trpc = useTRPC()
-  const dataQuery = useQuery(trpc.getBeers.queryOptions({ size: finalSize }))
+  const dataQuery = useQuery(trpc.beer.getBeers.queryOptions({ size: finalSize }))
   if (dataQuery.isLoading) return <LoadingTemplate />
 
   return (

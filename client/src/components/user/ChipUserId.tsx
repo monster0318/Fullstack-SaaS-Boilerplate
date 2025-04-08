@@ -16,7 +16,7 @@ const ChipUserId = (props: Props) => {
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const trpc = useTRPC()
-  const dataQuery = useQuery(trpc.getUser.queryOptions({ id: props.userId }))
+  const dataQuery = useQuery(trpc.user.getUser.queryOptions({ id: props.userId }))
   if (dataQuery.isLoading) return <LoadingTemplate />
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
   if (!dataQuery.data) return null

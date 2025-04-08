@@ -16,7 +16,7 @@ const UsersPage = () => {
   const search = query.get("search") || undefined
   const userId = query.get("userId") || undefined
   const trpc = useTRPC()
-  const dataQuery = useQuery(trpc.getUsers.queryOptions({ page: utils.sanitizePage(page), search, userId }))
+  const dataQuery = useQuery(trpc.user.getUsers.queryOptions({ page: utils.sanitizePage(page), search, userId }))
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
 
   return (

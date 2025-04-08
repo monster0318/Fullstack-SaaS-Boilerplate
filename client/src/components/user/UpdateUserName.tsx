@@ -1,15 +1,13 @@
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { useTRPC } from "../../lib/trpc"
-import { inferRouterOutputs } from "@trpc/server"
-import { AppRouter } from "../../../../server/src/"
 import { Pencil, CheckCircle2, Loader2 } from "lucide-react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
-type RouterOutput = inferRouterOutputs<AppRouter>
+import { RouterOutput } from "../../lib/trpc"
 
 type Props = {
-  user: RouterOutput["getUserProfile"]
+  user: RouterOutput["user"]["getUserProfile"]
   onUpdate: () => void
 }
 
@@ -17,7 +15,7 @@ const UpdateUserName = (props: Props) => {
   const [isEdit, setIsEdit] = useState(false)
   const [name, setName] = useState(props.user.name)
   const trpc = useTRPC()
-  const mutation = useMutation(trpc.updateUser.mutationOptions())
+  const mutation = useMutation(trpc.user.updateUser.mutationOptions())
 
   const updateUser = async () => {
     try {

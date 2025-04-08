@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router"
 import LayoutApp from "./layout/LayoutApp"
 import LogoApp from "./layout/LogoApp"
 import { createTRPCClient, httpBatchLink } from "@trpc/client"
-import type { AppRouter } from "../../server/src"
+import { AppRouter } from "../../server/src/router"
 import { TRPCProvider } from "./lib/trpc"
 import { useThemeStore } from "./store/useThemeStore"
 

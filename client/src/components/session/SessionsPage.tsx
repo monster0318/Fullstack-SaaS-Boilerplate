@@ -17,7 +17,7 @@ const SessionsPage = () => {
   const search = query.get("search") || undefined
   const userId = query.get("userId") || undefined
   const trpc = useTRPC()
-  const dataQuery = useQuery(trpc.getSessions.queryOptions({ page: utils.sanitizePage(page), search, userId }))
+  const dataQuery = useQuery(trpc.session.getSessions.queryOptions({ page: utils.sanitizePage(page), search, userId }))
   if (dataQuery.isError) return <ErrorTemplate message={dataQuery.error.message} />
   return (
     <div className="flex flex-col h-full">
