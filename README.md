@@ -13,8 +13,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/issues)
 [![GitHub issues](https://img.shields.io/badge/Sponsor-me!-blue?style=for-the-badge)](https://github.com/sponsors/alan345)
 
- 
-
 ## Demo
 
 <a href="https://client.ter.work.gd/" >
@@ -137,10 +135,8 @@ npm run test
 
 Create a PR if you want to add your project here.
 
+## How you can help?
 
-
-
-## How you can help
 This project is free and open source. If you found it useful, consider giving it a star ⭐ or sponsoring me 💖 — it really helps!
 I'm always open to feedback, so feel free to share suggestions to improve the stack.
 You’re also welcome to contribute by opening a pull request 🚀.
