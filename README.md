@@ -5,7 +5,6 @@
 <h1 align="center"><strong>Fullstack SaaS Boilerplate</strong></h1>
 <h3 align="center">Built with <a href="https://fastify.io">Fastify</a>, <a href="https://trpc.io">tRPC</a>, and <a href="https://reactjs.org">React</a>.</h3>
 
-
 ## Project
 
 [![GitHub stars](https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/stargazers)
@@ -17,8 +16,6 @@
 
 <a href="https://client.ter.work.gd/" >
   <img width="200" alt="Demo Fullstack-SaaS-Boilerplate" src="https://github.com/user-attachments/assets/e7341328-dd7b-463a-b822-a491ef81369c">
-
-
 
 </a>
 
@@ -118,7 +115,7 @@ Video from https://trpc.io
 
 ## E2E Testing
 
-The tests must be run while the app is running.
+The tests should be executed while the application is running.
 
 #### Running the tests in the Terminal
 
