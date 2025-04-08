@@ -11,6 +11,9 @@
 [![GitHub forks](https://img.shields.io/github/forks/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/network)
 [![GitHub license](https://img.shields.io/github/license/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge)](https://github.com/alan345/Fullstack-SaaS-Boilerplate/issues)
+[![GitHub issues](https://img.shields.io/badge/Sponsor-me!-blue?style=for-the-badge)](https://github.com/sponsors/alan345)
+
+ 
 
 ## Demo
 
@@ -133,6 +136,16 @@ npm run test
 - [Nachonacho.com](https://Nachonacho.com) - The world's largest marketplace for Software & Services
 
 Create a PR if you want to add your project here.
+
+
+
+
+## How you can help
+This project is free and open source. If you found it useful, consider giving it a star ⭐ or sponsoring me 💖 — it really helps!
+I'm always open to feedback, so feel free to share suggestions to improve the stack.
+You’re also welcome to contribute by opening a pull request 🚀.
+
+[![GitHub issues](https://img.shields.io/badge/Sponsor-me!-blue?style=for-the-badge)](https://github.com/sponsors/alan345)
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/60297acc-81a1-46af-93ec-d281be20757b" alt="image" height="260"/>
