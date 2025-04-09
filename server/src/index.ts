@@ -2,6 +2,8 @@ import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapte
 import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
+import fastifyWebsocket from "@fastify/websocket"
+import WebSocket from "ws"
 
 // import t from "./trpc"
 import { auth } from "./lib/auth"
@@ -25,6 +27,7 @@ const start = async () => {
     })
 
     await fastify.register(fastifyCookie)
+    await fastify.register(fastifyWebsocket)
 
     // https://github.com/better-auth/better-auth/pull/2006
     // Register authentication endpoint
@@ -76,6 +79,27 @@ const start = async () => {
         router: appRouter,
         createContext,
       } as FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
+    })
+
+    // Websocket route for chat
+    fastify.get("/ws", { websocket: true }, (connection /* Inferred Type */, req /* FastifyRequest */) => {
+      connection.on("message", (message: Buffer) => {
+        const messageString = message.toString()
+        console.log(`Received message: ${messageString}`)
+        // Broadcast message to all other connected clients
+        fastify.websocketServer.clients.forEach((client: WebSocket) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(messageString)
+          }
+        })
+      })
+
+      connection.on("close", () => {
+        console.log("Client disconnected")
+      })
+
+      connection.send("hi from server")
+      console.log("Client connected")
     })
 
     const port = Number(process.env.PORT) || 2022
