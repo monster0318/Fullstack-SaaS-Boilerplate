@@ -6,7 +6,8 @@ import fastifyWebsocket from "@fastify/websocket"
 import WebSocket from "ws"
 
 // import t from "./trpc"
-import { auth } from "./lib/auth"
+import { authHandler } from "./handlers/auth"
+import { websocketHandler } from "./handlers/websocket"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
@@ -34,39 +35,7 @@ const start = async () => {
     fastify.route({
       method: ["GET", "POST"],
       url: "/api/auth/*",
-      async handler(request, reply) {
-        try {
-          // Construct request URL
-          const url = new URL(request.url, `http://${request.headers.host}`)
-
-          // Convert Fastify headers to standard Headers object
-          const headers = new Headers()
-          Object.entries(request.headers).forEach(([key, value]) => {
-            if (value) headers.append(key, value.toString())
-          })
-
-          // Create Fetch API-compatible request
-          const req = new Request(url.toString(), {
-            method: request.method,
-            headers,
-            body: request.body ? JSON.stringify(request.body) : undefined,
-          })
-
-          // Process authentication request
-          const response = await auth.handler(req)
-
-          // Forward response to client
-          reply.status(response.status)
-          response.headers.forEach((value, key) => reply.header(key, value))
-          reply.send(response.body ? await response.text() : null)
-        } catch (error) {
-          fastify.log.error("Authentication Error:", error)
-          reply.status(500).send({
-            error: "Internal authentication error",
-            code: "AUTH_FAILURE",
-          })
-        }
-      },
+      handler: authHandler,
     })
 
     fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
@@ -82,25 +51,7 @@ const start = async () => {
     })
 
     // Websocket route for chat
-    fastify.get("/ws", { websocket: true }, (connection /* Inferred Type */, req /* FastifyRequest */) => {
-      connection.on("message", (message: Buffer) => {
-        const messageString = message.toString()
-        console.log(`Received message: ${messageString}`)
-        // Broadcast message to all other connected clients
-        fastify.websocketServer.clients.forEach((client: WebSocket) => {
-          if (client.readyState === WebSocket.OPEN) {
-            client.send(messageString)
-          }
-        })
-      })
-
-      connection.on("close", () => {
-        console.log("Client disconnected")
-      })
-
-      connection.send("hi from server")
-      console.log("Client connected")
-    })
+    fastify.get("/ws", { websocket: true }, websocketHandler(fastify))
 
     const port = Number(process.env.PORT) || 2022
     await fastify.listen({
