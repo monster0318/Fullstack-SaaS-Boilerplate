@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { ChatEvent, ChatMessage } from "../types/chat"
+import { useTRPC } from "../lib/trpc"
+import { useMutation } from "@tanstack/react-query"
 
 const Chat: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
   const eventSource = useRef<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
+  const trpc = useTRPC()
+
+  const sendMessageMutation = useMutation(trpc.message.sendMessage.mutationOptions())
 
   const connectSSE = useCallback(() => {
     // Ensure we use the correct port, matching the server setup (default 2022)
@@ -81,23 +86,7 @@ const Chat: React.FC = () => {
   const sendMessage = async () => {
     if (input.trim()) {
       try {
-        const response = await fetch("http://localhost:2022/api/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Important for sending cookies
-          body: JSON.stringify({ message: input }),
-        })
-
-        if (response.status === 401) {
-          throw new Error("Authentication failed. Please log in again.")
-        }
-
-        if (!response.ok) {
-          throw new Error("Failed to send message")
-        }
-
+        await sendMessageMutation.mutateAsync({ message: input })
         setInput("")
       } catch (error) {
         console.error("Error sending message:", error)
@@ -142,8 +131,8 @@ const Chat: React.FC = () => {
         placeholder="Type a message..."
         disabled={!isConnected}
       />
-      <button onClick={sendMessage} disabled={!isConnected}>
-        Send
+      <button onClick={sendMessage} disabled={!isConnected || sendMessageMutation.isPending}>
+        {sendMessageMutation.isPending ? "Sending..." : "Send"}
       </button>
     </div>
   )

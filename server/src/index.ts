@@ -3,7 +3,7 @@ import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
 import { authHandler } from "./handlers/auth"
-import { sseHandler, messageHandler } from "./handlers/sse"
+import { sseHandler } from "./handlers/sse"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
@@ -47,9 +47,6 @@ const start = async () => {
 
     // SSE route for chat
     fastify.get("/sse", sseHandler(fastify))
-
-    // Message sending endpoint
-    fastify.post("/api/messages", messageHandler)
 
     const port = Number(process.env.PORT) || 2022
     await fastify.listen({
