@@ -3,9 +3,9 @@ import { z } from "zod"
 
 export interface ChatMessage {
   type: "text" | "system" | "error"
-  content: string
-  timestamp: number
-  senderId?: string
+  message: string
+  createdAt: Date
+  // senderId?: string
 }
 
 export interface ChatEvent {
@@ -32,9 +32,9 @@ export const broadcastMessage = async (message: string, senderId: string) => {
       type: "message",
       message: {
         type: "text",
-        content: message,
-        timestamp: Date.now(),
-        senderId,
+        message,
+        createdAt: new Date(),
+        // senderId,
       },
     }
 

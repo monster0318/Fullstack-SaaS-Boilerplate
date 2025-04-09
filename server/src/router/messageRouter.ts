@@ -26,6 +26,15 @@ const messageRouter = router({
     const messages = await ctx.db.query.messageTable.findMany({
       limit: 10,
       orderBy: [desc(messageTable.createdAt)],
+      with: {
+        sender: {
+          columns: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+      },
     })
     return messages
   }),

@@ -86,3 +86,10 @@ export const messageTable = pgTable("message", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   // updatedAt: timestamp("updated_at").defaultNow().notNull(),
 })
+
+export const messageToUserRelations = relations(messageTable, ({ one }) => ({
+  sender: one(userTable, {
+    fields: [messageTable.senderId],
+    references: [userTable.id],
+  }),
+}))

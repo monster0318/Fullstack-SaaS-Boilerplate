@@ -1,10 +1,10 @@
 export type MessageType = "text" | "system" | "error"
 
 export interface ChatMessage {
-  type: MessageType
-  content: string
-  timestamp: number
-  senderId?: string
+  // type: MessageType
+  message: string
+  createdAt: Date
+  // senderId?: string
 }
 
 export interface ChatEvent {

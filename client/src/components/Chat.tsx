@@ -28,8 +28,8 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         ...prev,
         {
           type: "system",
-          content: "Connected to chat",
-          timestamp: Date.now(),
+          message: "Connected to chat",
+          createdAt: new Date(),
         },
       ])
     }
@@ -45,8 +45,8 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
           ...prev,
           {
             type: "error",
-            content: "Error receiving message",
-            timestamp: Date.now(),
+            message: "Error receiving message",
+            createdAt: new Date(),
           },
         ])
       }
@@ -62,8 +62,8 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
           ...prev,
           {
             type: "error",
-            content: "Authentication failed. Please log in again.",
-            timestamp: Date.now(),
+            message: "Authentication failed. Please log in again.",
+            createdAt: new Date(),
           },
         ])
       } else {
@@ -71,8 +71,8 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
           ...prev,
           {
             type: "error",
-            content: "Error connecting to chat. Retrying...",
-            timestamp: Date.now(),
+            message: "Error connecting to chat. Retrying...",
+            createdAt: new Date(),
           },
         ])
       }
@@ -98,8 +98,8 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
           ...prev,
           {
             type: "error",
-            content: error instanceof Error ? error.message : "Error sending message",
-            timestamp: Date.now(),
+            message: error instanceof Error ? error.message : "Error sending message",
+            createdAt: new Date(),
           },
         ])
       }
@@ -122,9 +122,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         style={{ height: "300px", overflowY: "scroll", border: "1px solid #ccc", marginBottom: "10px", padding: "5px" }}
       >
         {messages.map((msg, index) => (
-          <div key={index} style={{ color: msg.type === "error" ? "red" : msg.type === "system" ? "gray" : "black" }}>
-            {msg.content}
-          </div>
+          <div key={index}>{msg.message}</div>
         ))}
       </div>
       <input

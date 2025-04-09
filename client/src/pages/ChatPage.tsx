@@ -16,8 +16,8 @@ const ChatPage = () => {
           .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
           .map((message) => ({
             type: "text",
-            content: message.message,
-            timestamp: new Date(message.createdAt).getTime(),
+            message: message.message,
+            createdAt: new Date(message.createdAt),
             senderId: message.senderId || undefined,
           }))
       )
@@ -27,7 +27,13 @@ const ChatPage = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Chat</h1>
-      <Chat messages={messages} setMessages={setMessages} />
+      <Chat
+        messages={messages}
+        setMessages={(messages) => {
+          console.log("messages", messages)
+          setMessages(messages)
+        }}
+      />
     </div>
   )
 }
