@@ -78,3 +78,11 @@ export const exampleTable = pgTable("example", {
   description: text("description"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 })
+
+export const messageTable = pgTable("message", {
+  id: uuid().defaultRandom().primaryKey(),
+  message: text("message").notNull(),
+  senderId: uuid("sender_id").references(() => userTable.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  // updatedAt: timestamp("updated_at").defaultNow().notNull(),
+})

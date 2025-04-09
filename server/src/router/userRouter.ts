@@ -15,6 +15,7 @@ const userRouter = router({
     )
     .mutation(async (opts) => {
       const db = opts.ctx.db
+
       const user = await db
         .update(userTable)
         .set({ name: opts.input.name, age: opts.input.age, email: opts.input.email })
