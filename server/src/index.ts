@@ -2,12 +2,8 @@ import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapte
 import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
-import fastifyWebsocket from "@fastify/websocket"
-import WebSocket from "ws"
-
-// import t from "./trpc"
 import { authHandler } from "./handlers/auth"
-import { websocketHandler } from "./handlers/websocket"
+import { sseHandler, messageHandler } from "./handlers/sse"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
@@ -28,7 +24,6 @@ const start = async () => {
     })
 
     await fastify.register(fastifyCookie)
-    await fastify.register(fastifyWebsocket)
 
     // https://github.com/better-auth/better-auth/pull/2006
     // Register authentication endpoint
@@ -50,8 +45,11 @@ const start = async () => {
       } as FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
     })
 
-    // Websocket route for chat
-    fastify.get("/ws", { websocket: true }, websocketHandler(fastify))
+    // SSE route for chat
+    fastify.get("/sse", sseHandler(fastify))
+
+    // Message sending endpoint
+    fastify.post("/api/messages", messageHandler)
 
     const port = Number(process.env.PORT) || 2022
     await fastify.listen({

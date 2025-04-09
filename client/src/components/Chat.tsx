@@ -4,15 +4,17 @@ import { ChatEvent, ChatMessage } from "../types/chat"
 const Chat: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
-  const ws = useRef<WebSocket | null>(null)
+  const eventSource = useRef<EventSource | null>(null)
+  const [isConnected, setIsConnected] = useState(false)
 
-  const connectWebSocket = useCallback(() => {
+  const connectSSE = useCallback(() => {
     // Ensure we use the correct port, matching the server setup (default 2022)
-    const wsUrl = `ws://localhost:2022/ws`
-    ws.current = new WebSocket(wsUrl)
+    const sseUrl = `http://localhost:2022/sse`
+    eventSource.current = new EventSource(sseUrl, { withCredentials: true })
 
-    ws.current.onopen = () => {
-      console.log("WebSocket Connected")
+    eventSource.current.onopen = () => {
+      console.log("SSE Connected")
+      setIsConnected(true)
       setMessages((prev) => [
         ...prev,
         {
@@ -23,9 +25,10 @@ const Chat: React.FC = () => {
       ])
     }
 
-    ws.current.onmessage = (event) => {
+    eventSource.current.onmessage = (event) => {
       try {
         const chatEvent: ChatEvent = JSON.parse(event.data)
+        console.log("Received message:", chatEvent)
         setMessages((prev) => [...prev, chatEvent.message])
       } catch (error) {
         console.error("Error parsing message:", error)
@@ -40,57 +43,73 @@ const Chat: React.FC = () => {
       }
     }
 
-    ws.current.onerror = (error) => {
-      console.error("WebSocket Error:", error)
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: "error",
-          content: "Error connecting to chat",
-          timestamp: Date.now(),
-        },
-      ])
-    }
+    eventSource.current.onerror = (error) => {
+      console.error("SSE Error:", error)
+      setIsConnected(false)
 
-    ws.current.onclose = () => {
-      console.log("WebSocket Disconnected")
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: "system",
-          content: "Disconnected. Attempting to reconnect...",
-          timestamp: Date.now(),
-        },
-      ])
-      // Optional: Implement reconnection logic
-      // setTimeout(connectWebSocket, 5000); // Attempt reconnect after 5 seconds
+      // Check if the connection was closed due to authentication error
+      if (eventSource.current?.readyState === EventSource.CLOSED) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "error",
+            content: "Authentication failed. Please log in again.",
+            timestamp: Date.now(),
+          },
+        ])
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "error",
+            content: "Error connecting to chat. Retrying...",
+            timestamp: Date.now(),
+          },
+        ])
+      }
     }
   }, [])
 
   useEffect(() => {
-    connectWebSocket()
-    // Clean up WebSocket connection when component unmounts
+    connectSSE()
+    // Clean up EventSource connection when component unmounts
     return () => {
-      ws.current?.close()
+      eventSource.current?.close()
     }
-  }, [connectWebSocket])
+  }, [connectSSE])
 
-  const sendMessage = () => {
-    if (ws.current?.readyState === WebSocket.OPEN && input.trim()) {
-      const message: ChatMessage = {
-        type: "text",
-        content: input,
-        timestamp: Date.now(),
+  const sendMessage = async () => {
+    if (input.trim()) {
+      try {
+        const response = await fetch("http://localhost:2022/api/messages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // Important for sending cookies
+          body: JSON.stringify({ message: input }),
+        })
+
+        if (response.status === 401) {
+          throw new Error("Authentication failed. Please log in again.")
+        }
+
+        if (!response.ok) {
+          throw new Error("Failed to send message")
+        }
+
+        setInput("")
+      } catch (error) {
+        console.error("Error sending message:", error)
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "error",
+            content: error instanceof Error ? error.message : "Error sending message",
+            timestamp: Date.now(),
+          },
+        ])
       }
-      const event: ChatEvent = {
-        type: "message",
-        message: message,
-      }
-      ws.current.send(JSON.stringify(event))
-      setInput("")
-    } else {
-      console.log("WebSocket not connected or input is empty")
-      // Optionally provide user feedback
     }
   }
 
@@ -122,8 +141,11 @@ const Chat: React.FC = () => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         placeholder="Type a message..."
+        disabled={!isConnected}
       />
-      <button onClick={sendMessage}>Send</button>
+      <button onClick={sendMessage} disabled={!isConnected}>
+        Send
+      </button>
     </div>
   )
 }
