@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
+import { ChatEvent, ChatMessage } from "../types/chat"
 
 const Chat: React.FC = () => {
-  const [messages, setMessages] = useState<string[]>([])
+  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
   const ws = useRef<WebSocket | null>(null)
 
@@ -12,22 +13,55 @@ const Chat: React.FC = () => {
 
     ws.current.onopen = () => {
       console.log("WebSocket Connected")
-      setMessages((prev) => [...prev, "System: Connected to chat"])
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "system",
+          content: "Connected to chat",
+          timestamp: Date.now(),
+        },
+      ])
     }
 
     ws.current.onmessage = (event) => {
-      console.log("WebSocket Message:", event.data)
-      setMessages((prev) => [...prev, event.data])
+      try {
+        const chatEvent: ChatEvent = JSON.parse(event.data)
+        setMessages((prev) => [...prev, chatEvent.message])
+      } catch (error) {
+        console.error("Error parsing message:", error)
+        setMessages((prev) => [
+          ...prev,
+          {
+            type: "error",
+            content: "Error receiving message",
+            timestamp: Date.now(),
+          },
+        ])
+      }
     }
 
     ws.current.onerror = (error) => {
       console.error("WebSocket Error:", error)
-      setMessages((prev) => [...prev, "System: Error connecting to chat"])
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "error",
+          content: "Error connecting to chat",
+          timestamp: Date.now(),
+        },
+      ])
     }
 
     ws.current.onclose = () => {
       console.log("WebSocket Disconnected")
-      setMessages((prev) => [...prev, "System: Disconnected. Attempting to reconnect..."])
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "system",
+          content: "Disconnected. Attempting to reconnect...",
+          timestamp: Date.now(),
+        },
+      ])
       // Optional: Implement reconnection logic
       // setTimeout(connectWebSocket, 5000); // Attempt reconnect after 5 seconds
     }
@@ -43,8 +77,17 @@ const Chat: React.FC = () => {
 
   const sendMessage = () => {
     if (ws.current?.readyState === WebSocket.OPEN && input.trim()) {
-      ws.current.send(input)
-      setInput("") // Clear input after sending
+      const message: ChatMessage = {
+        type: "text",
+        content: input,
+        timestamp: Date.now(),
+      }
+      const event: ChatEvent = {
+        type: "message",
+        message: message,
+      }
+      ws.current.send(JSON.stringify(event))
+      setInput("")
     } else {
       console.log("WebSocket not connected or input is empty")
       // Optionally provide user feedback
@@ -68,7 +111,9 @@ const Chat: React.FC = () => {
         style={{ height: "300px", overflowY: "scroll", border: "1px solid #ccc", marginBottom: "10px", padding: "5px" }}
       >
         {messages.map((msg, index) => (
-          <div key={index}>{msg}</div>
+          <div key={index} style={{ color: msg.type === "error" ? "red" : msg.type === "system" ? "gray" : "black" }}>
+            {msg.content}
+          </div>
         ))}
       </div>
       <input
