@@ -125,7 +125,6 @@ const Chat: React.FC = () => {
 
   return (
     <div>
-      <h2>Simple Chat</h2>
       <div
         style={{ height: "300px", overflowY: "scroll", border: "1px solid #ccc", marginBottom: "10px", padding: "5px" }}
       >

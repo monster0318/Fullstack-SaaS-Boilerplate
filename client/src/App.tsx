@@ -7,7 +7,6 @@ import { createTRPCClient, httpBatchLink } from "@trpc/client"
 import { AppRouter } from "../../server/src/router"
 import { TRPCProvider } from "./lib/trpc"
 import { useThemeStore } from "./store/useThemeStore"
-import Chat from "./components/Chat"
 
 function makeQueryClient() {
   return new QueryClient({
@@ -105,9 +104,6 @@ const App = () => {
           <div className={isDarkMode ? "dark" : "light"}>
             <QueryClientProvider client={queryClient}>
               <LayoutApp />
-              <div style={{ padding: "20px" }}>
-                <Chat />
-              </div>
             </QueryClientProvider>
           </div>
         </TRPCProvider>
