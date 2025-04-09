@@ -27,7 +27,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
       setMessages((prev) => [
         ...prev,
         {
-          type: "system",
+          // type: "system",
           message: "Connected to chat",
           createdAt: new Date(),
         },
@@ -44,7 +44,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         setMessages((prev) => [
           ...prev,
           {
-            type: "error",
+            // type: "error",
             message: "Error receiving message",
             createdAt: new Date(),
           },

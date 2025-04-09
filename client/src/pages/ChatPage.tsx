@@ -15,10 +15,9 @@ const ChatPage = () => {
         dataQuery.data
           .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
           .map((message) => ({
-            type: "text",
-            message: message.message,
+            ...message,
             createdAt: new Date(message.createdAt),
-            senderId: message.senderId || undefined,
+            // senderId: message.senderId || undefined,
           }))
       )
     }
