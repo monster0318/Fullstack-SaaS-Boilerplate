@@ -3,8 +3,12 @@ import { ChatEvent, ChatMessage } from "../types/chat"
 import { useTRPC } from "../lib/trpc"
 import { useMutation } from "@tanstack/react-query"
 
-const Chat: React.FC = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([])
+interface ChatProps {
+  messages: ChatMessage[]
+  setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>
+}
+
+const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const [input, setInput] = useState("")
   const eventSource = useRef<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
