@@ -4,6 +4,7 @@ import { CircleDot, CircleDotDashed } from "lucide-react"
 
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
+import Message from "./Message"
 import ImgAvatar from "../../layout/ImgAvatar"
 
 export type MessageType = "text" | "system" | "error"
@@ -87,15 +88,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
 
       <div className="flex flex-col-reverse gap-4 h-[300px] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5">
         {messages.map((msg, index) => (
-          <div key={index} className="flex items-start gap-3">
-            <ImgAvatar src={msg.sender?.image} alt={msg.sender?.name || "User"} className="w-10 h-10" />
-            <div className="flex flex-col">
-              <div className="text-sm text-gray-500">
-                {msg.sender?.name || "Anonymous"} • {new Date(msg.createdAt).toLocaleString()}
-              </div>
-              <div className="text-gray-800 dark:text-gray-200">{msg.message}</div>
-            </div>
-          </div>
+          <Message key={index} message={msg} />
         ))}
       </div>
       <MessageInput isConnected={isConnected} onSendMessage={handleSendMessage} />
