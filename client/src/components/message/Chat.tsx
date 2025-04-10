@@ -5,7 +5,7 @@ import { CircleDot, CircleDotDashed } from "lucide-react"
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import Message from "./Message"
-import ImgAvatar from "../../layout/ImgAvatar"
+// import ImgAvatar from "../../layout/ImgAvatar"
 
 export type MessageType = "text" | "system" | "error"
 
