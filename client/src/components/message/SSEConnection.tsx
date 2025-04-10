@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import { CircleDot, CircleDotDashed } from "lucide-react"
 import { ChatMessage } from "../../pages/ChatPage"
 
@@ -14,30 +14,24 @@ interface SSEConnectionProps {
 }
 
 const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
-  const eventSource = useRef<EventSource | null>(null)
-  const onMessageRef = useRef<(message: ChatMessage) => void>(onMessage)
+  const [eventSource, setEventSource] = useState<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
-
-  // Update the ref when onMessage changes
-  useEffect(() => {
-    onMessageRef.current = onMessage
-  }, [onMessage])
 
   const connectSSE = useCallback(() => {
     const sseUrl = `${import.meta.env.VITE_URL_BACKEND}/sse`
-    eventSource.current = new EventSource(sseUrl, { withCredentials: true })
+    const newEventSource = new EventSource(sseUrl, { withCredentials: true })
 
-    eventSource.current.onopen = () => {
+    newEventSource.onopen = () => {
       console.log("SSE Connected")
       setIsConnected(true)
     }
 
-    eventSource.current.onmessage = (event) => {
+    newEventSource.onmessage = (event) => {
       try {
         const chatEvent: ChatEvent = JSON.parse(event.data)
         console.log("Received message:", chatEvent)
         if (chatEvent.type === "message") {
-          onMessageRef.current(chatEvent.message)
+          onMessage(chatEvent.message)
         }
       } catch (error) {
         console.error("Error parsing message:", error)
@@ -45,23 +39,25 @@ const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
       }
     }
 
-    eventSource.current.onerror = (error) => {
+    newEventSource.onerror = (error) => {
       console.error("SSE Error:", error)
       setIsConnected(false)
 
-      if (eventSource.current?.readyState === EventSource.CLOSED) {
+      if (newEventSource.readyState === EventSource.CLOSED) {
         console.log("Authentication failed. Please log in again.")
       }
     }
-  }, []) // Remove onMessage from dependencies
+
+    setEventSource(newEventSource)
+  }, [onMessage])
 
   useEffect(() => {
     console.log("connectSSE")
     connectSSE()
     return () => {
-      eventSource.current?.close()
+      eventSource?.close()
     }
-  }, [connectSSE])
+  }, [connectSSE, eventSource])
 
   return (
     <div className="flex items-center gap-2">
