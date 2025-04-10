@@ -27,13 +27,6 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const eventSource = useRef<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
-  const messagesContainerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight
-    }
-  }, [])
 
   const connectSSE = useCallback(() => {
     // Ensure we use the correct port, matching the server setup (default 2022)
@@ -92,22 +85,11 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
       </div>
 
       <div
-        ref={messagesContainerRef}
-        style={{
-          height: "300px",
-          overflowY: "auto",
-          border: "1px solid #ccc",
-          marginBottom: "10px",
-          padding: "5px",
-          display: "flex",
-          flexDirection: "column",
-        }}
+        style={{ height: "300px", overflowY: "scroll", border: "1px solid #ccc", marginBottom: "10px", padding: "5px" }}
       >
-        <div style={{ marginTop: "auto" }}>
-          {messages.map((msg, index) => (
-            <div key={index}>{msg.message}</div>
-          ))}
-        </div>
+        {messages.map((msg, index) => (
+          <div key={index}>{msg.message}</div>
+        ))}
       </div>
       <MessageInput isConnected={isConnected} onSendMessage={handleSendMessage} />
     </div>
