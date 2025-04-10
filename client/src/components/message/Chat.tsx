@@ -7,6 +7,26 @@ import { authClient } from "../../lib/auth-client"
 import AuthButtons from "../../auth/AuthButtons"
 import LoadMoreMessages from "./LoadMoreMessages"
 import { MessageSquare } from "lucide-react"
+
+const formatDate = (dateString: string) => {
+  const today = new Date()
+  const yesterday = new Date(today)
+  yesterday.setDate(yesterday.getDate() - 1)
+
+  const date = new Date(dateString)
+  const isToday = date.toDateString() === today.toDateString()
+  const isYesterday = date.toDateString() === yesterday.toDateString()
+
+  if (isToday) return "Today"
+  if (isYesterday) return "Yesterday"
+
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
+}
+
 interface ChatProps {
   messages: ChatMessage[]
   setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>
@@ -29,11 +49,8 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
 
   const groupMessagesByDay = (messages: ChatMessage[]) => {
     const grouped = messages.reduce((acc, message) => {
-      const date = new Date(message.createdAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
+      const date = new Date(message.createdAt).toLocaleDateString("en-US")
+
       const existingGroup = acc.find((group) => group[0] === date)
       if (existingGroup) {
         existingGroup[1].push(message)
@@ -68,7 +85,11 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
             {group[1].map((msg, index) => (
               <Message key={index} message={msg} />
             ))}
-            <h2 className="text-lg font-bold">{group[0]}</h2>
+            <div className="flex items-center justify-center gap-4 my-4">
+              <div className="flex-1 border-t border-gray-300"></div>
+              <p className="text-lg font-bold whitespace-nowrap">{formatDate(group[0])}</p>
+              <div className="flex-1 border-t border-gray-300"></div>
+            </div>
           </React.Fragment>
         ))}
         {hasMoreMessages && (
