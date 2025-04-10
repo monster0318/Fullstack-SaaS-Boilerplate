@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react"
 import { CircleDot, CircleDotDashed } from "lucide-react"
 import { ChatMessage } from "../../pages/ChatPage"
 
-export type MessageType = "text" | "system" | "error"
-
 export interface ChatEvent {
   type: "message" | "connection" | "error"
   message: ChatMessage
