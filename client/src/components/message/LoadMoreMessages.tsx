@@ -22,7 +22,7 @@ const LoadMoreMessages: React.FC<LoadMoreMessagesProps> = ({ oldestMessageTimest
 
   return (
     <div className="">
-      <button onClick={handleLoadMore} disabled={dataQuery.isFetching} className="btn btn-blue w-32">
+      <button onClick={handleLoadMore} disabled={dataQuery.isFetching} className="btn btn-white">
         {dataQuery.isFetching ? "Loading..." : "Load More"}
       </button>
     </div>
