@@ -76,7 +76,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto p-4">
       <div className="flex items-center gap-2">
         <h1 className="text-2xl font-bold">Chat</h1>
         {isConnected ? (

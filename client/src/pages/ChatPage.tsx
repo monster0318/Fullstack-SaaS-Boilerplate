@@ -25,11 +25,7 @@ const ChatPage = () => {
     }
   }, [dataQuery.data])
 
-  return (
-    <div className="container mx-auto p-4">
-      <Chat messages={messages} setMessages={setMessages} />
-    </div>
-  )
+  return <Chat messages={messages} setMessages={setMessages} />
 }
 
 export default ChatPage
