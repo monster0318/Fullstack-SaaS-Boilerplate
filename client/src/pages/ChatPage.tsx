@@ -14,7 +14,8 @@ const ChatPage = () => {
   useEffect(() => {
     if (dataQuery.data) {
       setMessages(
-        dataQuery.data.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        dataQuery.data
+        // .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
         // .map((message) => ({
         //   ...message,
         //   createdAt: new Date(message.createdAt),

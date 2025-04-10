@@ -43,7 +43,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         const chatEvent: ChatEvent = JSON.parse(event.data)
         console.log("Received message:", chatEvent)
         if (chatEvent.type === "message") {
-          setMessages((prev) => [...prev, chatEvent.message])
+          setMessages((prev) => [chatEvent.message, ...prev])
         }
       } catch (error) {
         console.error("Error parsing message:", error)
@@ -85,6 +85,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
       </div>
 
       <div
+        className="flex flex-col-reverse"
         style={{ height: "300px", overflowY: "scroll", border: "1px solid #ccc", marginBottom: "10px", padding: "5px" }}
       >
         {messages.map((msg, index) => (
