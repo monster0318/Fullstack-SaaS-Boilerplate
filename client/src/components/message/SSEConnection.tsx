@@ -14,19 +14,18 @@ interface SSEConnectionProps {
 }
 
 const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
-  const [eventSource, setEventSource] = useState<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
 
-  const connectSSE = useCallback(() => {
+  useEffect(() => {
     const sseUrl = `${import.meta.env.VITE_URL_BACKEND}/sse`
-    const newEventSource = new EventSource(sseUrl, { withCredentials: true })
+    const eventSource = new EventSource(sseUrl, { withCredentials: true })
 
-    newEventSource.onopen = () => {
+    eventSource.onopen = () => {
       console.log("SSE Connected")
       setIsConnected(true)
     }
 
-    newEventSource.onmessage = (event) => {
+    eventSource.onmessage = (event) => {
       try {
         const chatEvent: ChatEvent = JSON.parse(event.data)
         console.log("Received message:", chatEvent)
@@ -39,25 +38,19 @@ const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
       }
     }
 
-    newEventSource.onerror = (error) => {
+    eventSource.onerror = (error) => {
       console.error("SSE Error:", error)
       setIsConnected(false)
 
-      if (newEventSource.readyState === EventSource.CLOSED) {
+      if (eventSource.readyState === EventSource.CLOSED) {
         console.log("Authentication failed. Please log in again.")
       }
     }
 
-    setEventSource(newEventSource)
-  }, [onMessage])
-
-  useEffect(() => {
-    console.log("connectSSE")
-    connectSSE()
     return () => {
-      eventSource?.close()
+      eventSource.close()
     }
-  }, [connectSSE, eventSource])
+  }, [onMessage])
 
   return (
     <div className="flex items-center gap-2">
