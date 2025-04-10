@@ -63,10 +63,6 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
     }
   }, [messages])
 
-  const handleNewMessage = (message: ChatMessage) => {
-    setMessages((prev) => [message, ...prev])
-  }
-
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = 0
@@ -78,7 +74,11 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
       <div className="flex items-center gap-2">
         <MessageSquare className="text-3xl mr-3" />
         <h1 className="text-2xl font-bold mr-1">Chat</h1>
-        <SSEConnection onMessage={handleNewMessage} />
+        <SSEConnection
+          onMessage={(message: ChatMessage) => {
+            setMessages((prev) => [message, ...prev])
+          }}
+        />
       </div>
 
       <div
