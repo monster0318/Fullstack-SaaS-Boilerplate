@@ -86,7 +86,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         )}
       </div>
 
-      <div className="flex flex-col-reverse gap-4 h-[300px] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5">
+      <div className="flex flex-col-reverse gap-4 h-[calc(100vh-300px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5">
         {messages.map((msg, index) => (
           <Message key={index} message={msg} />
         ))}
