@@ -1,4 +1,4 @@
-import { protectedProcedure, router } from "../trpc"
+import { protectedProcedure, publicProcedure, router } from "../trpc"
 import { z } from "zod"
 import { messageTable, drizzleOrm } from "@fsb/drizzle"
 // import { db } from "../context"
@@ -26,7 +26,7 @@ const messageRouter = router({
       })
       return { success: true }
     }),
-  getMessages: protectedProcedure.query(async ({ ctx }) => {
+  getMessages: publicProcedure.query(async ({ ctx }) => {
     const messages = await ctx.db.query.messageTable.findMany({
       limit: 50,
       orderBy: [desc(messageTable.createdAt)],

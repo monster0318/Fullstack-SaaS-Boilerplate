@@ -1,20 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { CircleDot, CircleDotDashed } from "lucide-react"
-// import { ChatEvent, ChatMessage } from "../types/chat"
 
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import Message from "./Message"
-// import ImgAvatar from "../../layout/ImgAvatar"
 
 export type MessageType = "text" | "system" | "error"
-
-// export interface ChatMessage {
-//   // type: MessageType
-//   message: string
-//   createdAt: Date
-//   // senderId?: string
-// }
 
 export interface ChatEvent {
   type: "message" | "connection" | "error"
@@ -27,8 +18,35 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
+  const [groupedMessages, setGroupedMessages] = useState<[string, ChatMessage[]][]>([])
   const eventSource = useRef<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
+
+  const groupMessagesByDay = (messages: ChatMessage[]) => {
+    const grouped = messages.reduce((acc, message) => {
+      const date = new Date(message.createdAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+      const existingGroup = acc.find((group) => group[0] === date)
+      if (existingGroup) {
+        existingGroup[1].push(message)
+      } else {
+        acc.push([date, [message]])
+      }
+      return acc
+    }, [] as [string, ChatMessage[]][])
+    return grouped
+  }
+
+  // console.log("messages", messages)
+  // console.log(groupedMessages)
+
+  useEffect(() => {
+    const groupedMessages = groupMessagesByDay(messages)
+    setGroupedMessages(groupedMessages)
+  }, [messages])
 
   const connectSSE = useCallback(() => {
     // Ensure we use the correct port, matching the server setup (default 2022)
@@ -71,10 +89,6 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
     }
   }, [connectSSE])
 
-  const handleSendMessage = (message: string) => {
-    console.log("Message sent:", message)
-  }
-
   return (
     <div className="container mx-auto p-4">
       <div className="flex items-center gap-2">
@@ -87,11 +101,16 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
       </div>
 
       <div className="flex flex-col-reverse gap-4 h-[calc(100vh-300px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5">
-        {messages.map((msg, index) => (
-          <Message key={index} message={msg} />
+        {groupedMessages.map((group) => (
+          <React.Fragment key={group[0]}>
+            {group[1].map((msg, index) => (
+              <Message key={index} message={msg} />
+            ))}
+            <h2 className="text-lg font-bold">{group[0]}</h2>
+          </React.Fragment>
         ))}
       </div>
-      <MessageInput isConnected={isConnected} onSendMessage={handleSendMessage} />
+      <MessageInput isConnected={isConnected} />
     </div>
   )
 }
