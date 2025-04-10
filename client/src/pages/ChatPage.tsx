@@ -8,8 +8,7 @@ export type ChatMessage = RouterOutput["message"]["getMessages"][number]
 const ChatPage = () => {
   const trpc = useTRPC()
   const [messages, setMessages] = useState<ChatMessage[]>([])
-  const [initialTimestamp] = useState(() => new Date().toISOString())
-  const dataQuery = useQuery(trpc.message.getMessages.queryOptions({ before: initialTimestamp }))
+  const dataQuery = useQuery(trpc.message.getMessages.queryOptions({}))
 
   useEffect(() => {
     if (dataQuery.data) {

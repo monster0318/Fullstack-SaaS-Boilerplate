@@ -50,6 +50,7 @@ const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
   }, [onMessage])
 
   useEffect(() => {
+    console.log("connectSSE")
     connectSSE()
     return () => {
       eventSource.current?.close()

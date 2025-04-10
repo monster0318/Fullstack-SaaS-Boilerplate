@@ -32,7 +32,7 @@ const InfiniteScroll: React.FC<Props> = ({ chatContainerRef, oldestMessageTimest
     if (!chatContainer) return
 
     const handleScroll = () => {
-      const threshold = 500
+      const threshold = 300
       const isAtTop =
         Math.abs(chatContainer.scrollHeight - chatContainer.clientHeight + chatContainer.scrollTop) <= threshold
 
