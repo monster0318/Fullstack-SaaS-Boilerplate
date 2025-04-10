@@ -1,8 +1,10 @@
 import Chat from "../components/Chat"
 import { useEffect, useState } from "react"
-import { ChatMessage } from "../types/chat"
+// import { ChatMessage } from "../types/chat"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../lib/trpc"
+import { RouterOutput } from "../lib/trpc"
+export type ChatMessage = RouterOutput["message"]["getMessages"][number]
 
 const ChatPage = () => {
   const trpc = useTRPC()
@@ -12,13 +14,12 @@ const ChatPage = () => {
   useEffect(() => {
     if (dataQuery.data) {
       setMessages(
-        dataQuery.data
-          .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-          .map((message) => ({
-            ...message,
-            createdAt: new Date(message.createdAt),
-            // senderId: message.senderId || undefined,
-          }))
+        dataQuery.data.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+        // .map((message) => ({
+        //   ...message,
+        //   createdAt: new Date(message.createdAt),
+        //   // senderId: message.senderId || undefined,
+        // }))
       )
     }
   }, [dataQuery.data])

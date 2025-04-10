@@ -1,7 +1,22 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
-import { ChatEvent, ChatMessage } from "../types/chat"
+// import { ChatEvent, ChatMessage } from "../types/chat"
 import { useTRPC } from "../lib/trpc"
 import { useMutation } from "@tanstack/react-query"
+import { ChatMessage } from "../pages/ChatPage"
+
+export type MessageType = "text" | "system" | "error"
+
+// export interface ChatMessage {
+//   // type: MessageType
+//   message: string
+//   createdAt: Date
+//   // senderId?: string
+// }
+
+export interface ChatEvent {
+  type: "message" | "connection" | "error"
+  message: ChatMessage
+}
 
 interface ChatProps {
   messages: ChatMessage[]
@@ -24,14 +39,14 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
     eventSource.current.onopen = () => {
       console.log("SSE Connected")
       setIsConnected(true)
-      setMessages((prev) => [
-        ...prev,
-        {
-          // type: "system",
-          message: "Connected to chat",
-          createdAt: new Date(),
-        },
-      ])
+      // setMessages((prev) => [
+      //   ...prev,
+      //   {
+      //     // type: "system",
+      //     message: "Connected to chat",
+      //     createdAt: new Date(),
+      //   },
+      // ])
     }
 
     eventSource.current.onmessage = (event) => {
@@ -41,14 +56,15 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         setMessages((prev) => [...prev, chatEvent.message])
       } catch (error) {
         console.error("Error parsing message:", error)
-        setMessages((prev) => [
-          ...prev,
-          {
-            // type: "error",
-            message: "Error receiving message",
-            createdAt: new Date(),
-          },
-        ])
+        setIsConnected(false)
+        // setMessages((prev) => [
+        //   ...prev,
+        //   {
+        //     // type: "error",
+        //     message: "Error receiving message",
+        //     createdAt: new Date(),
+        //   },
+        // ])
       }
     }
 
@@ -57,25 +73,25 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
       setIsConnected(false)
 
       // Check if the connection was closed due to authentication error
-      if (eventSource.current?.readyState === EventSource.CLOSED) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            type: "error",
-            message: "Authentication failed. Please log in again.",
-            createdAt: new Date(),
-          },
-        ])
-      } else {
-        setMessages((prev) => [
-          ...prev,
-          {
-            type: "error",
-            message: "Error connecting to chat. Retrying...",
-            createdAt: new Date(),
-          },
-        ])
-      }
+      // if (eventSource.current?.readyState === EventSource.CLOSED) {
+      //   setMessages((prev) => [
+      //     ...prev,
+      //     {
+      //       type: "error",
+      //       message: "Authentication failed. Please log in again.",
+      //       createdAt: new Date(),
+      //     },
+      //   ])
+      // } else {
+      //   setMessages((prev) => [
+      //     ...prev,
+      //     {
+      //       type: "error",
+      //       message: "Error connecting to chat. Retrying...",
+      //       createdAt: new Date(),
+      //     },
+      //   ])
+      // }
     }
   }, [])
 
@@ -94,14 +110,14 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         setInput("")
       } catch (error) {
         console.error("Error sending message:", error)
-        setMessages((prev) => [
-          ...prev,
-          {
-            type: "error",
-            message: error instanceof Error ? error.message : "Error sending message",
-            createdAt: new Date(),
-          },
-        ])
+        // setMessages((prev) => [
+        //   ...prev,
+        //   {
+        //     type: "error",
+        //     message: error instanceof Error ? error.message : "Error sending message",
+        //     createdAt: new Date(),
+        //   },
+        // ])
       }
     }
   }

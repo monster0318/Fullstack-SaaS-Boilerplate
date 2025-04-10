@@ -58,8 +58,8 @@ export const sseHandler = (fastify: FastifyInstance) => {
         type: "connection",
         message: {
           type: "system",
-          content: "Welcome to the chat!",
-          timestamp: Date.now(),
+          message: "Welcome to the chat!",
+          createdAt: new Date(),
         },
       }
       sendEvent(reply, welcomeEvent)
