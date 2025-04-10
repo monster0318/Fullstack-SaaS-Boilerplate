@@ -3,7 +3,7 @@ import { z } from "zod"
 import { messageTable, drizzleOrm } from "@fsb/drizzle"
 // import { db } from "../context"
 import { broadcastMessage } from "../lib/sse"
-const { desc } = drizzleOrm
+const { desc, lt } = drizzleOrm
 
 const messageRouter = router({
   sendMessage: protectedProcedure
@@ -26,22 +26,29 @@ const messageRouter = router({
       })
       return { success: true }
     }),
-  getMessages: publicProcedure.query(async ({ ctx }) => {
-    const messages = await ctx.db.query.messageTable.findMany({
-      limit: 50,
-      orderBy: [desc(messageTable.createdAt)],
-      with: {
-        sender: {
-          columns: {
-            id: true,
-            name: true,
-            image: true,
+  getMessages: publicProcedure
+    .input(
+      z.object({
+        before: z.string().datetime(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const messages = await ctx.db.query.messageTable.findMany({
+        where: lt(messageTable.createdAt, new Date(input.before)),
+        orderBy: [desc(messageTable.createdAt)],
+        limit: 50,
+        with: {
+          sender: {
+            columns: {
+              id: true,
+              name: true,
+              image: true,
+            },
           },
         },
-      },
-    })
-    return messages
-  }),
+      })
+      return messages
+    }),
 })
 
 export default messageRouter

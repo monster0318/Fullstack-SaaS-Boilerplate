@@ -5,6 +5,7 @@ import Message from "./Message"
 import SSEConnection from "./SSEConnection"
 import { authClient } from "../../lib/auth-client"
 import AuthButtons from "../../auth/AuthButtons"
+import LoadMoreMessages from "./LoadMoreMessages"
 
 interface ChatProps {
   messages: ChatMessage[]
@@ -13,8 +14,18 @@ interface ChatProps {
 
 const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const session = authClient.useSession()
-  // context = use
   const [groupedMessages, setGroupedMessages] = useState<[string, ChatMessage[]][]>([])
+  const [oldestMessageTimestamp, setOldestMessageTimestamp] = useState<string>(() => new Date().toISOString())
+  const [hasMoreMessages, setHasMoreMessages] = useState(true)
+
+  const handleLoadMore = (newMessages: ChatMessage[]) => {
+    if (newMessages.length > 0) {
+      setMessages((prev) => [...prev, ...newMessages])
+      setOldestMessageTimestamp(newMessages[newMessages.length - 1].createdAt)
+    } else {
+      setHasMoreMessages(false)
+    }
+  }
 
   const groupMessagesByDay = (messages: ChatMessage[]) => {
     const grouped = messages.reduce((acc, message) => {
@@ -59,6 +70,9 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
             <h2 className="text-lg font-bold">{group[0]}</h2>
           </React.Fragment>
         ))}
+        {hasMoreMessages && (
+          <LoadMoreMessages oldestMessageTimestamp={oldestMessageTimestamp} onLoadMore={handleLoadMore} />
+        )}
       </div>
       {session.data?.user ? (
         <MessageInput isConnected={true} />
