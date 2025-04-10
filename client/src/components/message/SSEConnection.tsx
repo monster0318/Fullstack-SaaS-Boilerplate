@@ -15,7 +15,13 @@ interface SSEConnectionProps {
 
 const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
   const eventSource = useRef<EventSource | null>(null)
+  const onMessageRef = useRef<(message: ChatMessage) => void>(onMessage)
   const [isConnected, setIsConnected] = useState(false)
+
+  // Update the ref when onMessage changes
+  useEffect(() => {
+    onMessageRef.current = onMessage
+  }, [onMessage])
 
   const connectSSE = useCallback(() => {
     const sseUrl = `${import.meta.env.VITE_URL_BACKEND}/sse`
@@ -31,7 +37,7 @@ const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
         const chatEvent: ChatEvent = JSON.parse(event.data)
         console.log("Received message:", chatEvent)
         if (chatEvent.type === "message") {
-          onMessage(chatEvent.message)
+          onMessageRef.current(chatEvent.message)
         }
       } catch (error) {
         console.error("Error parsing message:", error)
@@ -47,7 +53,7 @@ const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
         console.log("Authentication failed. Please log in again.")
       }
     }
-  }, [onMessage])
+  }, []) // Remove onMessage from dependencies
 
   useEffect(() => {
     console.log("connectSSE")
