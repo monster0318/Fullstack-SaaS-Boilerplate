@@ -35,7 +35,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ isConnected, onSendMessage 
   }
 
   return (
-    <>
+    <div className="flex gap-2">
       <input
         type="text"
         value={input}
@@ -44,10 +44,14 @@ const MessageInput: React.FC<MessageInputProps> = ({ isConnected, onSendMessage 
         placeholder="Type a message..."
         disabled={!isConnected}
       />
-      <button onClick={handleSendMessage} disabled={!isConnected || sendMessageMutation.isPending}>
+      <button
+        className="btn btn-blue w-24"
+        onClick={handleSendMessage}
+        disabled={!isConnected || sendMessageMutation.isPending || input.trim() === ""}
+      >
         {sendMessageMutation.isPending ? "Sending..." : "Send"}
       </button>
-    </>
+    </div>
   )
 }
 
