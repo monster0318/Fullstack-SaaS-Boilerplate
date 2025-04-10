@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
+import { CircleDot, CircleDotDashed } from "lucide-react"
 // import { ChatEvent, ChatMessage } from "../types/chat"
 
 import { ChatMessage } from "../../pages/ChatPage"
@@ -26,6 +27,13 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const eventSource = useRef<EventSource | null>(null)
   const [isConnected, setIsConnected] = useState(false)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight
+    }
+  }, [])
 
   const connectSSE = useCallback(() => {
     // Ensure we use the correct port, matching the server setup (default 2022)
@@ -74,12 +82,32 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
 
   return (
     <div>
+      <div className="flex items-center gap-2">
+        <h1 className="text-2xl font-bold">Chat</h1>
+        {isConnected ? (
+          <CircleDot className="w-4 h-4 text-green-500" aria-label="Connected" />
+        ) : (
+          <CircleDotDashed className="w-4 h-4 text-red-500 animate-spin" aria-label="Disconnected" />
+        )}
+      </div>
+
       <div
-        style={{ height: "300px", overflowY: "scroll", border: "1px solid #ccc", marginBottom: "10px", padding: "5px" }}
+        ref={messagesContainerRef}
+        style={{
+          height: "300px",
+          overflowY: "auto",
+          border: "1px solid #ccc",
+          marginBottom: "10px",
+          padding: "5px",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
-        {messages.map((msg, index) => (
-          <div key={index}>{msg.message}</div>
-        ))}
+        <div style={{ marginTop: "auto" }}>
+          {messages.map((msg, index) => (
+            <div key={index}>{msg.message}</div>
+          ))}
+        </div>
       </div>
       <MessageInput isConnected={isConnected} onSendMessage={handleSendMessage} />
     </div>
