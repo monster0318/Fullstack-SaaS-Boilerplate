@@ -31,7 +31,7 @@ const start = async () => {
       handler: authHandler,
     })
 
-    fastify.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
+    fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
       return reply.send({ message: "Hello world!" })
     })
 
