@@ -28,7 +28,7 @@ const messageRouter = router({
     }),
   getMessages: protectedProcedure.query(async ({ ctx }) => {
     const messages = await ctx.db.query.messageTable.findMany({
-      limit: 10,
+      limit: 50,
       orderBy: [desc(messageTable.createdAt)],
       with: {
         sender: {
