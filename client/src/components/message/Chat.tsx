@@ -41,7 +41,6 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const handleLoadMore = (newMessages: ChatMessage[]) => {
     if (newMessages.length > 0) {
       setMessages((prev) => [...prev, ...newMessages])
-      // setOldestMessageTimestamp(newMessages[newMessages.length - 1].createdAt)
     } else {
       setHasMoreMessages(false)
     }
