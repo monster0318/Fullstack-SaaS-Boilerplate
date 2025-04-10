@@ -1,5 +1,4 @@
 import { FastifyReply } from "fastify"
-import { z } from "zod"
 
 export interface ChatMessage {
   type: "text" | "system" | "error"
@@ -18,6 +17,7 @@ export const activeConnections = new Set<FastifyReply>()
 
 // Helper function to send SSE events
 export const sendEvent = (reply: FastifyReply, event: ChatEvent) => {
+  console.log("Sending event:", event)
   try {
     reply.raw.write(`data: ${JSON.stringify(event)}\n\n`)
   } catch (error) {

@@ -1,4 +1,4 @@
-import Chat from "../components/Chat"
+import Chat from "../components/message/Chat"
 import { useEffect, useState } from "react"
 // import { ChatMessage } from "../types/chat"
 import { useQuery } from "@tanstack/react-query"
