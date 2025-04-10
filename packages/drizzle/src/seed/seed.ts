@@ -12,11 +12,11 @@ const db = drizzle(databaseUrl, { schema })
 const main = async () => {
   console.log(`Seeding ${databaseUrl}...`)
 
+  await db.delete(messageTable)
   await db.delete(verificationTable)
   await db.delete(accountTable)
   await db.delete(sessionTable)
   await db.delete(userTable)
-  await db.delete(messageTable)
 
   for (const user of initUsersData) {
     let userNew = await db.insert(userTable).values(user).returning({ id: userTable.id })
