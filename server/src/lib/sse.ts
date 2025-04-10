@@ -1,9 +1,13 @@
 import { FastifyReply } from "fastify"
+import { userTable } from "@fsb/drizzle"
 
+type User = typeof userTable.$inferSelect
+type Sender = Pick<User, "id" | "name" | "image">
 export interface ChatMessage {
-  type: "text" | "system" | "error"
+  // type: "text" | "system" | "error"
   message: string
   createdAt: Date
+  sender?: Sender
   // senderId?: string
 }
 
@@ -26,14 +30,15 @@ export const sendEvent = (reply: FastifyReply, event: ChatEvent) => {
 }
 
 // Function to broadcast messages to all connected clients
-export const broadcastMessage = async (message: string, senderId: string) => {
+export const broadcastMessage = async (message: string, sender: Sender) => {
   try {
     const chatEvent: ChatEvent = {
       type: "message",
       message: {
-        type: "text",
+        // type: "text",
         message,
         createdAt: new Date(),
+        sender,
         // senderId,
       },
     }

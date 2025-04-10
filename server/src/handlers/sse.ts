@@ -57,7 +57,7 @@ export const sseHandler = (fastify: FastifyInstance) => {
       const welcomeEvent: ChatEvent = {
         type: "connection",
         message: {
-          type: "system",
+          // type: "system",
           message: "Welcome to the chat!",
           createdAt: new Date(),
         },

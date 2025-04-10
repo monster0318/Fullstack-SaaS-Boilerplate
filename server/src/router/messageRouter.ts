@@ -19,7 +19,11 @@ const messageRouter = router({
         senderId: ctx.user.id,
       })
 
-      await broadcastMessage(input.message, ctx.user.id)
+      await broadcastMessage(input.message, {
+        id: ctx.user.id,
+        name: ctx.user.name,
+        image: ctx.user.image,
+      })
       return { success: true }
     }),
   getMessages: protectedProcedure.query(async ({ ctx }) => {
