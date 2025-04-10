@@ -9,12 +9,14 @@ import Signup from "./components/auth/Signup"
 import BeersPage from "./pages/BeersPage"
 import { Home } from "lucide-react"
 import SessionsPage from "./components/session/SessionsPage"
+import ChatPage from "./pages/ChatPage"
 
 const AppRouter = () => {
   return (
     <Routes>
       <Route index element={<HomePage />} />
       <Route path="/beers" element={<BeersPage />} />
+      <Route path="/chat" element={<ChatPage />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<AuthManagement />} />
       <Route path="/signup" element={<Signup />} />

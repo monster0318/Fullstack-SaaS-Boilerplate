@@ -2,9 +2,8 @@ import { fastifyTRPCPlugin, FastifyTRPCPluginOptions } from "@trpc/server/adapte
 import Fastify, { FastifyRequest, FastifyReply } from "fastify"
 import fastifyCookie from "@fastify/cookie"
 import fastifyCors from "@fastify/cors"
-
-// import t from "./trpc"
-import { auth } from "./lib/auth"
+import { authHandler } from "./handlers/auth"
+import { sseHandler } from "./handlers/sse"
 import dotenv from "dotenv"
 dotenv.config({ path: "../server.env" })
 import createContext from "./context"
@@ -26,48 +25,14 @@ const start = async () => {
 
     await fastify.register(fastifyCookie)
 
-    // https://github.com/better-auth/better-auth/pull/2006
-    // Register authentication endpoint
     fastify.route({
       method: ["GET", "POST"],
       url: "/api/auth/*",
-      async handler(request, reply) {
-        try {
-          // Construct request URL
-          const url = new URL(request.url, `http://${request.headers.host}`)
-
-          // Convert Fastify headers to standard Headers object
-          const headers = new Headers()
-          Object.entries(request.headers).forEach(([key, value]) => {
-            if (value) headers.append(key, value.toString())
-          })
-
-          // Create Fetch API-compatible request
-          const req = new Request(url.toString(), {
-            method: request.method,
-            headers,
-            body: request.body ? JSON.stringify(request.body) : undefined,
-          })
-
-          // Process authentication request
-          const response = await auth.handler(req)
-
-          // Forward response to client
-          reply.status(response.status)
-          response.headers.forEach((value, key) => reply.header(key, value))
-          reply.send(response.body ? await response.text() : null)
-        } catch (error) {
-          fastify.log.error("Authentication Error:", error)
-          reply.status(500).send({
-            error: "Internal authentication error",
-            code: "AUTH_FAILURE",
-          })
-        }
-      },
+      handler: authHandler,
     })
 
-    fastify.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
-      return reply.send({ message: "Hello, TER!" })
+    fastify.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
+      return reply.send({ message: "Hello world!" })
     })
 
     await fastify.register(fastifyTRPCPlugin, {
@@ -77,6 +42,9 @@ const start = async () => {
         createContext,
       } as FastifyTRPCPluginOptions<AppRouter>["trpcOptions"],
     })
+
+    // SSE route for chat
+    fastify.get("/sse", sseHandler())
 
     const port = Number(process.env.PORT) || 2022
     await fastify.listen({

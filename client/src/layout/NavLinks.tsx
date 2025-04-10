@@ -1,5 +1,5 @@
 import { NavLink } from "react-router"
-import { Home, Monitor, Users, Pencil, Beer, Moon, Sun, Github } from "lucide-react"
+import { Home, Monitor, Users, Pencil, Beer, Moon, Sun, Github, MessageSquare } from "lucide-react"
 import { authClient } from "../lib/auth-client"
 import { useThemeStore } from "../store/useThemeStore"
 
@@ -40,6 +40,20 @@ const NavLinks = (props: Props) => {
           <div className="flex items-center">
             <Beer className="mr-2" />
             Beers
+          </div>
+        </NavLink>
+        <NavLink
+          onClick={props.onClick}
+          to="/chat"
+          className={({ isActive }) =>
+            `block py-2.5 px-4 rounded-sm transition ${
+              isActive ? "bg-gray-200 dark:bg-gray-700" : "hover:bg-gray-100 dark:hover:bg-gray-900"
+            }`
+          }
+        >
+          <div className="flex items-center">
+            <MessageSquare className="mr-2" />
+            Chat
           </div>
         </NavLink>
         {session.data?.user && (
