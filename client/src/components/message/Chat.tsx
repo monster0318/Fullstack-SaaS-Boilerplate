@@ -41,7 +41,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const handleLoadMore = (newMessages: ChatMessage[]) => {
     if (newMessages.length > 0) {
       setMessages((prev) => [...prev, ...newMessages])
-      setOldestMessageTimestamp(newMessages[newMessages.length - 1].createdAt)
+      // setOldestMessageTimestamp(newMessages[newMessages.length - 1].createdAt)
     } else {
       setHasMoreMessages(false)
     }
@@ -65,6 +65,9 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   useEffect(() => {
     const groupedMessages = groupMessagesByDay(messages)
     setGroupedMessages(groupedMessages)
+    if (messages.length > 0) {
+      setOldestMessageTimestamp(messages[messages.length - 1].createdAt)
+    }
   }, [messages])
 
   const handleNewMessage = (message: ChatMessage) => {
