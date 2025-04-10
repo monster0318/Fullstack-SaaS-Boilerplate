@@ -41,6 +41,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ isConnected }) => {
         onKeyDown={handleKeyDown}
         placeholder="Type a message..."
         disabled={!isConnected}
+        className="flex-1"
       />
       <button
         className="btn btn-blue w-24"

@@ -1,4 +1,4 @@
-import { initUsersData } from "./initUsersData"
+import { initUsersData, messages } from "./initUsersData"
 import { drizzle } from "drizzle-orm/node-postgres"
 import { eq } from "drizzle-orm"
 import { userTable, verificationTable, accountTable, sessionTable, messageTable } from "../db/schema"
@@ -8,6 +8,17 @@ import dotenv from "dotenv"
 dotenv.config({ path: "../../server.env" })
 const databaseUrl = process.env.DATABASE_URL!
 const db = drizzle(databaseUrl, { schema })
+
+const getRandomMessage = () => {
+  const randomIndex = Math.floor(Math.random() * messages.length)
+  return messages[randomIndex]
+}
+
+const getRandomDate = () => {
+  const now = new Date()
+  const oneYearAgo = new Date(now.getTime() - 120 * 24 * 60 * 60 * 1000) // 120 days ago
+  return new Date(oneYearAgo.getTime() + Math.random() * (now.getTime() - oneYearAgo.getTime()))
+}
 
 const main = async () => {
   console.log(`Seeding ${databaseUrl}...`)
@@ -20,12 +31,22 @@ const main = async () => {
 
   for (const user of initUsersData) {
     let userNew = await db.insert(userTable).values(user).returning({ id: userTable.id })
+    console.log(`Inserted user ${userNew[0].id}`)
     await db.insert(accountTable).values({
       userId: userNew[0].id,
       providerId: "credential",
       accountId: userNew[0].id,
       password: user.password,
     })
+    console.log(`Inserted account for user ${userNew[0].id}`)
+    for (let i = 0; i < 5; i++) {
+      await db.insert(messageTable).values({
+        senderId: userNew[0].id,
+        message: getRandomMessage(),
+        createdAt: getRandomDate(),
+      })
+      console.log(`Inserted message ${i + 1} for user ${userNew[0].id}`)
+    }
   }
 
   const userCheck = await db.query.userTable.findFirst({
