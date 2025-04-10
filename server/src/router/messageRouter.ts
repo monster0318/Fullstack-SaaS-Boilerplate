@@ -36,7 +36,7 @@ const messageRouter = router({
       const messages = await ctx.db.query.messageTable.findMany({
         where: lt(messageTable.createdAt, new Date(input.before)),
         orderBy: [desc(messageTable.createdAt)],
-        limit: 50,
+        limit: 20,
         with: {
           sender: {
             columns: {

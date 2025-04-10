@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import SSEConnection from "./SSEConnection"
@@ -7,6 +7,7 @@ import AuthButtons from "../../auth/AuthButtons"
 import LoadMoreMessages from "./LoadMoreMessages"
 import { MessageSquare } from "lucide-react"
 import MessageGroup from "./MessageGroup"
+import ChatContainer from "./ChatContainer"
 
 interface ChatProps {
   messages: ChatMessage[]
@@ -17,29 +18,6 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const session = authClient.useSession()
   const [oldestMessageTimestamp, setOldestMessageTimestamp] = useState<string>(() => new Date().toISOString())
   const [hasMoreMessages, setHasMoreMessages] = useState(true)
-  const chatContainerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const chatContainer = chatContainerRef.current
-    if (!chatContainer) return
-
-    const handleScroll = () => {
-      const threshold = 5
-      const isAtTop =
-        Math.abs(chatContainer.scrollHeight - chatContainer.clientHeight + chatContainer.scrollTop) <= threshold
-
-      if (isAtTop) {
-        console.log("User scrolled to the top!")
-      }
-    }
-
-    handleScroll()
-
-    chatContainer.addEventListener("scroll", handleScroll)
-    return () => {
-      chatContainer.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
 
   const handleLoadMore = (newMessages: ChatMessage[]) => {
     if (newMessages.length > 0) {
@@ -67,15 +45,14 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         <SSEConnection onMessage={handleNewMessage} />
       </div>
 
-      <div
-        ref={chatContainerRef}
-        className="flex flex-col-reverse gap-4 h-[calc(100vh-200px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5"
+      <ChatContainer
+        oldestMessageTimestamp={oldestMessageTimestamp}
+        onLoadMore={handleLoadMore}
+        hasMoreMessages={hasMoreMessages}
       >
         <MessageGroup messages={messages} />
-        {hasMoreMessages && (
-          <LoadMoreMessages oldestMessageTimestamp={oldestMessageTimestamp} onLoadMore={handleLoadMore} />
-        )}
-      </div>
+      </ChatContainer>
+
       {session.data?.user ? (
         <MessageInput isConnected={true} />
       ) : (
