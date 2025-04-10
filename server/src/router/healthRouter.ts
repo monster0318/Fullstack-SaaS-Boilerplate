@@ -1,7 +1,7 @@
 import { publicProcedure, router } from "../trpc"
 
 const healthRouter = router({
-  health: publicProcedure.query(() => {
+  trpc: publicProcedure.query(() => {
     return { message: "ok" }
   }),
 })

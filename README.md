@@ -53,7 +53,7 @@
 ## Features
 
 - [Beers from random-data-api.com](https://random-data-api.com) Example of pulling data from externals REST API
-- Health Check for the server (http://localhost:2022/health)
+- Health Check for the server (http://localhost:2022/health.trpc) and (http://localhost:2022)
 - Search with Debounce Using a Custom Hook
 - Chat with Server-Sent Events (SSE). SSE is easier to setup and don't require setting up a WebSocket server.
 
@@ -104,10 +104,6 @@ npm run start
 <img width="1150" alt="Screenshot 2025-01-29 at 9 23 37 AM" src="https://github.com/user-attachments/assets/c928afeb-119a-4bbc-b85a-9f9103fe398d" />
 <img width="1150" alt="Screenshot 2025-01-29 at 9 23 40 AM" src="https://github.com/user-attachments/assets/5fe2a032-f161-4808-a239-16eb1bf4a5b9" />
 <img width="1150" alt="Screenshot 2025-01-29 at 9 23 46 AM" src="https://github.com/user-attachments/assets/9fe3d828-184c-4754-be92-5d8f6b9327df" />
-
-#### Health Check for the server (http://localhost:2022/health)
-
-<img width="431" alt="Health Check" src="https://github.com/user-attachments/assets/c6153606-5011-4717-911a-afdb63ecc4c0">
 
 ## Motivation
 
