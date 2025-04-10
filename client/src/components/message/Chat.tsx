@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import SSEConnection from "./SSEConnection"
 import { authClient } from "../../lib/auth-client"
 import AuthButtons from "../../auth/AuthButtons"
-import LoadMoreMessages from "./LoadMoreMessages"
 import { MessageSquare } from "lucide-react"
 import MessageGroup from "./MessageGroup"
-import ChatContainer from "./ChatContainer"
+import { useTRPC } from "../../lib/trpc"
+import { useQuery } from "@tanstack/react-query"
 
 interface ChatProps {
   messages: ChatMessage[]
@@ -18,14 +18,44 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const session = authClient.useSession()
   const [oldestMessageTimestamp, setOldestMessageTimestamp] = useState<string>(() => new Date().toISOString())
   const [hasMoreMessages, setHasMoreMessages] = useState(true)
+  const trpc = useTRPC()
+  const chatContainerRef = useRef<HTMLDivElement>(null)
 
-  const handleLoadMore = (newMessages: ChatMessage[]) => {
-    if (newMessages.length > 0) {
-      setMessages((prev) => [...prev, ...newMessages])
-    } else {
-      setHasMoreMessages(false)
+  const dataQuery = useQuery(trpc.message.getMessages.queryOptions({ before: oldestMessageTimestamp }))
+
+  const handleLoadMore = async () => {
+    if (!hasMoreMessages) return
+    const result = await dataQuery.refetch()
+    if (result.data) {
+      if (result.data.length > 0) {
+        setMessages((prev) => [...prev, ...result.data])
+      } else {
+        setHasMoreMessages(false)
+      }
     }
   }
+
+  useEffect(() => {
+    const chatContainer = chatContainerRef.current
+    if (!chatContainer) return
+
+    const handleScroll = () => {
+      const threshold = 500
+      const isAtTop =
+        Math.abs(chatContainer.scrollHeight - chatContainer.clientHeight + chatContainer.scrollTop) <= threshold
+
+      if (isAtTop) {
+        handleLoadMore()
+      }
+    }
+
+    handleScroll()
+
+    chatContainer.addEventListener("scroll", handleScroll)
+    return () => {
+      chatContainer.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -37,6 +67,12 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
     setMessages((prev) => [message, ...prev])
   }
 
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = 0
+    }
+  }
+
   return (
     <div className="p-6">
       <div className="flex items-center gap-2">
@@ -45,16 +81,16 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         <SSEConnection onMessage={handleNewMessage} />
       </div>
 
-      <ChatContainer
-        oldestMessageTimestamp={oldestMessageTimestamp}
-        onLoadMore={handleLoadMore}
-        hasMoreMessages={hasMoreMessages}
+      <div
+        ref={chatContainerRef}
+        className="flex flex-col-reverse gap-4 h-[calc(100vh-200px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5"
       >
         <MessageGroup messages={messages} />
-      </ChatContainer>
+        {dataQuery.isLoading && <div>Loading...</div>}
+      </div>
 
       {session.data?.user ? (
-        <MessageInput isConnected={true} />
+        <MessageInput isConnected={true} onSendMessage={scrollToBottom} />
       ) : (
         <div>
           <p className="my-2 text-gray-500">Please login to chat</p>

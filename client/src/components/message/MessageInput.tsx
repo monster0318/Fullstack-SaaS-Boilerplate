@@ -4,9 +4,10 @@ import { useMutation } from "@tanstack/react-query"
 
 interface MessageInputProps {
   isConnected: boolean
+  onSendMessage: (message: string) => void
 }
 
-const MessageInput: React.FC<MessageInputProps> = ({ isConnected }) => {
+const MessageInput: React.FC<MessageInputProps> = ({ isConnected, onSendMessage }) => {
   const [input, setInput] = useState("")
   const trpc = useTRPC()
   const sendMessageMutation = useMutation(trpc.message.sendMessage.mutationOptions())
@@ -16,6 +17,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ isConnected }) => {
       try {
         await sendMessageMutation.mutateAsync({ message: input })
         setInput("")
+        onSendMessage(input)
       } catch (error) {
         console.error("Error sending message:", error)
       }
