@@ -38,7 +38,6 @@ const InfiniteScroll: React.FC<Props> = ({ chatContainerRef, oldestMessageTimest
 
       if (isAtTop) {
         handleLoadMore()
-        console.log("isAtTop 222222 ")
       }
     }
 
