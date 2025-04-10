@@ -6,7 +6,7 @@ import SSEConnection from "./SSEConnection"
 import { authClient } from "../../lib/auth-client"
 import AuthButtons from "../../auth/AuthButtons"
 import LoadMoreMessages from "./LoadMoreMessages"
-
+import { MessageSquare } from "lucide-react"
 interface ChatProps {
   messages: ChatMessage[]
   setMessages: React.Dispatch<React.SetStateAction<ChatMessage[]>>
@@ -55,9 +55,10 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-6">
       <div className="flex items-center gap-2">
-        <h1 className="text-2xl font-bold">Chat</h1>
+        <MessageSquare className="text-3xl mr-3" />
+        <h1 className="text-2xl font-bold mr-1">Chat</h1>
         <SSEConnection onMessage={handleNewMessage} />
       </div>
 
