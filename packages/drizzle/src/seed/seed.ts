@@ -39,7 +39,7 @@ const main = async () => {
       password: user.password,
     })
     console.log(`Inserted account for user ${userNew[0].id}`)
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       await db.insert(messageTable).values({
         senderId: userNew[0].id,
         message: getRandomMessage(),

@@ -77,7 +77,7 @@ export const messages = [
   "I'll check logs and get back.",
   "Let’s keep it async for now.",
   "Welcome to the team! 🎉",
-  "Meeting link here: [zoom link]",
+  "Meeting now! Lets go!",
   "Working from a cafe today ☕️📶",
   "Almost done, just tweaking the UI.",
 ]
