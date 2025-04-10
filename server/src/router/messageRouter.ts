@@ -13,7 +13,6 @@ const messageRouter = router({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      // Store the message in the database
       await ctx.db.insert(messageTable).values({
         message: input.message,
         senderId: ctx.user.id,
@@ -29,12 +28,12 @@ const messageRouter = router({
   getMessages: publicProcedure
     .input(
       z.object({
-        before: z.string().datetime(),
+        before: z.string().datetime().optional(),
       })
     )
     .query(async ({ ctx, input }) => {
       const messages = await ctx.db.query.messageTable.findMany({
-        where: lt(messageTable.createdAt, new Date(input.before)),
+        where: input.before ? lt(messageTable.createdAt, new Date(input.before)) : undefined,
         orderBy: [desc(messageTable.createdAt)],
         limit: 20,
         with: {

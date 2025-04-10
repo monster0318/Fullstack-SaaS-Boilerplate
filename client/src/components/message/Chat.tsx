@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import SSEConnection from "./SSEConnection"
@@ -6,8 +6,7 @@ import { authClient } from "../../lib/auth-client"
 import AuthButtons from "../../auth/AuthButtons"
 import { MessageSquare } from "lucide-react"
 import MessageGroup from "./MessageGroup"
-import { useTRPC } from "../../lib/trpc"
-import { useQuery } from "@tanstack/react-query"
+import InfiniteScroll from "./InfiniteScroll"
 
 interface ChatProps {
   messages: ChatMessage[]
@@ -16,52 +15,10 @@ interface ChatProps {
 
 const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   const session = authClient.useSession()
-  const [oldestMessageTimestamp, setOldestMessageTimestamp] = useState<string>(() => new Date().toISOString())
-  const [hasMoreMessages, setHasMoreMessages] = useState(true)
-  const trpc = useTRPC()
+
+  const oldestMessageTimestamp = messages.length > 0 ? messages[messages.length - 1].createdAt : undefined
+
   const chatContainerRef = useRef<HTMLDivElement>(null)
-
-  const dataQuery = useQuery(trpc.message.getMessages.queryOptions({ before: oldestMessageTimestamp }))
-
-  const handleLoadMore = async () => {
-    if (!hasMoreMessages) return
-    const result = await dataQuery.refetch()
-    if (result.data) {
-      if (result.data.length > 0) {
-        setMessages((prev) => [...prev, ...result.data])
-      } else {
-        setHasMoreMessages(false)
-      }
-    }
-  }
-
-  useEffect(() => {
-    const chatContainer = chatContainerRef.current
-    if (!chatContainer) return
-
-    const handleScroll = () => {
-      const threshold = 500
-      const isAtTop =
-        Math.abs(chatContainer.scrollHeight - chatContainer.clientHeight + chatContainer.scrollTop) <= threshold
-
-      if (isAtTop) {
-        handleLoadMore()
-      }
-    }
-
-    handleScroll()
-
-    chatContainer.addEventListener("scroll", handleScroll)
-    return () => {
-      chatContainer.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (messages.length > 0) {
-      setOldestMessageTimestamp(messages[messages.length - 1].createdAt)
-    }
-  }, [messages])
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -85,8 +42,12 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
         ref={chatContainerRef}
         className="flex flex-col-reverse gap-4 h-[calc(100vh-200px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5"
       >
+        <InfiniteScroll
+          chatContainerRef={chatContainerRef}
+          oldestMessageTimestamp={oldestMessageTimestamp}
+          setMessages={setMessages}
+        />
         <MessageGroup messages={messages} />
-        {dataQuery.isLoading && <div>Loading...</div>}
       </div>
 
       {session.data?.user ? (
