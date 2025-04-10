@@ -13,13 +13,6 @@ const LoadMoreMessages: React.FC<LoadMoreMessagesProps> = ({ oldestMessageTimest
 
   const dataQuery = useQuery(trpc.message.getMessages.queryOptions({ before: oldestMessageTimestamp }))
 
-  //   const { data, isLoading, refetch } = useQuery({
-  //     queryKey: ["messages", "loadMore", oldestMessageTimestamp],
-
-  //     // queryFn: () => trpc.message.getMessages.query({ before: oldestMessageTimestamp }),
-  //     enabled: false,
-  //   })
-
   const handleLoadMore = async () => {
     const result = await dataQuery.refetch()
     if (result.data) {
