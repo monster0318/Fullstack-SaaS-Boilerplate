@@ -25,8 +25,6 @@ const start = async () => {
 
     await fastify.register(fastifyCookie)
 
-    // https://github.com/better-auth/better-auth/pull/2006
-    // Register authentication endpoint
     fastify.route({
       method: ["GET", "POST"],
       url: "/api/auth/*",
@@ -34,7 +32,7 @@ const start = async () => {
     })
 
     fastify.get("/", async (request: FastifyRequest, reply: FastifyReply) => {
-      return reply.send({ message: "Hello, TER!" })
+      return reply.send({ message: "Hello world!" })
     })
 
     await fastify.register(fastifyTRPCPlugin, {
@@ -46,7 +44,7 @@ const start = async () => {
     })
 
     // SSE route for chat
-    fastify.get("/sse", sseHandler(fastify))
+    fastify.get("/sse", sseHandler())
 
     const port = Number(process.env.PORT) || 2022
     await fastify.listen({

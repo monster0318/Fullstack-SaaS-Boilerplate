@@ -1,16 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from "react"
-import { CircleDot, CircleDotDashed } from "lucide-react"
-
+import React, { useState, useEffect } from "react"
 import { ChatMessage } from "../../pages/ChatPage"
 import MessageInput from "./MessageInput"
 import Message from "./Message"
-
-export type MessageType = "text" | "system" | "error"
-
-export interface ChatEvent {
-  type: "message" | "connection" | "error"
-  message: ChatMessage
-}
+import SSEConnection from "./SSEConnection"
+import { authClient } from "../../lib/auth-client"
+import AuthButtons from "../../auth/AuthButtons"
 
 interface ChatProps {
   messages: ChatMessage[]
@@ -18,9 +12,9 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
+  const session = authClient.useSession()
+  // context = use
   const [groupedMessages, setGroupedMessages] = useState<[string, ChatMessage[]][]>([])
-  const eventSource = useRef<EventSource | null>(null)
-  const [isConnected, setIsConnected] = useState(false)
 
   const groupMessagesByDay = (messages: ChatMessage[]) => {
     const grouped = messages.reduce((acc, message) => {
@@ -40,64 +34,20 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
     return grouped
   }
 
-  // console.log("messages", messages)
-  // console.log(groupedMessages)
-
   useEffect(() => {
     const groupedMessages = groupMessagesByDay(messages)
     setGroupedMessages(groupedMessages)
   }, [messages])
 
-  const connectSSE = useCallback(() => {
-    // Ensure we use the correct port, matching the server setup (default 2022)
-    const sseUrl = `http://localhost:2022/sse`
-    eventSource.current = new EventSource(sseUrl, { withCredentials: true })
-
-    eventSource.current.onopen = () => {
-      console.log("SSE Connected")
-      setIsConnected(true)
-    }
-
-    eventSource.current.onmessage = (event) => {
-      try {
-        const chatEvent: ChatEvent = JSON.parse(event.data)
-        console.log("Received message:", chatEvent)
-        if (chatEvent.type === "message") {
-          setMessages((prev) => [chatEvent.message, ...prev])
-        }
-      } catch (error) {
-        console.error("Error parsing message:", error)
-        setIsConnected(false)
-      }
-    }
-
-    eventSource.current.onerror = (error) => {
-      console.error("SSE Error:", error)
-      setIsConnected(false)
-
-      if (eventSource.current?.readyState === EventSource.CLOSED) {
-        console.log("Authentication failed. Please log in again.")
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    connectSSE()
-    // Clean up EventSource connection when component unmounts
-    return () => {
-      eventSource.current?.close()
-    }
-  }, [connectSSE])
+  const handleNewMessage = (message: ChatMessage) => {
+    setMessages((prev) => [message, ...prev])
+  }
 
   return (
     <div className="container mx-auto p-4">
       <div className="flex items-center gap-2">
         <h1 className="text-2xl font-bold">Chat</h1>
-        {isConnected ? (
-          <CircleDot className="w-4 h-4 text-green-500" aria-label="Connected" />
-        ) : (
-          <CircleDotDashed className="w-4 h-4 text-red-500 animate-spin" aria-label="Disconnected" />
-        )}
+        <SSEConnection onMessage={handleNewMessage} />
       </div>
 
       <div className="flex flex-col-reverse gap-4 h-[calc(100vh-300px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5">
@@ -110,7 +60,14 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
           </React.Fragment>
         ))}
       </div>
-      <MessageInput isConnected={isConnected} />
+      {session.data?.user ? (
+        <MessageInput isConnected={true} />
+      ) : (
+        <div>
+          <p className="my-2 text-gray-500">Please login to chat</p>
+          <AuthButtons />
+        </div>
+      )}
     </div>
   )
 }

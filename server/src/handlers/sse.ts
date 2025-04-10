@@ -1,51 +1,61 @@
-import { FastifyInstance, FastifyRequest, FastifyReply } from "fastify"
-import { auth } from "../lib/auth"
-import { fromNodeHeaders } from "better-auth/node"
+import { FastifyRequest, FastifyReply } from "fastify"
 import { activeConnections, sendEvent, ChatEvent } from "../lib/sse"
 
-export const sseHandler = (fastify: FastifyInstance) => {
+// Constants
+const SSE_HEADERS = {
+  "Content-Type": "text/event-stream",
+  "Cache-Control": "no-cache",
+  Connection: "keep-alive",
+  "Access-Control-Allow-Origin": process.env.CLIENT_URL,
+  "Access-Control-Allow-Credentials": "true",
+} as const
+
+// Types
+type ErrorResponse = {
+  type: "error"
+  message: {
+    type: "error"
+    content: string
+    timestamp: number
+  }
+}
+
+// Helper functions
+const sendErrorResponse = (reply: FastifyReply, status: number, message: string) => {
+  const errorResponse: ErrorResponse = {
+    type: "error",
+    message: {
+      type: "error",
+      content: message,
+      timestamp: Date.now(),
+    },
+  }
+
+  reply.raw.writeHead(status, SSE_HEADERS)
+  reply.raw.write(`data: ${JSON.stringify(errorResponse)}\n\n`)
+  reply.raw.end()
+}
+
+const setupConnection = (reply: FastifyReply) => {
+  reply.raw.writeHead(200, SSE_HEADERS)
+  activeConnections.add(reply)
+}
+
+const sendWelcomeMessage = (reply: FastifyReply) => {
+  const welcomeEvent: ChatEvent = {
+    type: "connection",
+    message: {
+      message: "Connected successfully",
+      createdAt: new Date(),
+    },
+  }
+  sendEvent(reply, welcomeEvent)
+}
+
+export const sseHandler = () => {
   return async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      // Authenticate the user
-      const headers = fromNodeHeaders(request.headers)
-      const data = await auth.api.getSession({
-        headers,
-      })
-
-      if (!data) {
-        console.log("Authentication failed - no session data")
-        reply.raw.writeHead(401, {
-          "Content-Type": "text/event-stream",
-          "Cache-Control": "no-cache",
-          Connection: "keep-alive",
-        })
-        reply.raw.write(
-          `data: ${JSON.stringify({
-            type: "error",
-            message: {
-              type: "error",
-              content: "Authentication failed",
-              timestamp: Date.now(),
-            },
-          })}\n\n`
-        )
-        reply.raw.end()
-        return
-      }
-
-      console.log("User authenticated:", data.user.id)
-
-      // Set SSE headers
-      reply.raw.writeHead(200, {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
-        "Access-Control-Allow-Origin": process.env.CLIENT_URL || "http://localhost:3000",
-        "Access-Control-Allow-Credentials": "true",
-      })
-
-      // Add this connection to active connections
-      activeConnections.add(reply)
+      setupConnection(reply)
 
       // Handle client disconnect
       request.raw.on("close", () => {
@@ -53,36 +63,11 @@ export const sseHandler = (fastify: FastifyInstance) => {
         console.log("Client disconnected")
       })
 
-      // Send welcome message
-      const welcomeEvent: ChatEvent = {
-        type: "connection",
-        message: {
-          // type: "system",
-          message: "Welcome to the chat!",
-          createdAt: new Date(),
-        },
-      }
-      sendEvent(reply, welcomeEvent)
-
+      sendWelcomeMessage(reply)
       console.log("Client connected successfully")
     } catch (error) {
       console.error("Error in SSE handler:", error)
-      reply.raw.writeHead(500, {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
-      })
-      reply.raw.write(
-        `data: ${JSON.stringify({
-          type: "error",
-          message: {
-            type: "error",
-            content: "Internal server error",
-            timestamp: Date.now(),
-          },
-        })}\n\n`
-      )
-      reply.raw.end()
+      sendErrorResponse(reply, 500, "Internal server error")
     }
   }
 }
