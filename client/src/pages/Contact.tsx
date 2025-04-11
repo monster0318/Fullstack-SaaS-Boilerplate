@@ -24,7 +24,10 @@ const Contact = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate.svg" alt="GitHub" />
+          <img
+            src="https://img.shields.io/github/stars/alan345/Fullstack-SaaS-Boilerplate?style=for-the-badge"
+            alt="GitHub"
+          />
         </a>
       </div>
     </div>
