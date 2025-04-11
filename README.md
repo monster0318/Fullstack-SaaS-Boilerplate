@@ -23,7 +23,8 @@
 
 ## Preview
 
-![demo](https://github.com/user-attachments/assets/4e98f29e-add9-40b2-9df5-98a04995a3e9)
+![Fullstack-SaaS-Boilerplate-Demo](https://github.com/user-attachments/assets/4693db07-523a-4326-9bc4-a1b1ea634507)
+
 
 ## Main Stack
 
