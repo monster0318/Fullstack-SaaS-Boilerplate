@@ -7,16 +7,15 @@ const SSE_HEADERS = {
   Connection: "keep-alive",
   "Access-Control-Allow-Origin": process.env.CLIENT_URL,
   "Access-Control-Allow-Credentials": "true",
-} as const
+}
 
 type User = typeof userTable.$inferSelect
 type Sender = Pick<User, "id" | "name" | "image">
+
 interface ChatMessage {
-  // type: "text" | "system" | "error"
   message: string
   createdAt: Date
   sender?: Sender
-  // senderId?: string
 }
 
 interface ChatEvent {
