@@ -94,16 +94,14 @@ npm run start
 
 ## Printscreens
 
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 13 AM" src="https://github.com/user-attachments/assets/6b8596cc-8367-487b-931e-6809123b1fd4" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/1b3db78d-4b34-4401-b8e3-89dc85e990a9" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/5eedf90f-18a8-4687-b8fb-bd4cc5d0dbeb" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/eed287fe-7be7-4594-b97a-2ef51718c446" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/7a221b78-223b-44e7-8d26-3a1f04c56afd" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/fec440d5-ec7a-4cb0-be38-3ee60c193e6a" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/d19d0f3f-364b-4a12-a8ca-540c430a09c9" />
+<img width="1556" alt="image" src="https://github.com/user-attachments/assets/3c4757ff-9746-459d-bbf0-e3326c4b1ce4" />
 
-<img width="1150" alt="image" src="https://github.com/user-attachments/assets/5734b3ed-2a97-4353-bb89-5a7f70bef9d0" />
-
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 22 AM" src="https://github.com/user-attachments/assets/a4f241e9-01b8-489f-98b5-aeeeba816a4d" />
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 27 AM" src="https://github.com/user-attachments/assets/8bff976d-89bd-4c6b-83f9-a08fa60c4360" />
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 32 AM" src="https://github.com/user-attachments/assets/647b8b08-f75e-48b0-9be1-028b8a55cdc0" />
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 37 AM" src="https://github.com/user-attachments/assets/c928afeb-119a-4bbc-b85a-9f9103fe398d" />
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 40 AM" src="https://github.com/user-attachments/assets/5fe2a032-f161-4808-a239-16eb1bf4a5b9" />
-<img width="1150" alt="Screenshot 2025-01-29 at 9 23 46 AM" src="https://github.com/user-attachments/assets/9fe3d828-184c-4754-be92-5d8f6b9327df" />
 
 ## Motivation
 
@@ -135,7 +133,7 @@ npm run test
 
 Create a PR if you want to add your project here.
 
-## How you can help?
+## How can you help?
 
 This project is free and open source. If you found it useful, consider giving it a star ⭐ or sponsoring me 💖 — it really helps!
 I'm always open to feedback, so feel free to share suggestions to improve the stack.
