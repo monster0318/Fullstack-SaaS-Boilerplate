@@ -27,33 +27,21 @@ interface ChatEvent {
 // Store active SSE connections
 const activeConnections = new Set<FastifyReply>()
 
-// Helper function to send SSE events
-const sendEvent = (reply: FastifyReply, event: ChatEvent) => {
-  console.log("Sending event:", event)
-  try {
-    reply.raw.write(`data: ${JSON.stringify(event)}\n\n`)
-  } catch (error) {
-    console.error("Error sending event:", error)
-  }
-}
-
 // Function to broadcast messages to all connected clients
 export const broadcastMessage = async (message: string, sender: Sender) => {
   try {
     const chatEvent: ChatEvent = {
       type: "message",
       message: {
-        // type: "text",
         message,
         createdAt: new Date(),
         sender,
-        // senderId,
       },
     }
 
     // Broadcast to all connected clients
     activeConnections.forEach((client) => {
-      sendEvent(client, chatEvent)
+      client.raw.write(getWriteStringSSE(chatEvent))
     })
   } catch (error) {
     console.error("Error broadcasting message:", error)
@@ -71,13 +59,17 @@ const sendErrorResponse = (reply: FastifyReply, status: number, message: string)
   }
 
   reply.raw.writeHead(status, SSE_HEADERS)
-  reply.raw.write(`data: ${JSON.stringify(errorResponse)}\n\n`)
+  reply.raw.write(getWriteStringSSE(errorResponse))
   reply.raw.end()
 }
 
 const setupConnection = (reply: FastifyReply) => {
   reply.raw.writeHead(200, SSE_HEADERS)
   activeConnections.add(reply)
+}
+
+const getWriteStringSSE = (event: ChatEvent) => {
+  return `data: ${JSON.stringify(event)}\n\n`
 }
 
 const sendWelcomeMessage = (reply: FastifyReply) => {
@@ -88,7 +80,7 @@ const sendWelcomeMessage = (reply: FastifyReply) => {
       createdAt: new Date(),
     },
   }
-  sendEvent(reply, welcomeEvent)
+  reply.raw.write(getWriteStringSSE(welcomeEvent))
 }
 
 export const sseHandler = () => {
