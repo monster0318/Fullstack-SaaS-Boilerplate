@@ -1,8 +1,8 @@
 import { protectedProcedure, publicProcedure, router } from "../trpc"
 import { z } from "zod"
 import { messageTable, drizzleOrm } from "@fsb/drizzle"
+import { broadcastMessage } from "../handlers/sse"
 
-import { broadcastMessage } from "../lib/sse"
 const { desc, lt } = drizzleOrm
 
 const messageRouter = router({
