@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { CircleDot, CircleDotDashed } from "lucide-react"
+import { Circle, CircleHalf } from "@phosphor-icons/react"
 import { ChatMessage } from "../../pages/ChatPage"
 
 export interface ChatEvent {
@@ -53,9 +53,9 @@ const SSEConnection: React.FC<SSEConnectionProps> = ({ onMessage }) => {
   return (
     <div className="flex items-center gap-2">
       {isConnected ? (
-        <CircleDot className="w-4 h-4 text-green-500" aria-label="Connected" />
+        <Circle className="w-4 h-4 text-green-500" aria-label="Connected" />
       ) : (
-        <CircleDotDashed className="w-4 h-4 text-red-500 animate-spin" aria-label="Disconnected" />
+        <CircleHalf className="w-4 h-4 text-red-500 animate-spin" aria-label="Disconnected" />
       )}
     </div>
   )

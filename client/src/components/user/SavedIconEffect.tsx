@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react"
+import { CheckCircle } from "@phosphor-icons/react"
 import { useEffect, useState } from "react"
 
 function SavedIconEffect() {
@@ -15,7 +15,7 @@ function SavedIconEffect() {
   return (
     <div className="">
       <div className={`transition-opacity duration-1000 ${visible ? "opacity-100" : "opacity-0"}`}>
-        <CheckCircle2 className="text-green-500" />
+        <CheckCircle className="text-green-500" />
       </div>
     </div>
   )

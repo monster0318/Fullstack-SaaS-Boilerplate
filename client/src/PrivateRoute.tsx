@@ -1,6 +1,6 @@
 import React from "react"
 import AuthButtons from "./auth/AuthButtons"
-import { Bug } from "lucide-react"
+import { Bug } from "@phosphor-icons/react"
 import { authClient } from "./lib/auth-client"
 type Props = {
   element: React.ReactNode

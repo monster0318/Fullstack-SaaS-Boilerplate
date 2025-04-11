@@ -1,12 +1,12 @@
 import { Link } from "react-router"
-import { LogIn, Key } from "lucide-react"
+import { SignIn, Key } from "@phosphor-icons/react"
 
 const AuthButtons = () => {
   return (
     <div className="flex gap-2">
       <Link to="/login">
         <button id="login-button" className="btn-white  flex items-center">
-          <LogIn className="mr-2" />
+          <SignIn className="mr-2" />
           Login
         </button>
       </Link>

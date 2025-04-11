@@ -4,7 +4,7 @@ import { SizeTable } from "../template/SizeTable"
 import { useQuery } from "@tanstack/react-query"
 import { useTRPC } from "../lib/trpc"
 import { useSearchParams } from "react-router"
-import { Beer } from "lucide-react"
+import { Wine } from "@phosphor-icons/react"
 
 const BeersPage = () => {
   const [searchParams] = useSearchParams()
@@ -20,7 +20,7 @@ const BeersPage = () => {
   return (
     <div className="p-6">
       <div className="flex items-center">
-        <Beer className="text-3xl mr-3" />
+        <Wine className="text-3xl mr-3" />
         <h1>Beers</h1>
       </div>
       <p>This page is public. Both logged-in and non-logged-in users can access it.</p>

@@ -3,7 +3,7 @@ import { useTRPC } from "../../lib/trpc"
 import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
-import { Monitor, AlertCircle } from "lucide-react"
+import { Monitor, WarningCircle } from "@phosphor-icons/react"
 import utils from "../../lib/utils"
 import DeviceImage from "./DeviceImage"
 import ChipUserId from "../user/ChipUserId"
@@ -77,7 +77,7 @@ const SessionsPage = () => {
           {dataQuery.data?.sessions.length === 0 && (
             <div className="flex justify-center items-center mt-10">
               <div className="flex items-center gap-2">
-                <AlertCircle className="text-4xl text-orange-400" />
+                <WarningCircle className="text-4xl text-orange-400" />
                 <div>No sessions found</div>
               </div>
             </div>

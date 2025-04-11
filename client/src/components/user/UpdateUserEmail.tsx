@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Pencil, CheckCircle2, Loader2 } from "lucide-react"
+import { PencilSimple, CheckCircle, Spinner } from "@phosphor-icons/react"
 import SavedIconEffect from "./SavedIconEffect"
 import ErrorMutation from "../../layout/ErrorMutation"
 import { useMutation } from "@tanstack/react-query"
@@ -35,9 +35,9 @@ const UpdateUserEmail = (props: Props) => {
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => setIsEdit(true)}>
             <div>{label}:</div>
             <div>{props.user.email}</div>
-            <Pencil className=" opacity-0 group-hover:opacity-100 transition-opacity" />
+            <PencilSimple className=" opacity-0 group-hover:opacity-100 transition-opacity" />
             {mutation.isSuccess && <SavedIconEffect />}
-            {mutation.isPending && <Loader2 className="animate-spin" />}
+            {mutation.isPending && <Spinner className="animate-spin" />}
           </div>
         ) : (
           <>
@@ -59,7 +59,7 @@ const UpdateUserEmail = (props: Props) => {
                 className="pr-20"
                 style={{ paddingRight: "26px" }}
               />
-              <CheckCircle2
+              <CheckCircle
                 id="icon-check"
                 onMouseDown={(e) => e.preventDefault()}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer hover:text-green-600 transition-colors"

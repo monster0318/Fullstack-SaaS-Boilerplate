@@ -1,4 +1,4 @@
-import { Monitor, Laptop, Tablet, Smartphone } from "lucide-react"
+import { Monitor, Laptop, DeviceTablet, DeviceMobile, AndroidLogo, WindowsLogo, Desktop } from "@phosphor-icons/react"
 
 type Props = {
   className: string
@@ -6,11 +6,11 @@ type Props = {
 }
 
 const DeviceImage = (props: Props) => {
-  if (props.deviceName === "iPhone") return <Smartphone className={props.className} />
-  if (props.deviceName === "Android Device") return <Smartphone className={props.className} />
-  if (props.deviceName === "iPad") return <Tablet className={props.className} />
-  if (props.deviceName === "Windows PC") return <Monitor className={props.className} />
-  if (props.deviceName === "Mac") return <Monitor className={props.className} />
+  if (props.deviceName === "iPhone") return <DeviceMobile className={props.className} />
+  if (props.deviceName === "Android Device") return <AndroidLogo className={props.className} />
+  if (props.deviceName === "iPad") return <DeviceTablet className={props.className} />
+  if (props.deviceName === "Windows PC") return <WindowsLogo className={props.className} />
+  if (props.deviceName === "Mac") return <Desktop className={props.className} />
   if (props.deviceName === "Linux PC") return <Monitor className={props.className} />
   if (props.deviceName === "Chromebook") return <Laptop className={props.className} />
 

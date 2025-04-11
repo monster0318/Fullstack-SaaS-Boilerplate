@@ -5,7 +5,7 @@ import ErrorTemplate from "../../template/ErrorTemplate"
 import Pagination from "../../layout/Pagination"
 import ImgAvatar from "../../layout/ImgAvatar"
 import Search from "../search/Search"
-import { Users, AlertCircle, Monitor } from "lucide-react"
+import { Users, WarningCircle, Monitor } from "@phosphor-icons/react"
 import utils from "../../lib/utils"
 import ChipUserId from "./ChipUserId"
 
@@ -75,7 +75,7 @@ const UsersPage = () => {
           {dataQuery.data?.users.length === 0 && (
             <div className="flex justify-center items-center mt-10">
               <div className="flex items-center gap-2">
-                <AlertCircle className="text-4xl text-orange-400" />
+                <WarningCircle className="text-4xl text-orange-400" />
                 <div>No users found</div>
               </div>
             </div>

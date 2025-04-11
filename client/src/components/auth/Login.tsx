@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router"
 import { useNavigate } from "react-router"
-import { LogIn } from "lucide-react"
+import { SignIn } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
 
 const Login = () => {
@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <div className="p-6">
       <div className="flex items-center">
-        <LogIn className="text-3xl mr-3" />
+        <SignIn className="text-3xl mr-3" />
         <h1>Login</h1>
       </div>
       <form onSubmit={onSubmit} className="mt-4 space-y-2">
@@ -83,7 +83,7 @@ const Login = () => {
             type="submit"
             className="btn-blue flex items-center"
           >
-            <LogIn className="mr-2" />
+            <SignIn className="mr-2" />
             {isSubmitting ? "Loading..." : "Login"}
           </button>
           {error && <p className="text-sm mt-6 text-red-500">{error}</p>}

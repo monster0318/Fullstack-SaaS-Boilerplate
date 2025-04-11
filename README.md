@@ -27,7 +27,6 @@
 
 ![Fullstack-SaaS-Boilerplate-Demo](https://github.com/user-attachments/assets/4693db07-523a-4326-9bc4-a1b1ea634507)
 
-
 ## Main Stack
 
 | Technology                                        | Description                                               | Stars                                                                                                                                                                          |
@@ -41,17 +40,17 @@
 
 ## Other dependencies
 
-| Technology                                                                      | Description                                                      | Stars                                                                                                                                                                        |
-| ------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <a href="https://better-auth.com">Better Auth</a>                               | Authentication library for Node.js                               | <a href="https://github.com/better-auth/better-auth"><img src="https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square" alt="GitHub Repo stars" /></a> |
-| <a href="https://lucide.dev">Lucide Icons</a>                                   | Beautifully simple & consistent icons                            | <a href="https://github.com/lucide-icons/lucide"><img src="https://img.shields.io/github/stars/lucide-icons/lucide?style=flat-square" alt="GitHub Repo stars" /></a>         |
-| <a href="https://docs.npmjs.com/cli/v10/using-npm/workspaces">npm Workspace</a> | Workspaces for managing multiple packages in a single repository | <a href="https://github.com/npm/cli"><img src="https://img.shields.io/github/stars/npm/cli?style=flat-square" alt="GitHub Repo stars" /></a>                                 |
-| <a href="https://playwright.dev">Playwright</a>                                 | Test your web apps headlessly with a single API                  | <a href="https://github.com/microsoft/playwright"><img src="https://img.shields.io/github/stars/microsoft/playwright?style=flat-square" alt="GitHub Repo stars" /></a>       |
-| <a href="https://reactrouter.com">React Router v7</a>                           | Declarative routing for React                                    | <a href="https://github.com/remix-run/react-router"><img src="https://img.shields.io/github/stars/remix-run/react-router?style=flat-square" alt="GitHub Repo stars" /></a>   |
-| <a href="https://www.typescriptlang.org">TypeScript</a>                         | TypeScript is a typed superset of JavaScript                     | <a href="https://github.com/microsoft/TypeScript"><img src="https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square" alt="GitHub Repo stars" /></a>       |
-| <a href="https://vitejs.dev">Vite</a>                                           | Next generation frontend tooling. It's fast!                     | <a href="https://github.com/vitejs/vite"><img src="https://img.shields.io/github/stars/vitejs/vite?style=flat-square" alt="GitHub Repo stars" /></a>                         |
-| <a href="https://zod.dev">Zod</a>                                               | TypeScript-first schema validation with static type inference    | <a href="https://github.com/colinhacks/zod"><img src="https://img.shields.io/github/stars/colinhacks/zod?style=flat-square" alt="GitHub Repo stars" /></a>                   |
-| <a href="https://zustand.docs.pmnd.rs/">Zustand</a>                             | Bear necessities for state management in React                   | <a href="https://github.com/pmndrs/zustand"><img src="https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square" alt="GitHub Repo stars" /></a>                   |
+| Technology                                                                      | Description                                                      | Stars                                                                                                                                                                                    |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a href="https://better-auth.com">Better Auth</a>                               | Authentication library for Node.js                               | <a href="https://github.com/better-auth/better-auth"><img src="https://img.shields.io/github/stars/better-auth/better-auth?style=flat-square" alt="GitHub Repo stars" /></a>             |
+| <a href="https://phosphoricons.com">Phosphor Icons</a>                          | Beautifully simple & consistent icons                            | <a href="https://github.com/phosphor-icons/phosphor-icons"><img src="https://img.shields.io/github/stars/phosphor-icons/phosphor-icons?style=flat-square" alt="GitHub Repo stars" /></a> |
+| <a href="https://docs.npmjs.com/cli/v10/using-npm/workspaces">npm Workspace</a> | Workspaces for managing multiple packages in a single repository | <a href="https://github.com/npm/cli"><img src="https://img.shields.io/github/stars/npm/cli?style=flat-square" alt="GitHub Repo stars" /></a>                                             |
+| <a href="https://playwright.dev">Playwright</a>                                 | Test your web apps headlessly with a single API                  | <a href="https://github.com/microsoft/playwright"><img src="https://img.shields.io/github/stars/microsoft/playwright?style=flat-square" alt="GitHub Repo stars" /></a>                   |
+| <a href="https://reactrouter.com">React Router v7</a>                           | Declarative routing for React                                    | <a href="https://github.com/remix-run/react-router"><img src="https://img.shields.io/github/stars/remix-run/react-router?style=flat-square" alt="GitHub Repo stars" /></a>               |
+| <a href="https://www.typescriptlang.org">TypeScript</a>                         | TypeScript is a typed superset of JavaScript                     | <a href="https://github.com/microsoft/TypeScript"><img src="https://img.shields.io/github/stars/microsoft/TypeScript?style=flat-square" alt="GitHub Repo stars" /></a>                   |
+| <a href="https://vitejs.dev">Vite</a>                                           | Next generation frontend tooling. It's fast!                     | <a href="https://github.com/vitejs/vite"><img src="https://img.shields.io/github/stars/vitejs/vite?style=flat-square" alt="GitHub Repo stars" /></a>                                     |
+| <a href="https://zod.dev">Zod</a>                                               | TypeScript-first schema validation with static type inference    | <a href="https://github.com/colinhacks/zod"><img src="https://img.shields.io/github/stars/colinhacks/zod?style=flat-square" alt="GitHub Repo stars" /></a>                               |
+| <a href="https://zustand.docs.pmnd.rs/">Zustand</a>                             | Bear necessities for state management in React                   | <a href="https://github.com/pmndrs/zustand"><img src="https://img.shields.io/github/stars/pmndrs/zustand?style=flat-square" alt="GitHub Repo stars" /></a>                               |
 
 ## Features
 
@@ -104,7 +103,6 @@ npm run start
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/fec440d5-ec7a-4cb0-be38-3ee60c193e6a" />
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/d19d0f3f-364b-4a12-a8ca-540c430a09c9" />
 <img width="1556" alt="image" src="https://github.com/user-attachments/assets/3c4757ff-9746-459d-bbf0-e3326c4b1ce4" />
-
 
 ## Motivation
 

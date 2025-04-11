@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, useNavigate } from "react-router"
-import { Key } from "lucide-react"
+import { Key } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
 
 const Signup = () => {

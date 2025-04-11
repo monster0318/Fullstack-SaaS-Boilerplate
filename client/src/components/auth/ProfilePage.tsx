@@ -1,7 +1,7 @@
 import ProfileQuery from "./ProfileQuery"
 import Logout from "./Logout"
 import { Link } from "react-router"
-import { Monitor, UserCircle2 } from "lucide-react"
+import { Monitor, UserCircle } from "@phosphor-icons/react"
 import { authClient } from "../../lib/auth-client"
 
 const ProfilePage = () => {
@@ -15,7 +15,7 @@ const ProfilePage = () => {
     <div className="p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <UserCircle2 className="text-3xl mr-3" />
+          <UserCircle className="text-3xl mr-3" />
           <h1>Profile</h1>
         </div>
 

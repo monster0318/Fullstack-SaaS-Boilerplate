@@ -4,7 +4,7 @@ import MessageInput from "./MessageInput"
 import SSEConnection from "./SSEConnection"
 import { authClient } from "../../lib/auth-client"
 import AuthButtons from "../../auth/AuthButtons"
-import { MessageSquare } from "lucide-react"
+import { Chat as ChatIcon } from "@phosphor-icons/react"
 import MessageGroup from "./MessageGroup"
 import InfiniteScroll from "./InfiniteScroll"
 
@@ -36,7 +36,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
   return (
     <div className="p-6">
       <div className="flex items-center gap-2">
-        <MessageSquare className="text-3xl mr-3" />
+        <ChatIcon className="text-3xl mr-3" />
         <h1 className="text-2xl font-bold mr-1">Chat</h1>
         <SSEConnection onMessage={handleNewMessage} />
       </div>
