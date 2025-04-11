@@ -19,8 +19,9 @@
   <img width="200" alt="Demo Fullstack-SaaS-Boilerplate" src="https://github.com/user-attachments/assets/e7341328-dd7b-463a-b822-a491ef81369c">
 </a>
 
-###### Hosted by [render.com](http://render.com/) for free
-###### As it is a free tier, this Demo will spin down with inactivity, which can delay requests by 50 seconds or more. Be patient!
+<small><small><small>Hosted by [render.com](http://render.com/) for free</small></small></small>
+
+<small>As it is a free tier, this Demo will spin down with inactivity, which can delay requests by 50 seconds or more. Be patient!</<small>
 
 ## Preview
 
