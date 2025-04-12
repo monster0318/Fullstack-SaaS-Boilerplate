@@ -19,7 +19,7 @@ const Contact = () => {
         </p>
         <p className=" text-gray-600 text-center">Also, please add a star! It helps!</p>
         <a
-          href="https://github.com/alan345/Fullstack-SaaS-Boilerplate"
+          href="https://github.com/alan345/Fullstack-SaaS-Boilerplate/stargazers"
           className="mt-6"
           target="_blank"
           rel="noopener noreferrer"
