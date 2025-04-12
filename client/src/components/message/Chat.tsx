@@ -43,7 +43,7 @@ const Chat: React.FC<ChatProps> = ({ messages, setMessages }) => {
 
       <div
         ref={chatContainerRef}
-        className="flex flex-col-reverse gap-4 h-[calc(100vh-200px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5"
+        className="flex flex-col-reverse gap-4 h-[calc(100vh-230px)] overflow-y-scroll border border-gray-300 mb-2.5 p-1.5"
       >
         <InfiniteScroll
           chatContainerRef={chatContainerRef}
