@@ -3,6 +3,8 @@ import { Beer } from "../type/Beer.type"
 
 const uri = "https://random-data-api.com/api/v2"
 
+
+
 export const randomDataApi = {
   getBeers: async (size: number): Promise<Beer[]> => {
     try {
